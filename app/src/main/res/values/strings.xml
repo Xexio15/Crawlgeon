@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Crawlgeon</string>
+    <string name="atras">A</string>
+    <string name="jugar">PLAY</string>
+    <string name="equipo">EQUIP</string>
+    <string name = "opciones">*</string>
+    <string name="version">Version xx.xxx</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="opcions">Options</string>
+    <string name="musica">Music</string>
+    <string name="efectes">FX</string>
+    <string name="about">About...</string>
 </resources>
