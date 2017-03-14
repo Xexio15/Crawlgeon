@@ -1,5 +1,6 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,16 @@ public class LevelSelection extends AppCompatActivity {
                 OptionsDialog dialog = new OptionsDialog();
                 //El mostrem
                 dialog.show(getSupportFragmentManager(),"opt");
+            }
+        });
+
+        Button btn_01x01 = (Button) findViewById(R.id.btn_01x01);
+        btn_01x01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
+                startActivity(lvl_01x01);
             }
         });
     }
