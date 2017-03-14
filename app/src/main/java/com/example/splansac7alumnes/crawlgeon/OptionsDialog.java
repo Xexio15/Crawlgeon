@@ -3,7 +3,7 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.support.v4.app.DialogFragment;//Recordar que el import debe ser V4
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +39,7 @@ public class OptionsDialog extends DialogFragment {
                         dismiss();
                     }
                 });
+
 
 
 

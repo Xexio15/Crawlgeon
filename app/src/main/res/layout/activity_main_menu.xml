@@ -5,17 +5,18 @@
     android:id="@+id/activity_main_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.splansac7alumnes.crawlgeon.MainMenu">
+    tools:context="com.example.splansac7alumnes.crawlgeon.MainMenu"
+    android:background="@drawable/pantalla_principal">
 
     <Button
-        android:layout_width="103dp"
-        android:layout_height="63dp"
+        android:layout_width="140dp"
+        android:layout_height="62dp"
         android:id="@+id/buttonPlay"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="64dp"
         android:layout_marginRight="144dp"
         android:layout_marginEnd="144dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -40,16 +41,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textColorHighlight="@android:color/darker_gray"
+        android:textColorHint="?attr/colorPrimaryDark" />
 
     <Button
-        android:text="@string/opciones"
-        android:layout_width="48dp"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/buttonOptions"
-        android:minWidth="48dip"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:minWidth="40dp"
+        android:background="@drawable/configuracio"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:minHeight="40dp" />
 </android.support.constraint.ConstraintLayout>
