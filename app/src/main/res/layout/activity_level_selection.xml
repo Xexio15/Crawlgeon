@@ -5,6 +5,7 @@
     android:id="@+id/activity_level_selection"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dungeonSelect"
     tools:context="com.example.splansac7alumnes.crawlgeon.LevelSelection">
 
     <Button
@@ -42,12 +43,12 @@
         tools:layout_editor_absoluteX="12dp">
 
         <Button
-            android:text="Level 1"
-            android:layout_width="178dp"
-            android:layout_height="wrap_content"
+            android:layout_width="143dp"
+            android:layout_height="65dp"
             android:id="@+id/btn_01x01"
             android:layout_row="0"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:background="@drawable/lvl1BasicDungeon" />
 
         <TextView
             android:text="Score: *  *  *"
