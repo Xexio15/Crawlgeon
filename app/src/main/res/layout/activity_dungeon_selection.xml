@@ -5,7 +5,8 @@
     android:id="@+id/activity_dungeon_selection"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.splansac7alumnes.crawlgeon.DungeonSelection">
+    tools:context="com.example.splansac7alumnes.crawlgeon.DungeonSelection"
+    android:background="@drawable/dungeon_select_bg">
 
     <Button
         android:id="@+id/buttonOptions"
@@ -58,19 +59,52 @@
         android:layout_marginStart="160dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="160dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@android:color/background_light" />
 
     <Button
         android:text="Dungeon 1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonDungeon"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEquip"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textLvlsComplete"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/button"
+        android:background="@drawable/flecha_izq"
+        android:minHeight="30dp"
+        android:minWidth="30dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/buttonDungeon"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/button2"
+        android:background="@drawable/flecha_derecha"
+        android:minHeight="30dp"
+        android:minWidth="30dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/buttonDungeon"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
 </android.support.constraint.ConstraintLayout>
