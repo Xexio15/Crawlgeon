@@ -20,4 +20,35 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="jojo">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@drawable/options_dialog_bg</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackground">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="jiji" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@drawable/options_dialog_bg</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DialogsCrawlgeon" parent="AppTheme" >
+        <item name="android:windowBackground">@drawable/options_dialog_bg</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:colorForeground">@android:color/transparent</item>
+    </style>
+
 </resources>

@@ -16,29 +16,13 @@ public class OptionsDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        //this.setStyle(DialogFragment.STYLE_NO_TITLE, android.R.style.);
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater factory = LayoutInflater.from(getActivity());
-
-        //Agafem el layout que hem creat per tenir una View
-        final View view = factory.inflate(R.layout.options_layout,null);
 
         builder.setTitle(R.string.opcions);
 
-
-        builder.setMessage(null)
-                .setView(view)//Posem el layout al Dialog
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dismiss();
-                    }
-                });
-
+        builder.setMessage(null).setView(R.layout.options_layout);//Posem el layout al Dialog
 
 
 
