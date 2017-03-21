@@ -32,7 +32,7 @@ public class DungeonSelection extends AppCompatActivity {
 
         /*
         * Aquest boto iniciara l'activity de Seleccio de Nivell i ens mostrara la pantalla que pertoca
-         */
+        */
         Button sel_To_LvlSel = (Button) findViewById(R.id.buttonDungeon);
         sel_To_LvlSel.setOnClickListener(new View.OnClickListener(){
 
@@ -55,6 +55,19 @@ public class DungeonSelection extends AppCompatActivity {
                 OptionsDialog dialog = new OptionsDialog();
                 //El mostrem
                 dialog.show(getSupportFragmentManager(),"opt");
+            }
+        });
+
+        /*
+        * Aquest boto iniciara l'activity de Equip i ens mostrara la pantalla que pertoca
+        */
+        Button equip = (Button) findViewById(R.id.buttonEquip);
+        equip.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent toEquip = new Intent(DungeonSelection.this, Equip.class);
+                startActivity(toEquip);
             }
         });
     }
