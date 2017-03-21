@@ -61,4 +61,24 @@
             android:layout_width="50dp"
             android:layout_height="50dp" />
     </GridLayout>
+
+    <Button
+        android:text="WIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonWin"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="104dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:text="LOSE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLose"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="104dp"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -7,7 +7,6 @@ import android.support.v4.app.DialogFragment;//Recordar que el import debe ser V
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 
 /**
  * Created by Xexio on 10/03/2017.
@@ -22,7 +21,7 @@ public class OptionsDialog extends DialogFragment {
         LayoutInflater factory = LayoutInflater.from(getActivity());
 
         //Agafem el layout que hem creat per tenir una View
-        final View view = factory.inflate(R.layout.optionslayout,null);
+        final View view = factory.inflate(R.layout.options_layout,null);
 
         builder.setTitle(R.string.opcions);
 
