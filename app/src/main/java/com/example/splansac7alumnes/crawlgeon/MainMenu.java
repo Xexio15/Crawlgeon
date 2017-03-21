@@ -1,9 +1,12 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -50,5 +53,27 @@ public class MainMenu extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(),"opt");
             }
         });
+    }
+
+    /*
+    * Metodo para confirmar la salida de la app cuando presionamos a la tecla de atras
+    */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            new AlertDialog.Builder(this)
+                    .setTitle("Exit")
+                    .setMessage("Are you sure?")
+                    .setNegativeButton(R.string.cancel,null)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainMenu.this.finish();
+                        }
+                    })
+                    .show();
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
     }
 }
