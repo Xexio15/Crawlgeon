@@ -26,6 +26,19 @@ public class GameScreen extends AppCompatActivity {
             }
         });
 
+        Button lost = (Button) findViewById(R.id.buttonLose);
+        lost.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
+                OptionsLostDialog dialog = new OptionsLostDialog();
+                //El mostrem
+                dialog.show(getSupportFragmentManager(),"lost");
+
+            }
+        });
+
     }
 
 }

@@ -19,7 +19,6 @@ public class OptionsDialog extends DialogFragment {
         //this.setStyle(DialogFragment.STYLE_NO_TITLE, android.R.style.);
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
         builder.setTitle(R.string.opcions);
 
         builder.setMessage(null).setView(R.layout.options_layout);//Posem el layout al Dialog
