@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
     </style>
 
     <style name="FullscreenTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
@@ -45,10 +46,12 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="DialogsCrawlgeon" parent="AppTheme" >
-        <item name="android:windowBackground">@drawable/options_dialog_bg</item>
+    <style name="DialogsCrawlgeon">
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackground">@android:color/transparent</item>
         <item name="android:colorForeground">@android:color/transparent</item>
+        <item name="android:colorBackgroundFloating">@android:color/transparent</item>
+        <item name="android:popupBackground">@android:color/transparent</item>
     </style>
 
 </resources>
