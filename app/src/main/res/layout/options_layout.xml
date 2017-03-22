@@ -2,66 +2,85 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:theme="@style/DialogsCrawlgeon">
-
-    <TextView
-        android:text="@string/musica"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textMusic"
-        android:layout_marginStart="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="48dp"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <SeekBar
-        android:layout_width="225dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/musicVolume"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/textMusic"
-        android:layout_marginTop="48dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.41" />
 
     <TextView
         android:text="@string/efectes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textFX"
-        android:layout_marginTop="102dp"
-        android:layout_marginStart="40dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_weight="1"
+        app:layout_constraintRight_toLeftOf="@+id/musicVolume"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="155dp"
+        android:layout_marginStart="117dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="normal|bold" />
 
     <SeekBar
-        android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:id="@+id/fxVolume"
+        android:layout_weight="1"
+        android:layout_marginTop="95dp"
+        android:layout_below="@+id/textMusic"
+        android:layout_alignStart="@+id/musicVolume"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/textFX"
-        app:layout_constraintHorizontal_bias="0.44"
+        android:layout_marginStart="46dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        android:layout_width="150dp"
+        android:progressTint="?android:attr/colorMultiSelectHighlight" />
+
+    <TextView
+        android:text="@string/musica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textMusic"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_weight="1"
+        app:layout_constraintRight_toLeftOf="@+id/fxVolume"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="100dp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textStyle="bold" />
 
     <Button
         android:layout_width="104dp"
         android:layout_height="48dp"
         android:id="@+id/buttonAbout"
-        android:layout_marginTop="160dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/about"
+        android:layout_weight="1"
+        android:layout_below="@+id/fxVolume"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:background="@drawable/about"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="222dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/musicVolume"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonAbout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="83dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="150dp"
+        android:layout_marginStart="158dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="150dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:progressTint="?android:attr/colorMultiSelectHighlight" />
+
 </android.support.constraint.ConstraintLayout>

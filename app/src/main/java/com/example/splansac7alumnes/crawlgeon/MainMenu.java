@@ -1,8 +1,11 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,10 +50,13 @@ public class MainMenu extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsDialog dialog = new OptionsDialog();
+                //Creem un Dialog pero instanciem OptionsDialog
+                Dialog dialog = new OptionsDialog(MainMenu.this,R.style.Crawl);//Passem el context actual, passem el tema que volem
+                //Pasem la activitat actual
+                dialog.setOwnerActivity(MainMenu.this);
                 //El mostrem
-                dialog.show(getSupportFragmentManager(),"opt");
+                dialog.show();
+
             }
         });
     }

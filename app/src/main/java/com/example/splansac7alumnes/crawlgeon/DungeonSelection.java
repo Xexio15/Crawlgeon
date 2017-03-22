@@ -1,5 +1,6 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,10 +52,12 @@ public class DungeonSelection extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsDialog dialog = new OptionsDialog();
+                //Creem un Dialog pero instanciem OptionsDialog
+                Dialog dialog = new OptionsDialog(DungeonSelection.this,R.style.Crawl);
+                //Pasem la activitat actual
+                dialog.setOwnerActivity(DungeonSelection.this);
                 //El mostrem
-                dialog.show(getSupportFragmentManager(),"opt");
+                dialog.show();
             }
         });
 

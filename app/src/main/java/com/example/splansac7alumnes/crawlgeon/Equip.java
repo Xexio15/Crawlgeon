@@ -1,5 +1,6 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,10 +37,12 @@ public class Equip extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsDialog dialog = new OptionsDialog();
+                //Creem un Dialog pero instanciem OptionsDialog
+                Dialog dialog = new OptionsDialog(Equip.this,R.style.Crawl);
+                //Pasem la activitat actual
+                dialog.setOwnerActivity(Equip.this);
                 //El mostrem
-                dialog.show(getSupportFragmentManager(), "opt");
+                dialog.show();
             }
         });
     }
