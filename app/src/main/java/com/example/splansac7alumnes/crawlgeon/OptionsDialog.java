@@ -18,7 +18,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 /**
- * Created by Xexio on 10/03/2017.
+ * Created by Sergio Plans on 10/03/2017.
  */
 
 public class OptionsDialog extends Dialog {
@@ -51,7 +51,6 @@ public class OptionsDialog extends Dialog {
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
                 intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
                 startActivity(intent);*/
-
                 Intent toAbout = new Intent(OptionsDialog.super.getOwnerActivity(),About.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
                 OptionsDialog.super.getOwnerActivity().startActivity(toAbout);
             }
