@@ -32,9 +32,9 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsLostDialog dialog = new OptionsLostDialog();
+                OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this,R.style.Crawl);
                 //El mostrem
-                dialog.show(getSupportFragmentManager(),"lost");
+                dialog.show();
 
             }
         });
