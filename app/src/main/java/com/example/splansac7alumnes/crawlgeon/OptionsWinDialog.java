@@ -1,5 +1,6 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -46,12 +47,8 @@ public class OptionsWinDialog extends Dialog{
         next_lvl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
-                startActivity(intent);*/
                 Intent nextLevel = new Intent(OptionsWinDialog.super.getOwnerActivity(),GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
+                ((Activity)context).finish();//Finalitzem GameScreen
                 dismiss(); //Tanquem el dialog
                 context.startActivity(nextLevel);
             }
@@ -64,12 +61,8 @@ public class OptionsWinDialog extends Dialog{
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
-                startActivity(intent);*/
                 Intent levelSelection = new Intent(OptionsWinDialog.super.getOwnerActivity(),LevelSelection.class);
+                ((Activity)context).finish();//Finalitzem GameScreen
                 dismiss(); //Tanquem el dialog
                 context.startActivity(levelSelection);
 
@@ -77,6 +70,8 @@ public class OptionsWinDialog extends Dialog{
             }
         });
     }
+
+
     /*
      * Metodo para deshabilitar el boton de atras
      */
