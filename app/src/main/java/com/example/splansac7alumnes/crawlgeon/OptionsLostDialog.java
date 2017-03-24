@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -53,9 +54,9 @@ public class OptionsLostDialog extends Dialog {
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
                 intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
                 startActivity(intent);*/
-
                 Intent gameScreen = new Intent(OptionsLostDialog.super.getOwnerActivity(),GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
-                OptionsLostDialog.super.getOwnerActivity().startActivity(gameScreen);
+                dismiss(); //Tanquem el dialog
+                context.startActivity(gameScreen);
             }
         });
 
@@ -69,10 +70,18 @@ public class OptionsLostDialog extends Dialog {
                 intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
                 startActivity(intent);*/
                 Intent levelSelection = new Intent(OptionsLostDialog.super.getOwnerActivity(),LevelSelection.class);
+                dismiss(); //Tanquem el dialog
                 context.startActivity(levelSelection);
 
             }
         });
 
+    }
+
+    /*
+     * Metodo para deshabilitar el boton de atras
+     */
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        return false;
     }
 }

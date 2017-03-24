@@ -54,7 +54,9 @@ public class LevelSelection extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
+
                 startActivity(lvl_01x01);
+
             }
         });
     }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.view.KeyEvent;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -23,9 +24,10 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsWinDialog dialog = new OptionsWinDialog();
+                OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl);
+                dialog.setOwnerActivity(GameScreen.this);
                 //El mostrem
-                dialog.show(getSupportFragmentManager(),"win");
+                dialog.show();
 
             }
         });
@@ -36,7 +38,8 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this,R.style.Crawl);
+                OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this, R.style.Crawl);
+                dialog.setOwnerActivity(GameScreen.this);
                 //El mostrem
                 dialog.show();
 
@@ -44,5 +47,16 @@ public class GameScreen extends AppCompatActivity {
         });
 
     }
+        /*
+        * Metodo para deshabilitar el boton de atras
+        */
+        public boolean onKeyDown(int keyCode, KeyEvent event){
+            OptionsGameDialog dialog = new OptionsGameDialog(GameScreen.this, R.style.Crawl);
+            dialog.setOwnerActivity(GameScreen.this);
+            //El mostrem
+            dialog.show();
+            return false;
+        }
 
-}
+    }
+
