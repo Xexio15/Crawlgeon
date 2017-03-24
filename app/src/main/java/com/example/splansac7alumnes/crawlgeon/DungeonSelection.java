@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,14 +21,16 @@ public class DungeonSelection extends AppCompatActivity {
 
 
         /*
-        * Aquest boto ens retornara a la pantalla d'inici des de la de seleccio de dungeon aturant l'activity amb finish()
+        * Aquest boto ens retornara a la pantalla d'inici des de la de seleccio de dungeon
         */
         Button sel_To_Menu = (Button) findViewById(R.id.buttonSelToMen);
         sel_To_Menu.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                Intent toMenu = new Intent(DungeonSelection.this, MainMenu.class);
                 finish();
+                startActivity(toMenu);
             }
         });
 
@@ -40,6 +43,7 @@ public class DungeonSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent toLvlSel = new Intent(DungeonSelection.this, LevelSelection.class);
+                finish();
                 startActivity(toLvlSel);
             }
         });
@@ -70,8 +74,22 @@ public class DungeonSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent toEquip = new Intent(DungeonSelection.this, Equip.class);
+                finish();
                 startActivity(toEquip);
             }
         });
+
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event ){
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
+            Intent toMenu = new Intent(DungeonSelection.this, MainMenu.class);
+            finish();
+            startActivity(toMenu);
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
     }
 }

@@ -1,8 +1,10 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,14 +20,16 @@ public class Equip extends AppCompatActivity {
         setContentView(R.layout.activity_equip);
 
           /*
-        * Aquest boto ens tornara a la pantalla de seleccio de dungeon simplement aturant l'activity amb finish()
+        * Aquest boto ens tornara a la pantalla de seleccio de dungeon
         */
         Button atras = (Button) findViewById(R.id.buttonEquipSelToDungSel);
         atras.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                Intent toDungSel = new Intent(Equip.this, DungeonSelection.class);
                 finish();
+                startActivity(toDungSel);
             }
         });
 
@@ -45,5 +49,15 @@ public class Equip extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event ){
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
+            Intent toDungSel = new Intent(Equip.this, DungeonSelection.class);
+            finish();
+            startActivity(toDungSel);
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
     }
 }

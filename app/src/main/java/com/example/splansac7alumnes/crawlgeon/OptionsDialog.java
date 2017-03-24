@@ -35,7 +35,7 @@ public class OptionsDialog extends Dialog {
         this.getWindow().setBackgroundDrawableResource(R.drawable.options_dialog_bg);//Posem el fons que volem
         this.setContentView(R.layout.options_layout);//Posem el layout
         this.setCanceledOnTouchOutside(true);//Si clickem fora es tanca(Diria que no funciona be)
-        this.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);//Amb WrapContent evitem que es posi
+        this.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//Amb WrapContent evitem que es posi
                                                                                                                 // la imatge a tota la pantalla, proba a canviar per MATCH_PARENT i veus que es posa a pantalla completa
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
 

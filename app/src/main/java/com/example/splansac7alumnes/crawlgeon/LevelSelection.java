@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,14 +21,16 @@ public class LevelSelection extends AppCompatActivity {
 
 
         /*
-        * Aquest boto ens tornara a la pantalla de seleccio de dungeon simplement aturant l'activity amb finish()
+        * Aquest boto ens tornara a la pantalla de seleccio de dungeon
         */
         Button lvlSel_To_DungSel = (Button) findViewById(R.id.buttonLvlSelToDungSel);
         lvlSel_To_DungSel.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
+                Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
                 finish();
+                startActivity(toDungSel);
             }
         });
 
@@ -59,5 +62,14 @@ public class LevelSelection extends AppCompatActivity {
 
             }
         });
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event ){
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
+            Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
+            finish();
+            startActivity(toDungSel);
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
     }
 }

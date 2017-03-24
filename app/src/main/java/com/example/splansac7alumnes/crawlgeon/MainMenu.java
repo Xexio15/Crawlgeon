@@ -1,11 +1,8 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,6 +33,10 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View v) {
                 //Creem un nou intent que ens canvii d'una activity a una altra
                 Intent menu_To_Sel = new Intent(MainMenu.this, DungeonSelection.class);
+                //Finalitzem el menu
+                finish();
+                //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+                //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right); //ANIMACIO SLIDE
                 //Iniciem la activity
                 startActivity(menu_To_Sel);
             }

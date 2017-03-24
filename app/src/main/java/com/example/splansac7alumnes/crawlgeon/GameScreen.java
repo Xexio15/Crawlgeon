@@ -1,6 +1,8 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -51,11 +53,15 @@ public class GameScreen extends AppCompatActivity {
         * Metodo para deshabilitar el boton de atras
         */
         public boolean onKeyDown(int keyCode, KeyEvent event){
-            OptionsGameDialog dialog = new OptionsGameDialog(GameScreen.this, R.style.Crawl);
-            dialog.setOwnerActivity(GameScreen.this);
-            //El mostrem
-            dialog.show();
-            return false;
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                Dialog dialog = new OptionsGameDialog(GameScreen.this, R.style.Crawl);
+                dialog.setOwnerActivity(GameScreen.this);
+                //El mostrem
+                dialog.show();
+                return true;
+            }
+            return super.onKeyDown(keyCode,event);
+
         }
 
 
