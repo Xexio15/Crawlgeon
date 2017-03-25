@@ -1,5 +1,6 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,20 +34,29 @@ public class OptionsGameDialog extends Dialog{
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
 
 
+        /*
+         * Boto resume que ens retorna al joc
+         */
+        Button resume = (Button) findViewById(R.id.buttonResume);
+        resume.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
+
 
         /*
          * Boto leave que ens retorna al menú de selecció de nivells
          */
-        Button leave = (Button) findViewById(R.id.buttonLevelMenu);
+        Button leave = (Button) findViewById(R.id.buttonLeave);
         leave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
-                startActivity(intent);*/
+
                 Intent levelSelection = new Intent(OptionsGameDialog.super.getOwnerActivity(),LevelSelection.class);
+                ((Activity)context).finish();//Finalitzem GameScreen
                 dismiss(); //Tanquem el dialog
                 context.startActivity(levelSelection);
 
