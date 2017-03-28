@@ -49,6 +49,7 @@ public class OptionsWinDialog extends Dialog{
             public void onClick(View v) {
                 Intent nextLevel = new Intent(OptionsWinDialog.super.getOwnerActivity(),GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
                 ((Activity)context).finish();//Finalitzem GameScreen
+                ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 dismiss(); //Tanquem el dialog
                 context.startActivity(nextLevel);
             }
@@ -63,6 +64,7 @@ public class OptionsWinDialog extends Dialog{
             public void onClick(View v) {
                 Intent levelSelection = new Intent(OptionsWinDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen
+                ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 dismiss(); //Tanquem el dialog
                 context.startActivity(levelSelection);
 

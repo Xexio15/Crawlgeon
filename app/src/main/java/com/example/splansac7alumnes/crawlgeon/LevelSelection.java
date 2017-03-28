@@ -30,6 +30,7 @@ public class LevelSelection extends AppCompatActivity {
             public void onClick(View v) {
                 Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 startActivity(toDungSel);
             }
         });
@@ -58,6 +59,7 @@ public class LevelSelection extends AppCompatActivity {
 
                 Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 startActivity(lvl_01x01);
 
             }
@@ -67,6 +69,7 @@ public class LevelSelection extends AppCompatActivity {
         if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
             Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
             finish();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
             startActivity(toDungSel);
             return true;
         }
