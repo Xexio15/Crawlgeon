@@ -22,9 +22,10 @@ import android.widget.Button;
  */
 
 public class OptionsDialog extends Dialog {
+    Context context;
     public OptionsDialog(Context context, int themeResId) {
         super(context, themeResId);
-
+        this.context = context;
     }
 
 
@@ -51,7 +52,9 @@ public class OptionsDialog extends Dialog {
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
                 intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
                 startActivity(intent);*/
+                ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 Intent toAbout = new Intent(OptionsDialog.super.getOwnerActivity(),About.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
+
                 OptionsDialog.super.getOwnerActivity().startActivity(toAbout);
             }
         });

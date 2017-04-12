@@ -29,6 +29,7 @@ public class Equip extends AppCompatActivity {
             public void onClick(View v) {
                 Intent toDungSel = new Intent(Equip.this, DungeonSelection.class);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 startActivity(toDungSel);
             }
         });
@@ -55,6 +56,7 @@ public class Equip extends AppCompatActivity {
         if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
             Intent toDungSel = new Intent(Equip.this, DungeonSelection.class);
             finish();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
             startActivity(toDungSel);
             return true;
         }

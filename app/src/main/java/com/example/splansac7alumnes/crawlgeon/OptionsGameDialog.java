@@ -57,6 +57,7 @@ public class OptionsGameDialog extends Dialog{
 
                 Intent levelSelection = new Intent(OptionsGameDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen
+                ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 dismiss(); //Tanquem el dialog
                 context.startActivity(levelSelection);
 
