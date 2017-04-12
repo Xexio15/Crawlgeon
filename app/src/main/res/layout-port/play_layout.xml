@@ -8,399 +8,6 @@
     android:background="@drawable/dungeon_select_bg">
 
 
-    <GridLayout
-        android:layout_width="351dp"
-        android:layout_height="350dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintVertical_bias="1.0"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="17dp"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-        <ImageView
-            app:srcCompat="@drawable/elementofuego4"
-            android:id="@+id/imageView14"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementorayo4"
-            android:id="@+id/imageView25"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/ataque_basico_2"
-            android:id="@+id/imageView42"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView48"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView17"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementohieo3"
-            android:id="@+id/imageView26"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementofuego4"
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementofuego4"
-            android:id="@+id/imageView56"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="6"
-            android:layout_column="2" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementofuego4"
-            android:id="@+id/imageView43"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="3"
-            android:layout_column="6" />
-
-        <ImageView
-            app:srcCompat="@drawable/ataque_basico_2"
-            android:id="@+id/imageView37"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="5"
-            android:layout_column="6" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="1"
-            android:layout_column="3" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView58"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="1"
-            android:layout_column="3" />
-
-        <ImageView
-            app:srcCompat="@drawable/health_potion3"
-            android:id="@+id/imageView4"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/health_potion3"
-            android:id="@+id/imageView53"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementoarcano"
-            android:id="@+id/imageView57"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementoarcano"
-            android:id="@+id/imageView29"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="5"
-            android:layout_column="3" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementofuego4"
-            android:id="@+id/imageView21"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="2"
-            android:layout_column="2" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementohieo3"
-            android:id="@+id/imageView44"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="5"
-            android:layout_column="2" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementorayo4"
-            android:id="@+id/imageView52"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="6"
-            android:layout_column="0" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementorayo4"
-            android:id="@+id/imageView7"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="2"
-            android:layout_column="6" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementohieo3"
-            android:id="@+id/imageView46"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="5"
-            android:layout_column="0" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementoarcano"
-            android:id="@+id/imageView19"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="2"
-            android:layout_column="3" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementoarcano"
-            android:id="@+id/imageView27"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="3"
-            android:layout_column="3" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementoarcano"
-            android:id="@+id/imageView40"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="4"
-            android:layout_column="2" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementohieo3"
-            android:id="@+id/imageView2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="2"
-            android:layout_column="4" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementorayo4"
-            android:id="@+id/imageView24"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="2"
-            android:layout_column="5" />
-
-        <ImageView
-            app:srcCompat="@drawable/ataque_basico_2"
-            android:id="@+id/imageView36"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="4"
-            android:layout_column="5" />
-
-        <ImageView
-            app:srcCompat="@drawable/ataque_basico_2"
-            android:id="@+id/imageView6"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="1"
-            android:layout_column="1" />
-
-        <ImageView
-            app:srcCompat="@drawable/ataque_basico_2"
-            android:id="@+id/imageView35"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="3"
-            android:layout_column="4" />
-
-        <ImageView
-            app:srcCompat="@drawable/health_potion3"
-            android:id="@+id/imageView18"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="5"
-            android:layout_column="5" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementorayo4"
-            android:id="@+id/imageView39"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="4"
-            android:layout_column="1" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementoarcano"
-            android:id="@+id/imageView28"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="4"
-            android:layout_column="3" />
-
-        <ImageView
-            app:srcCompat="@drawable/health_potion3"
-            android:id="@+id/imageView41"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="4"
-            android:layout_column="4" />
-
-        <ImageView
-            app:srcCompat="@drawable/ataque_basico_2"
-            android:id="@+id/imageView15"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="4"
-            android:layout_column="6" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementofuego4"
-            android:id="@+id/imageView22"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="1"
-            android:layout_column="0" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementohieo3"
-            android:id="@+id/imageView30"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="3"
-            android:layout_column="2" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementohieo3"
-            android:id="@+id/imageView23"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="2"
-            android:layout_column="1" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementohieo3"
-            android:id="@+id/imageView45"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="5"
-            android:layout_column="1" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView50"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="2"
-            android:layout_column="0" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView59"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="6"
-            android:layout_column="3" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView16"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="3"
-            android:layout_column="1" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView51"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="4"
-            android:layout_column="0" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView49"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="3"
-            android:layout_column="0" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementorayo4"
-            android:id="@+id/imageView34"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="3"
-            android:layout_column="5" />
-
-        <ImageView
-            app:srcCompat="@drawable/health_potion3"
-            android:id="@+id/imageView54"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="6"
-            android:layout_column="4" />
-
-        <ImageView
-            app:srcCompat="@drawable/health_potion3"
-            android:id="@+id/imageView55"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="6"
-            android:layout_column="6" />
-
-        <ImageView
-            app:srcCompat="@drawable/health_potion3"
-            android:id="@+id/imageView38"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="6"
-            android:layout_column="5" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementofuego4"
-            android:id="@+id/imageView8"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="1"
-            android:layout_column="2" />
-
-        <ImageView
-            app:srcCompat="@drawable/elementoarcano"
-            android:id="@+id/imageView20"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="6"
-            android:layout_column="1" />
-
-        <ImageView
-            app:srcCompat="@drawable/defensa2"
-            android:id="@+id/imageView31"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_row="5"
-            android:layout_column="4" />
-    </GridLayout>
-
     <Button
         android:text="WIN"
         android:layout_width="wrap_content"
@@ -420,4 +27,39 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="104dp"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:text="Tiles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tiles"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <GridView
+        android:layout_width="351dp"
+        android:layout_height="350dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:id="@+id/tablero" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textocualquiera"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@android:color/background_light" />
 </android.support.constraint.ConstraintLayout>
