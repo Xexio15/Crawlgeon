@@ -94,32 +94,31 @@ public class GameScreen extends AppCompatActivity {
                 if(seleccion.size() < 49) {
                     TextView text = (TextView) findViewById(R.id.textocualquiera);
                     int posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
-
                     ImageView imatge = ((ImageView) tablero.getItemAtPosition(posicion));
+
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {//Poner el dedo en la pantalla
                         iguales = true;
                         if (posicion == -1) {
                             text.setText("invalid");
                         } else {
                             actual = (int) (imatge.getTag());
-                            if ((imatge.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
-                                seleccion.add(tiles.getArray().get(BASIC));
-                            }
                         }
                         return true;
-                    } else if (event.getAction() == MotionEvent.ACTION_MOVE) {//Deslizar el dedo por la pantalla
-                        int anterior = actual;
+                    }
 
+                    else if (event.getAction() == MotionEvent.ACTION_MOVE) {//Deslizar el dedo por la pantalla
+                        int anterior = actual;
                         posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
                         actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
 
                         if (actual != anterior) {
                             iguales = false;
+                            seleccion.add(null);
                         } else {
                             if(posicion != posicionAnterior) {
+                                //Basico
                                 if ((imatge.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
                                     seleccion.add(tiles.getArray().get(BASIC));
-
                                 }
 
                                 //Defensa
@@ -153,9 +152,12 @@ public class GameScreen extends AppCompatActivity {
                                 }
                             }
                         }
+
                         posicionAnterior = posicion;
                         return true;
-                    } else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
+                    }
+
+                    else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
                         if(seleccion.size() >= 3) {
                             if (iguales) {
                                 Tile elemento = seleccion.get(0);
@@ -163,12 +165,16 @@ public class GameScreen extends AppCompatActivity {
                             } else {
                                 text.setText("NO NO...Diferentes");
                             }
-
+                        }else if (seleccion.size() < 3){
+                            text.setText("Minimo 3");
                         }
+
                         seleccion = new ArrayList<>();
+                        posicionAnterior = -1;
                         return true;
                     }
                 }
+
                 seleccion = new ArrayList<>();
                 return false;
             }
