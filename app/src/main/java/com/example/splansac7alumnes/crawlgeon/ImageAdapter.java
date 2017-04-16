@@ -31,7 +31,10 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return null;
+        ImageView imatge = new ImageView(mContext);
+        imatge.setTag(listaIdsImagenes[position]);
+        imatge.setImageResource(listaIdsImagenes[position]);
+        return imatge;
     }
 
     public long getItemId(int position) {
