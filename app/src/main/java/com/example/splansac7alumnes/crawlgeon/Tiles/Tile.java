@@ -30,6 +30,10 @@ public class Tile {
         return imatge;
     }
 
+    public String getElement(){
+        return element;
+    }
+
     public int getDrawableID(){
         return drawable;
     }

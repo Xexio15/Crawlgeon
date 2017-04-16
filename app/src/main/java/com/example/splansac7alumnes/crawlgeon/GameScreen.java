@@ -1,7 +1,6 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
-import android.service.quicksettings.Tile;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -16,6 +15,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
+
+import java.util.ArrayList;
+
 public class GameScreen extends AppCompatActivity {
     //PROVISIONAL
     private TilesArray tiles;
@@ -29,6 +32,8 @@ public class GameScreen extends AppCompatActivity {
     protected GridView tablero;
     protected int actual;
     protected boolean iguales;
+    protected ArrayList<Tile> seleccion;
+    protected int posicionAnterior = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -37,7 +42,7 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.play_layout);
 
         this.tiles = new TilesArray(GameScreen.this);
-
+        this.seleccion = new ArrayList<>();
         Button win = (Button) findViewById(R.id.buttonWin);
         win.setOnClickListener(new View.OnClickListener() {
 
@@ -86,66 +91,85 @@ public class GameScreen extends AppCompatActivity {
             //Si el booleano = true, usar el objeto de la variable para decidir que hacer
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                TextView text = (TextView)findViewById(R.id.textocualquiera);
-                if(event.getAction()==MotionEvent.ACTION_DOWN){//Poner el dedo en la pantalla
-                    iguales = true;
-                    int posicion = tablero.pointToPosition((int)event.getX(),(int)event.getY());
-                    if(posicion == -1){
-                        text.setText("invalid");
-                    }else{
-                        actual = (int)(((ImageView)tablero.getItemAtPosition(posicion)).getTag());
+                if(seleccion.size() < 49) {
+                    TextView text = (TextView) findViewById(R.id.textocualquiera);
+                    int posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
+
+                    ImageView imatge = ((ImageView) tablero.getItemAtPosition(posicion));
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {//Poner el dedo en la pantalla
+                        iguales = true;
+                        if (posicion == -1) {
+                            text.setText("invalid");
+                        } else {
+                            actual = (int) (imatge.getTag());
+                            if ((imatge.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
+                                seleccion.add(tiles.getArray().get(BASIC));
+                            }
+                        }
+                        return true;
+                    } else if (event.getAction() == MotionEvent.ACTION_MOVE) {//Deslizar el dedo por la pantalla
+                        int anterior = actual;
+
+                        posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
+                        actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
+
+                        if (actual != anterior) {
+                            iguales = false;
+                        } else {
+                            if(posicion != posicionAnterior) {
+                                if ((imatge.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
+                                    seleccion.add(tiles.getArray().get(BASIC));
+
+                                }
+
+                                //Defensa
+                                if ((imatge.getTag()).equals(tiles.getArray().get(DEFENSE).getImatge().getTag())) {
+                                    seleccion.add(tiles.getArray().get(DEFENSE));
+                                }
+
+                                //Fuego
+                                if ((imatge.getTag()).equals(tiles.getArray().get(FIRE).getImatge().getTag())) {
+                                    seleccion.add(tiles.getArray().get(FIRE));
+                                }
+
+                                //Arcano
+                                if ((imatge.getTag()).equals(tiles.getArray().get(ARCANE).getImatge().getTag())) {
+                                    seleccion.add(tiles.getArray().get(ARCANE));
+                                }
+
+                                //Hielo
+                                if ((imatge.getTag()).equals(tiles.getArray().get(ICE).getImatge().getTag())) {
+                                    seleccion.add(tiles.getArray().get(ICE));
+                                }
+
+                                //Rayo
+                                if ((imatge.getTag()).equals(tiles.getArray().get(LIGHTING).getImatge().getTag())) {
+                                    seleccion.add(tiles.getArray().get(LIGHTING));
+                                }
+
+                                //Cura
+                                if ((imatge.getTag()).equals(tiles.getArray().get(HEALTH).getImatge().getTag())) {
+                                    seleccion.add(tiles.getArray().get(HEALTH));
+                                }
+                            }
+                        }
+                        posicionAnterior = posicion;
+                        return true;
+                    } else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
+                        if(seleccion.size() >= 3) {
+                            if (iguales) {
+                                Tile elemento = seleccion.get(0);
+                                text.setText("BOOM" + elemento.getElement());
+                            } else {
+                                text.setText("NO NO...Diferentes");
+                            }
+
+                        }
+                        seleccion = new ArrayList<>();
+                        return true;
                     }
-
                 }
-                else if(event.getAction()==MotionEvent.ACTION_MOVE){//Deslizar el dedo por la pantalla
-                    /*int anterior = actual;
-                    int posicion = tablero.pointToPosition((int)event.getX(),(int)event.getY());
-                    actual = (int)((ImageView)tablero.getItemAtPosition(posicion)).getTag();
-                    if(actual != anterior){
-                        iguales = false;
-                    }
-                    */
-                }
-                else if(event.getAction()==MotionEvent.ACTION_UP){//Levantar el dedo de la pantalla
-
-                    if(iguales) {
-                        //Ataque basico
-                        if ((v.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
-                            text.setText("basic");
-                        }
-
-                        //Defensa
-                        if ((v.getTag()).equals(tiles.getArray().get(DEFENSE).getImatge().getTag())) {
-                            text.setText("shield");
-                        }
-
-                        //Fuego
-                        if ((v.getTag()).equals(tiles.getArray().get(FIRE).getImatge().getTag())) {
-                            text.setText("fire");
-                        }
-
-                        //Arcano
-                        if ((v.getTag()).equals(tiles.getArray().get(ARCANE).getImatge().getTag())) {
-                            text.setText("arcane");
-                        }
-
-                        //Hielo
-                        if ((v.getTag()).equals(tiles.getArray().get(ICE).getImatge().getTag())) {
-                            text.setText("ice");
-                        }
-
-                        //Rayo
-                        if ((v.getTag()).equals(tiles.getArray().get(LIGHTING).getImatge().getTag())) {
-                            text.setText("lighting");
-                        }
-
-                        //Cura
-                        if ((v.getTag()).equals(tiles.getArray().get(HEALTH).getImatge().getTag())) {
-                            text.setText("health");
-                        }
-                    }
-                }
-
+                seleccion = new ArrayList<>();
                 return false;
             }
         });
