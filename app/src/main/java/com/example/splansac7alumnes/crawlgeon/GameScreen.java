@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GameScreen extends AppCompatActivity {
     //PROVISIONAL
@@ -31,8 +32,9 @@ public class GameScreen extends AppCompatActivity {
     private static final int HEALTH = 6;
     protected GridView tablero;
     protected int actual;
+    protected Tile tipoTile;
     protected boolean iguales;
-    protected ArrayList<Tile> seleccion;
+    protected ArrayList<Integer> seleccion;
     protected int posicionAnterior = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +73,8 @@ public class GameScreen extends AppCompatActivity {
             }
         });
 
-        Button omplena = (Button) findViewById(R.id.tiles);
-        omplena.setOnClickListener(new View.OnClickListener() {
+        Button omple = (Button) findViewById(R.id.tiles);
+        omple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fillGrid();
@@ -116,40 +118,7 @@ public class GameScreen extends AppCompatActivity {
                             seleccion.add(null);
                         } else {
                             if(posicion != posicionAnterior) {
-                                //Basico
-                                if ((imatge.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
-                                    seleccion.add(tiles.getArray().get(BASIC));
-                                }
-
-                                //Defensa
-                                if ((imatge.getTag()).equals(tiles.getArray().get(DEFENSE).getImatge().getTag())) {
-                                    seleccion.add(tiles.getArray().get(DEFENSE));
-                                }
-
-                                //Fuego
-                                if ((imatge.getTag()).equals(tiles.getArray().get(FIRE).getImatge().getTag())) {
-                                    seleccion.add(tiles.getArray().get(FIRE));
-                                }
-
-                                //Arcano
-                                if ((imatge.getTag()).equals(tiles.getArray().get(ARCANE).getImatge().getTag())) {
-                                    seleccion.add(tiles.getArray().get(ARCANE));
-                                }
-
-                                //Hielo
-                                if ((imatge.getTag()).equals(tiles.getArray().get(ICE).getImatge().getTag())) {
-                                    seleccion.add(tiles.getArray().get(ICE));
-                                }
-
-                                //Rayo
-                                if ((imatge.getTag()).equals(tiles.getArray().get(LIGHTING).getImatge().getTag())) {
-                                    seleccion.add(tiles.getArray().get(LIGHTING));
-                                }
-
-                                //Cura
-                                if ((imatge.getTag()).equals(tiles.getArray().get(HEALTH).getImatge().getTag())) {
-                                    seleccion.add(tiles.getArray().get(HEALTH));
-                                }
+                                seleccion.add(posicion);
                             }
                         }
 
@@ -160,8 +129,9 @@ public class GameScreen extends AppCompatActivity {
                     else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
                         if(seleccion.size() >= 3) {
                             if (iguales) {
-                                Tile elemento = seleccion.get(0);
+                                Tile elemento=tile(imatge);
                                 text.setText("BOOM" + elemento.getElement());
+                                realizarHechizo(seleccion, elemento);
                             } else {
                                 text.setText("NO NO...Diferentes");
                             }
@@ -195,6 +165,55 @@ public class GameScreen extends AppCompatActivity {
             }
             return super.onKeyDown(keyCode,event);
 
+        }
+
+    /*
+     * Metodo para realizar el hechizo
+     */
+        public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
+            ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
+        }
+
+    /*
+     * Metodo para coger un tile del tipo necesitado
+     */
+    public Tile tile(ImageView imatge){
+            //Basico
+            if ((imatge.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
+                return tiles.getArray().get(BASIC);
+            }
+
+            //Defensa
+            if ((imatge.getTag()).equals(tiles.getArray().get(DEFENSE).getImatge().getTag())) {
+              return tiles.getArray().get(DEFENSE);
+            }
+
+            //Fuego
+            if ((imatge.getTag()).equals(tiles.getArray().get(FIRE).getImatge().getTag())) {
+                return tiles.getArray().get(FIRE);
+            }
+
+            //Arcano
+            if ((imatge.getTag()).equals(tiles.getArray().get(ARCANE).getImatge().getTag())) {
+                return tiles.getArray().get(ARCANE);
+            }
+
+            //Hielo
+            if ((imatge.getTag()).equals(tiles.getArray().get(ICE).getImatge().getTag())) {
+                return tiles.getArray().get(ICE);
+            }
+
+            //Rayo
+            if ((imatge.getTag()).equals(tiles.getArray().get(LIGHTING).getImatge().getTag())) {
+                return tiles.getArray().get(LIGHTING);
+            }
+
+            //Cura
+            if ((imatge.getTag()).equals(tiles.getArray().get(HEALTH).getImatge().getTag())) {
+                return tiles.getArray().get(HEALTH);
+            }
+
+            return null;
         }
 
 
