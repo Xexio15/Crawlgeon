@@ -3,7 +3,6 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.SparseBooleanArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -14,14 +13,12 @@ import android.view.KeyEvent;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.splansac7alumnes.crawlgeon.Tiles.Health;
+import com.example.splansac7alumnes.crawlgeon.Tiles.Shield;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class GameScreen extends AppCompatActivity {
-    //PROVISIONAL
     private TilesArray tiles;
     private static final int BASIC = 0;
     private static final int DEFENSE = 1;
@@ -38,6 +35,8 @@ public class GameScreen extends AppCompatActivity {
     protected int posicionAnterior = -1;
     private TextView vidaPJ;
     private TextView vidaEnemigo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -45,11 +44,11 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_layout);
 
+        //Inicializamos
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
-
-        vidaPJ = (TextView) findViewById(R.id.vidaPJ);
-        vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
+        this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
+        this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
 
         Button win = (Button) findViewById(R.id.buttonWin);
         win.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +87,9 @@ public class GameScreen extends AppCompatActivity {
         });
     }
 
+    /*
+     * Metodo que rellena la GridView i contiene los events de movimientos del dedo
+     */
     public void fillGrid(){
         tablero = (GridView) findViewById(R.id.tablero);
         tablero.setFocusable(false);
@@ -185,17 +187,36 @@ public class GameScreen extends AppCompatActivity {
         public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
             ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
 
-            /*******************************************************************************
-             *******************************************************************************
-             ****************COntrolar negativo i si es pocion o escudo*********************
-             *******************************************************************************
-             *******************************************************************************/
-            //
-            int daño = tile.getDamage() * seleccion.size();
-
-            int vida = Integer.parseInt(vidaEnemigo.getText().toString());
-            vida = vida - daño;
-            this.vidaEnemigo.setText(""+vida);
+            if(!(tile instanceof Health) && !(tile instanceof Shield)){
+                int daño = tile.getDamage() * seleccion.size();
+                int vida = Integer.parseInt(vidaEnemigo.getText().toString());
+                vida = vida - daño;
+                if(vida > 0) {
+                    this.vidaEnemigo.setText("" + vida);
+                }else{
+                    this.vidaEnemigo.setText("DEAD");
+                    winDialog();
+                }
+            }else{
+                if(tile instanceof Health){
+                    /*******************************************************************************
+                     *******************************************************************************
+                     *****Este  100 tendra que ser una variable que sea la vida del personaje*******
+                     *******************************************************************************
+                     *******************************************************************************/
+                    int vida = Integer.parseInt(vidaPJ.getText().toString());
+                    if(vida < 100) {
+                        vida = vida + tile.getDamage();
+                        vidaPJ.setText(""+vida);
+                    }
+                }else{
+                    /*******************************************************************************
+                     *******************************************************************************
+                     ************************Funcionamiento de la defensa***************************
+                     *******************************************************************************
+                     *******************************************************************************/
+                }
+            }
 
         }
 
@@ -241,6 +262,15 @@ public class GameScreen extends AppCompatActivity {
             return null;
         }
 
+    /*
+     * Nos muestra el dialogo de ganar
+     */
+    public void winDialog(){
+        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl);
+        dialog.setOwnerActivity(GameScreen.this);
+        //El mostrem
+        dialog.show();
+    }
 
 
     }
