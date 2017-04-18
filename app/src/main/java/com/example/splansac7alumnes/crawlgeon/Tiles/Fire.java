@@ -10,8 +10,9 @@ import com.example.splansac7alumnes.crawlgeon.R;
  */
 
 public class Fire extends Tile{
+
     public Fire(Context context){
-        super(R.drawable.elementofuego4);
+        super(R.drawable.elementofuego4,5);
         ImageView fire = new ImageView(context);
         fire.setImageResource(R.drawable.elementofuego4);
         super.setImatge(fire);

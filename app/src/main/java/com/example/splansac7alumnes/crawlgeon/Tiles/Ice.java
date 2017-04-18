@@ -10,8 +10,9 @@ import com.example.splansac7alumnes.crawlgeon.R;
  */
 
 public class Ice extends Tile{
+
     public Ice(Context context){
-        super(R.drawable.elementohieo3);
+        super(R.drawable.elementohieo3,5);
         ImageView ice = new ImageView(context);
         ice.setImageResource(R.drawable.elementohieo3);
         super.setImatge(ice);

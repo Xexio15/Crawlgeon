@@ -32,10 +32,12 @@ public class GameScreen extends AppCompatActivity {
     private static final int HEALTH = 6;
     protected GridView tablero;
     protected int actual;
-    protected Tile tipoTile;
+    protected Tile elemento;
     protected boolean iguales;
     protected ArrayList<Integer> seleccion;
     protected int posicionAnterior = -1;
+    private TextView vidaPJ;
+    private TextView vidaEnemigo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -45,6 +47,10 @@ public class GameScreen extends AppCompatActivity {
 
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
+
+        vidaPJ = (TextView) findViewById(R.id.vidaPJ);
+        vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
+
         Button win = (Button) findViewById(R.id.buttonWin);
         win.setOnClickListener(new View.OnClickListener() {
 
@@ -135,7 +141,7 @@ public class GameScreen extends AppCompatActivity {
                     else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
                         if(seleccion.size() >= 3) {
                             if (iguales) {
-                                Tile elemento=tile(imatge);
+                                elemento=tile(imatge);
                                 text.setText("BOOM" + elemento.getElement());
                                 realizarHechizo(seleccion, elemento);
                             } else {
@@ -178,6 +184,19 @@ public class GameScreen extends AppCompatActivity {
      */
         public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
             ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
+
+            /*******************************************************************************
+             *******************************************************************************
+             ****************COntrolar negativo i si es pocion o escudo*********************
+             *******************************************************************************
+             *******************************************************************************/
+            //
+            int daño = tile.getDamage() * seleccion.size();
+
+            int vida = Integer.parseInt(vidaEnemigo.getText().toString());
+            vida = vida - daño;
+            this.vidaEnemigo.setText(""+vida);
+
         }
 
     /*

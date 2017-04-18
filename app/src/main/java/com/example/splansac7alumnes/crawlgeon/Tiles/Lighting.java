@@ -10,8 +10,9 @@ import com.example.splansac7alumnes.crawlgeon.R;
  */
 
 public class Lighting extends Tile{
+
     public Lighting(Context context){
-        super(R.drawable.elementorayo4);
+        super(R.drawable.elementorayo4,5);
         ImageView light = new ImageView(context);
         light.setImageResource(R.drawable.elementorayo4);
         super.setImatge(light);

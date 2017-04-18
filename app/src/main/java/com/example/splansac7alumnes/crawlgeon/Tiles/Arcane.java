@@ -10,11 +10,13 @@ import com.example.splansac7alumnes.crawlgeon.R;
  */
 
 public class Arcane extends Tile{
+
     public Arcane(Context context){
-        super(R.drawable.elementoarcano);
+        super(R.drawable.elementoarcano,5);
         ImageView arcane = new ImageView(context);
         arcane.setImageResource(R.drawable.elementoarcano);
         super.setImatge(arcane);
         super.setElement("Arcane");
     }
+
 }

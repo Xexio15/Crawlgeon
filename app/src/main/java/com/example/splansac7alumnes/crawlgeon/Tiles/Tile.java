@@ -7,11 +7,14 @@ import android.widget.ImageView;
  */
 
 public class Tile {
+    private int damage;
+
     private ImageView imatge;
     private String element;
     private int drawable;
-    public Tile(int drawable){
+    public Tile(int drawable, int damage){
         this.drawable = drawable;
+        this.damage = damage;
 
     }
     public void setImatge(ImageView imatge){
@@ -36,5 +39,9 @@ public class Tile {
 
     public int getDrawableID(){
         return drawable;
+    }
+
+    public int getDamage(){
+        return damage;
     }
 }
