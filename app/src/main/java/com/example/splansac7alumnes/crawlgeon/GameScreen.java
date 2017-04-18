@@ -84,6 +84,7 @@ public class GameScreen extends AppCompatActivity {
 
     public void fillGrid(){
         tablero = (GridView) findViewById(R.id.tablero);
+        tablero.setFocusable(false);
         tablero.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE); //Activamos el modo de seleccion multiple
         tablero.setNumColumns(7);
         tablero.setAdapter(new ImageAdapter(this,tiles));
@@ -111,19 +112,24 @@ public class GameScreen extends AppCompatActivity {
                     else if (event.getAction() == MotionEvent.ACTION_MOVE) {//Deslizar el dedo por la pantalla
                         int anterior = actual;
                         posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
-                        actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
-
-                        if (actual != anterior) {
-                            iguales = false;
-                            seleccion.add(null);
-                        } else {
-                            if(posicion != posicionAnterior) {
-                                seleccion.add(posicion);
-                            }
+                        if (posicion == -1) {
+                            return false;
                         }
+                        else {
+                            actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
 
-                        posicionAnterior = posicion;
-                        return true;
+                            if (actual != anterior) {
+                                iguales = false;
+                                seleccion.add(null);
+                            } else {
+                                if (posicion != posicionAnterior) {
+                                    seleccion.add(posicion);
+                                }
+                            }
+
+                            posicionAnterior = posicion;
+                            return true;
+                        }
                     }
 
                     else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
