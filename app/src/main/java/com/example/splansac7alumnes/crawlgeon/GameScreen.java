@@ -7,6 +7,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.GridLayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.view.KeyEvent;
@@ -96,6 +99,9 @@ public class GameScreen extends AppCompatActivity {
         tablero.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE); //Activamos el modo de seleccion multiple
         tablero.setNumColumns(7);
         tablero.setAdapter(new ImageAdapter(this,tiles));
+        Animation animation = AnimationUtils.loadAnimation(GameScreen.this,android.R.anim.fade_in);
+        GridLayoutAnimationController controller = new GridLayoutAnimationController(animation, .2f, .2f);
+        tablero.setLayoutAnimation(controller);
         tablero.setOnTouchListener(new AdapterView.OnTouchListener(){
             //Guardar en una variable uno de los objetos seleccionados
             //Con un booleano comparar si el objeto seleccionado anterior y el actual son iguales

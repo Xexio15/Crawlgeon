@@ -3,6 +3,8 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -62,7 +64,6 @@ public class ImageAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
             imageView.setPadding(0,0,0,0);
-
         } else {
             imageView = (ImageView) convertView;
         }
