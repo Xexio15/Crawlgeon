@@ -52,7 +52,7 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
+            imageView.setLayoutParams(new GridView.LayoutParams(150, 150));
             imageView.setPadding(0,0,0,0);
 
         } else {
@@ -107,29 +107,42 @@ public class ImageAdapter extends BaseAdapter {
                 }
             }
         }*/
-        /*int i=42;
-        while(i>0) {
-            if (listaIdsImagenes[i] == 0) {
-                int l=i-7;
-                boolean acabado=false;
-                while (l>=0 && !acabado){
-                    if (listaIdsImagenes[l] != 0) {
-                        listaIdsImagenes[i] = listaIdsImagenes[l];
-                        listaIdsImagenes[l] = 0;
-                        acabado=true;
-                    }else{
-                        l=-7;
+        for (int x = 42; x <= 48; x++) {
+            int i = x;
+            while (i > 0) {
+                if (listaIdsImagenes[i] == 0) {
+                    int l = i - 7;
+                    boolean acabado = false;
+                    while (l >= 0 && !acabado) {
+                        if (listaIdsImagenes[l] != 0) {
+                            listaIdsImagenes[i] = listaIdsImagenes[l];
+                            listaIdsImagenes[l] = 0;
+                            acabado = true;
+                        } else {
+                            l -= 7;
+                        }
                     }
                 }
-            }
-            i -= 7;
+                i -= 7;
 
-        }*/
+            }
+
+        }
+
+        for (int i = 0; i < 49; i++){
+            Random num = new Random();
+            if (listaIdsImagenes[i] == 0){
+                int numero = num.nextInt(6-0+1)+0;
+                listaIdsImagenes[i] = tiles.getArray().get(numero).getDrawableID();
+            }
+        }
 
         /*int aux = listaIdsImagenes[0];
         listaIdsImagenes[0]=listaIdsImagenes[1];
         listaIdsImagenes[1]=aux;*/
+
         notifyDataSetChanged();
+
 
 
     }
