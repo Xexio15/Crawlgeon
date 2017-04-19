@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.view.KeyEvent;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Health;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Shield;
@@ -38,7 +39,8 @@ public class GameScreen extends AppCompatActivity {
     protected int posicionAnterior = -1;
     private TextView vidaPJ;
     private TextView vidaEnemigo;
-
+    private ProgressBar barraVidaEnemigo;
+    private ProgressBar barraVidaPj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,16 @@ public class GameScreen extends AppCompatActivity {
         this.seleccion = new ArrayList<>();
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
         this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
+        this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
+
+        /*******************************************************************************
+         *******************************************************************************
+         **********Este 50 tendra que ser un getVida segun el tipo de enemigo***********
+         *******************************************************************************
+         *******************************************************************************/
+        this.barraVidaEnemigo.setMax(50);
+        this.vidaEnemigo.setText(""+this.barraVidaEnemigo.getMax());
+        this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
 
         fillGrid();//Llenamos la Grid cuando se inicia la activity
 
@@ -201,7 +213,9 @@ public class GameScreen extends AppCompatActivity {
                 vida = vida - daño;
                 if(vida > 0) {
                     this.vidaEnemigo.setText("" + vida);
+                    actualizarBarra(barraVidaEnemigo, vida);
                 }else{
+                    actualizarBarra(barraVidaEnemigo, 0);
                     this.vidaEnemigo.setText("DEAD");
                     winDialog();
                 }
@@ -227,6 +241,10 @@ public class GameScreen extends AppCompatActivity {
             }
 
         }
+
+    public void actualizarBarra(ProgressBar bar, int vida){
+        bar.setProgress(vida);
+    }
 
     /*
      * Metodo para coger un tile del tipo necesitado
