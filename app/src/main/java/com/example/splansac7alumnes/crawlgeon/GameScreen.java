@@ -53,6 +53,8 @@ public class GameScreen extends AppCompatActivity {
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
         this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
 
+        fillGrid();//Llenamos la Grid cuando se inicia la activity
+
         Button win = (Button) findViewById(R.id.buttonWin);
         win.setOnClickListener(new View.OnClickListener() {
 

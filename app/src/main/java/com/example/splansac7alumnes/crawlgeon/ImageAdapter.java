@@ -11,9 +11,7 @@ import android.widget.ImageView;
 
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Random;
@@ -33,7 +31,7 @@ public class ImageAdapter extends BaseAdapter {
     private int numArcano = 0;
     private int numRayo = 0;
     private int numHielo = 0;
-
+    private ViewGroup grupo;
     public ImageAdapter(Context c, TilesArray tiles) {
         mContext = c;
         this.tiles = tiles;
@@ -46,10 +44,12 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        ImageView imatge = new ImageView(mContext);
+        /*ImageView imatge = new ImageView(mContext);
         imatge.setTag(listaIdsImagenes[position]);
         imatge.setImageResource(listaIdsImagenes[position]);
-        return imatge;
+        return imatge;*/
+
+        return grupo.getChildAt(position);
     }
 
     public long getItemId(int position) {
@@ -58,17 +58,21 @@ public class ImageAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+        grupo = parent;//Nose sirve para poder coger un item de la tabla en getItem
         ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
             imageView.setPadding(0,0,0,0);
+
         } else {
             imageView = (ImageView) convertView;
+
         }
         imageView.setTag(listaIdsImagenes[position]); //Posem la etiqueta que coincidira amb la de la classe Tile
         imageView.setImageResource(listaIdsImagenes[position]);
+
         return imageView;
     }
 
@@ -90,12 +94,26 @@ public class ImageAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
     public void removeItem(int position){
+        /*
+         * Animacion de expandir
+         */
+        ImageView im = (ImageView)grupo.getChildAt(position);
+        Animation lanz = AnimationUtils.loadAnimation(mContext,R.anim.lanzar_hechizo);
+        lanz.reset();
+        im.startAnimation(lanz);
+        /*
+         *
+         */
+
         listaIdsImagenes[position] = 0;
         notifyDataSetChanged();
+
+
     }
 
     public void removeItems(ArrayList<Integer> seleccion){
         Iterator<Integer> iterator = seleccion.iterator();
+
         while(iterator.hasNext()){
             this.removeItem(iterator.next());
         }
@@ -129,7 +147,9 @@ public class ImageAdapter extends BaseAdapter {
                     while (l >= 0 && !acabado) {
                         if (listaIdsImagenes[l] != 0) {
                             listaIdsImagenes[i] = listaIdsImagenes[l];
+
                             listaIdsImagenes[l] = 0;
+
                             acabado = true;
                         } else {
                             l -= 7;
@@ -150,6 +170,16 @@ public class ImageAdapter extends BaseAdapter {
             if (listaIdsImagenes[i] == 0){
                 int numero = num.nextInt(6-0+1)+0;
                 listaIdsImagenes[i] = tiles.getArray().get(numero).getDrawableID();
+
+               /*
+                * Animacion de expandir
+                */
+                Animation trans = AnimationUtils.loadAnimation(mContext,R.anim.aparece);
+                trans.reset();
+                grupo.getChildAt(i).startAnimation(trans);
+                /*
+                 *
+                 */
             }
         }
         //rellenarVacios();
