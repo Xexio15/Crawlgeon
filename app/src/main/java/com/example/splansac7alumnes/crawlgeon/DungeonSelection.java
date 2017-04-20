@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
+import android.os.PowerManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -70,21 +72,29 @@ public class DungeonSelection extends AppCompatActivity {
             }
         });
 
+
+
         /*
         * Aquest boto iniciara l'activity de Seleccio de Nivell i ens mostrara la pantalla que pertoca
         */
-        Button sel_To_LvlSel = (Button) findViewById(R.id.buttonDungeon);
+        final Button sel_To_LvlSel = (Button) findViewById(R.id.buttonDungeon);
         sel_To_LvlSel.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
+                ConstraintLayout dung = (ConstraintLayout) findViewById(R.id.activity_dungeon_selection);
                 MediaPlayer mp = MediaPlayer.create(DungeonSelection.this,R.raw.door_sound);
+                mp.seekTo(0);
                 mp.start();
+                sel_To_LvlSel.setEnabled(false);
+                Animation anim = AnimationUtils.loadAnimation(DungeonSelection.this, R.anim.desaparece_largo);
+                dung.startAnimation(anim);
+
 
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-                        mp.stop();
+                        sel_To_LvlSel.setEnabled(true);
                         Intent toLvlSel = new Intent(DungeonSelection.this, LevelSelection.class);
                         finish();
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
