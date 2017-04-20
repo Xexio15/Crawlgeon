@@ -19,7 +19,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textSize="18sp" />
 
     <SeekBar
         android:layout_height="wrap_content"
@@ -50,7 +51,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="100dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="104dp"

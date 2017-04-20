@@ -19,7 +19,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textSize="18sp" />
 
     <SeekBar
         android:layout_height="wrap_content"
@@ -50,7 +51,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="100dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <SeekBar
         android:id="@+id/fxVolume"
@@ -84,13 +86,14 @@
         android:text="PAUSE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView6"
+        android:id="@+id/textPause"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="63dp"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="56dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="24sp" />
 
     <Button
         android:layout_height="50dp"

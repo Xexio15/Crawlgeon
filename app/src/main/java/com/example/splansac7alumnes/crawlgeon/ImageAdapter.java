@@ -1,6 +1,7 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -32,9 +33,11 @@ public class ImageAdapter extends BaseAdapter {
     private int numRayo = 0;
     private int numHielo = 0;
     private ViewGroup grupo;
-    public ImageAdapter(Context c, TilesArray tiles) {
+    private ImageView anim;
+    public ImageAdapter(Context c, TilesArray tiles, ImageView anim) {
         mContext = c;
         this.tiles = tiles;
+        this.anim = anim;
         //fill();
         rellenarTablero(20,20,30,5,8,7,10);//Probabilidades
     }
@@ -97,10 +100,12 @@ public class ImageAdapter extends BaseAdapter {
         /*
          * Animacion de expandir
          */
-        ImageView im = (ImageView)grupo.getChildAt(position);
+        //ImageView im = ((ImageView)grupo.getChildAt(position));
+        anim.setImageResource(listaIdsImagenes[position]);
+        anim.bringToFront();
         Animation lanz = AnimationUtils.loadAnimation(mContext,R.anim.lanzar_hechizo);
         lanz.reset();
-        im.startAnimation(lanz);
+        anim.startAnimation(lanz);
         /*
          *
          */

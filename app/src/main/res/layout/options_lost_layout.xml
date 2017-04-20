@@ -16,7 +16,7 @@
         android:text="GAME OVER"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"

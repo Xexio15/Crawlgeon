@@ -1,6 +1,7 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -54,6 +55,7 @@ public class GameScreen extends AppCompatActivity {
         this.seleccion = new ArrayList<>();
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
         this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
+        this.vidaEnemigo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
 
         /*******************************************************************************
@@ -112,7 +114,7 @@ public class GameScreen extends AppCompatActivity {
         tablero.setFocusable(false);
         tablero.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE); //Activamos el modo de seleccion multiple
         tablero.setNumColumns(7);
-        tablero.setAdapter(new ImageAdapter(this,tiles));
+        tablero.setAdapter(new ImageAdapter(this,tiles,(ImageView)findViewById(R.id.imAnim)));
         Animation animation = AnimationUtils.loadAnimation(GameScreen.this,android.R.anim.fade_in);
         GridLayoutAnimationController controller = new GridLayoutAnimationController(animation, .2f, .2f);
         tablero.setLayoutAnimation(controller);

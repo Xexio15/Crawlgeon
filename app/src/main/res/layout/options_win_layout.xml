@@ -36,14 +36,14 @@
         android:layout_height="50dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textWin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -53,7 +53,7 @@
         android:text="LEVEL COMPLETED" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -65,5 +65,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:fontFamily="sans-serif"
+        android:textSize="18sp" />
 </android.support.constraint.ConstraintLayout>
