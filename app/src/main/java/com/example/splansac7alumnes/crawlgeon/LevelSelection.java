@@ -10,6 +10,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
+import com.example.splansac7alumnes.crawlgeon.monsters.Rat;
+
 public class LevelSelection extends AppCompatActivity {
 
     @Override
@@ -60,6 +63,12 @@ public class LevelSelection extends AppCompatActivity {
                 Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+                lvl_01x01.putExtra("monstre", new Rat());
+
+                /**
+                 * No new sino cargarlo de datos si no es null
+                 */
+                lvl_01x01.putExtra("personatge", new Character());
                 startActivity(lvl_01x01);
 
             }

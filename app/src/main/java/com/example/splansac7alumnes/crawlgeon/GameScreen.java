@@ -21,6 +21,8 @@ import android.widget.TextView;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Health;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Shield;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
+import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
+
 import java.util.ArrayList;
 
 public class GameScreen extends AppCompatActivity {
@@ -32,16 +34,20 @@ public class GameScreen extends AppCompatActivity {
     private static final int ICE = 4;
     private static final int LIGHTING = 5;
     private static final int HEALTH = 6;
+
     protected GridView tablero;
     protected int actual;
     protected Tile elemento;
     protected boolean iguales;
     protected ArrayList<Integer> seleccion;
     protected int posicionAnterior = -1;
+
     private TextView vidaPJ;
     private TextView vidaEnemigo;
     private ProgressBar barraVidaEnemigo;
     private ProgressBar barraVidaPj;
+    private Monster monstruo;
+    private Character personatge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +57,40 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.play_layout);
 
         //Inicializamos
+        this.monstruo = (Monster)getIntent().getSerializableExtra("monstre");
+        this.personatge = (Character)getIntent().getSerializableExtra("personatge");
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
         this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
         this.vidaEnemigo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
+        this.vidaPJ.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
+        this.barraVidaPj = (ProgressBar) findViewById(R.id.barraVidaPJ);
 
         /*******************************************************************************
          *******************************************************************************
-         **********Este 50 tendra que ser un getVida segun el tipo de enemigo***********
+         **********Al dar a next i no pasarse el Extra en el Intent da null*************
          *******************************************************************************
          *******************************************************************************/
-        this.barraVidaEnemigo.setMax(50);
-        this.vidaEnemigo.setText(""+this.barraVidaEnemigo.getMax());
-        this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
+        if(personatge == null){
+            this.barraVidaPj.setMax(100);
+            this.vidaPJ.setText("" + barraVidaPj.getMax());
+            this.barraVidaPj.setProgress(barraVidaPj.getMax());
+        }else {
+            this.barraVidaPj.setMax(personatge.getVida());
+            this.vidaPJ.setText("" + barraVidaPj.getMax());
+            this.barraVidaPj.setProgress(barraVidaPj.getMax());
+        }
+        if(monstruo == null){
+            this.barraVidaEnemigo.setMax(50);
+            this.vidaEnemigo.setText("" + this.barraVidaEnemigo.getMax());
+            this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
+        }else {
+            this.barraVidaEnemigo.setMax(monstruo.getVida());
+            this.vidaEnemigo.setText("" + this.barraVidaEnemigo.getMax());
+            this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
+        }
 
         fillGrid();//Llenamos la Grid cuando se inicia la activity
 

@@ -2,13 +2,17 @@ package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class DungeonSelection extends AppCompatActivity {
 
@@ -18,8 +22,32 @@ public class DungeonSelection extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon_selection);
+        ((TextView)findViewById(R.id.textLvlsComplete)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+        final TextView click = (TextView) findViewById(R.id.textClick);
+        click.bringToFront();
+        click.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+        final Animation parp = AnimationUtils.loadAnimation(this,R.anim.parpadeo);
+        parp.reset();
+        click.startAnimation(parp);
+        parp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                parp.reset();
+                parp.setRepeatMode(Animation.INFINITE);
+                click.startAnimation(parp);
 
 
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         /*
         * Aquest boto ens retornara a la pantalla d'inici des de la de seleccio de dungeon
         */
