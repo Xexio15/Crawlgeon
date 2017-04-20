@@ -178,7 +178,9 @@ public class GameScreen extends AppCompatActivity {
                                 seleccion.add(null);
                             } else {
                                 if (posicion != posicionAnterior) {
-                                    seleccion.add(posicion);
+                                    if(!seleccion.contains(posicion)) {
+                                        seleccion.add(posicion);
+                                    }
                                 }
                             }
 

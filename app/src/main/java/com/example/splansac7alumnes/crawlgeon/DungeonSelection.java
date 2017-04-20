@@ -3,6 +3,7 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -13,6 +14,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 public class DungeonSelection extends AppCompatActivity {
 
@@ -26,6 +29,10 @@ public class DungeonSelection extends AppCompatActivity {
         final TextView click = (TextView) findViewById(R.id.textClick);
         click.bringToFront();
         click.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+        /**
+         * Esta animacion de esta manera provoca interrupciones con el sonido de la puerta
+         * */
+        /*
         final Animation parp = AnimationUtils.loadAnimation(this,R.anim.parpadeo);
         parp.reset();
         click.startAnimation(parp);
@@ -47,7 +54,7 @@ public class DungeonSelection extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {
 
             }
-        });
+        });*/
         /*
         * Aquest boto ens retornara a la pantalla d'inici des de la de seleccio de dungeon
         */
@@ -71,10 +78,19 @@ public class DungeonSelection extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent toLvlSel = new Intent(DungeonSelection.this, LevelSelection.class);
-                finish();
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
-                startActivity(toLvlSel);
+                MediaPlayer mp = MediaPlayer.create(DungeonSelection.this,R.raw.door_sound);
+                mp.start();
+
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.stop();
+                        Intent toLvlSel = new Intent(DungeonSelection.this, LevelSelection.class);
+                        finish();
+                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+                        startActivity(toLvlSel);
+                    }
+                });
             }
         });
 
