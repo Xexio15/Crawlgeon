@@ -3,6 +3,8 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,14 +15,30 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
+    private boolean shouldPlay;
+    Controller controlador;
+    public void onStop() {
+        super.onStop();
+        if (!shouldPlay) { // it won't pause music if shouldPlay is true
+            controlador.stopMusica();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem la pantalla completa
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main_menu);
+        if(controlador == null){
+            controlador = controlador.getInstance();
+        }
+        controlador.initMusica(this,R.raw.menus_music);
+        shouldPlay = true;
+        if(!controlador.isPlayingMusica()) {
+            controlador.playMusica();
+        }
+
 
 
         /*
@@ -34,7 +52,7 @@ public class MainMenu extends AppCompatActivity {
                 //Creem un nou intent que ens canvii d'una activity a una altra
                 Intent menu_To_Sel = new Intent(MainMenu.this, DungeonSelection.class);
                 //Finalitzem el menu
-                finish();
+                //finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right); //ANIMACIO SLIDE
                 //Iniciem la activity
@@ -52,7 +70,7 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
-                Dialog dialog = new OptionsDialog(MainMenu.this,R.style.Crawl);//Passem el context actual, passem el tema que volem
+                Dialog dialog = new OptionsDialog(MainMenu.this,R.style.Crawl, controlador);//Passem el context actual, passem el tema que volem
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(MainMenu.this);
                 //El mostrem

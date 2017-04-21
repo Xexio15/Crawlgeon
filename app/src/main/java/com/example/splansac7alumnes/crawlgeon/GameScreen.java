@@ -2,6 +2,7 @@ package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -43,12 +44,15 @@ public class GameScreen extends AppCompatActivity {
     protected ArrayList<Integer> listaDeSelec;
     protected int posicionAnterior = -1;
 
+    protected Controller controlador;
     private TextView vidaPJ;
     private TextView vidaEnemigo;
     private ProgressBar barraVidaEnemigo;
     private ProgressBar barraVidaPj;
     private Monster monstruo;
     private Character personatge;
+    private ImageView enemyImg;
+    private ImageView pjImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +60,11 @@ public class GameScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem la pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_layout);
-
+        if(controlador == null) {
+            controlador = controlador.getInstance();
+        }
         //Inicializamos
-        this.monstruo = (Monster)getIntent().getSerializableExtra("monstre");
+        this.monstruo = (Monster) getIntent().getSerializableExtra("monstre");
         this.personatge = (Character)getIntent().getSerializableExtra("personatge");
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
@@ -69,7 +75,6 @@ public class GameScreen extends AppCompatActivity {
         this.vidaPJ.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
         this.barraVidaPj = (ProgressBar) findViewById(R.id.barraVidaPJ);
-
         /*******************************************************************************
          *******************************************************************************
          **********Al dar a next i no pasarse el Extra en el Intent da null*************
@@ -80,6 +85,8 @@ public class GameScreen extends AppCompatActivity {
             this.vidaPJ.setText("" + barraVidaPj.getMax());
             this.barraVidaPj.setProgress(barraVidaPj.getMax());
         }else {
+            pjImg= (ImageView) findViewById(R.id.pjImg);
+            pjImg.setImageResource(personatge.getID());
             this.barraVidaPj.setMax(personatge.getVida());
             this.vidaPJ.setText("" + barraVidaPj.getMax());
             this.barraVidaPj.setProgress(barraVidaPj.getMax());
@@ -89,6 +96,8 @@ public class GameScreen extends AppCompatActivity {
             this.vidaEnemigo.setText("" + this.barraVidaEnemigo.getMax());
             this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
         }else {
+            enemyImg= (ImageView) findViewById(R.id.imgEnemy);
+            enemyImg.setImageResource(monstruo.getID());
             this.barraVidaEnemigo.setMax(monstruo.getVida());
             this.vidaEnemigo.setText("" + this.barraVidaEnemigo.getMax());
             this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
@@ -102,7 +111,7 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl);
+                OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador);
                 dialog.setOwnerActivity(GameScreen.this);
                 //El mostrem
                 dialog.show();
@@ -116,7 +125,7 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this, R.style.Crawl);
+                OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this, R.style.Crawl, controlador);
                 dialog.setOwnerActivity(GameScreen.this);
                 //El mostrem
                 dialog.show();
@@ -237,7 +246,7 @@ public class GameScreen extends AppCompatActivity {
         */
         public boolean onKeyDown(int keyCode, KeyEvent event){
             if (keyCode == KeyEvent.KEYCODE_BACK) {
-                Dialog dialog = new OptionsGameDialog(GameScreen.this, R.style.Crawl);
+                Dialog dialog = new OptionsGameDialog(GameScreen.this, R.style.Crawl, controlador);
                 dialog.setOwnerActivity(GameScreen.this);
                 //El mostrem
                 dialog.show();
@@ -346,7 +355,7 @@ public class GameScreen extends AppCompatActivity {
      * Nos muestra el dialogo de ganar
      */
     public void winDialog(){
-        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl);
+        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
         dialog.show();

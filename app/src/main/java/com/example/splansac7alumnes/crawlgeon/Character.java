@@ -12,7 +12,7 @@ public class Character implements Serializable {
     private int vida = 100;
     private int daño;
     private int nivel;
-    private ImageView sprite;
+    private int idSprite = R.drawable.heroe;
     public Character (){
 
     }
@@ -25,8 +25,8 @@ public class Character implements Serializable {
         return nivel;
     }
 
-    public ImageView getSprite() {
-        return sprite;
+    public int getID() {
+        return idSprite;
     }
 
     public int getVida() {
@@ -45,9 +45,6 @@ public class Character implements Serializable {
         this.nivel = nivel;
     }
 
-    public void setSprite(ImageView sprite) {
-        this.sprite = sprite;
-    }
 
 
 

@@ -9,20 +9,26 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 import com.example.splansac7alumnes.crawlgeon.monsters.Rat;
 
 public class LevelSelection extends AppCompatActivity {
-
+    private Controller controlador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_selection);
-
-
+        if(controlador == null) {
+            controlador = controlador.getInstance();
+        }
+        if(!controlador.isPlayingMusica()){
+            controlador.initMusica(this, R.raw.menus_music);
+            controlador.playMusica();
+        }
         /*
         * Aquest boto ens tornara a la pantalla de seleccio de dungeon
         */
@@ -47,7 +53,7 @@ public class LevelSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
-                Dialog dialog = new OptionsDialog(LevelSelection.this,R.style.Crawl);
+                Dialog dialog = new OptionsDialog(LevelSelection.this,R.style.Crawl, controlador);
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(LevelSelection.this);
                 //El mostrem
@@ -59,16 +65,14 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                controlador.stopMusica();
                 Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+
                 lvl_01x01.putExtra("monstre", new Rat());
 
-                /**
-                 * No new sino cargarlo de datos si no es null
-                 */
-                lvl_01x01.putExtra("personatge", new Character());
+                lvl_01x01.putExtra("personatge", controlador.getPersonaje());
                 startActivity(lvl_01x01);
 
             }

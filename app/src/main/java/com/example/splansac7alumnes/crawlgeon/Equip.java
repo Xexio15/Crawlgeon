@@ -10,15 +10,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class Equip extends AppCompatActivity {
+import java.util.ResourceBundle;
 
+public class Equip extends AppCompatActivity {
+    private Controller controlador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equip);
-
+        if(controlador == null) {
+            controlador = controlador.getInstance();
+        }
           /*
         * Aquest boto ens tornara a la pantalla de seleccio de dungeon
         */
@@ -43,7 +47,7 @@ public class Equip extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
-                Dialog dialog = new OptionsDialog(Equip.this,R.style.Crawl);
+                Dialog dialog = new OptionsDialog(Equip.this,R.style.Crawl, controlador);
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(Equip.this);
                 //El mostrem

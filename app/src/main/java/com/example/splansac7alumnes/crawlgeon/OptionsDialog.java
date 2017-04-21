@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -26,10 +28,12 @@ import org.w3c.dom.Text;
  */
 
 public class OptionsDialog extends Dialog {
-    Context context;
-    public OptionsDialog(Context context, int themeResId) {
+    private Context context;
+    private Controller controlador;
+    public OptionsDialog(Context context, int themeResId, Controller controlador) {
         super(context, themeResId);
         this.context = context;
+        this.controlador = controlador;
     }
 
 
@@ -41,10 +45,16 @@ public class OptionsDialog extends Dialog {
         this.setContentView(R.layout.options_layout);//Posem el layout
         this.setCanceledOnTouchOutside(true);//Si clickem fora es tanca(Diria que no funciona be)
         this.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//Amb WrapContent evitem que es posi
-                                                                                                                // la imatge a tota la pantalla, proba a canviar per MATCH_PARENT i veus que es posa a pantalla completa
+                                                    // la imatge a tota la pantalla, proba a canviar per MATCH_PARENT i veus que es posa a pantalla completa
+
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
         ((TextView) findViewById(R.id.textMusic)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textFX)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
+        SeekBar musica = (SeekBar)findViewById(R.id.musicVolume);
+        SeekBar fx = (SeekBar)findViewById(R.id.fxVolume);
+        musica.setProgress((int)controlador.getMusicVolume());
+
+        fx.setProgress((int)controlador.getFXVolume());
          /*
         * Boto about que obre la activity About
          */
@@ -63,6 +73,45 @@ public class OptionsDialog extends Dialog {
                 OptionsDialog.super.getOwnerActivity().startActivity(toAbout);
             }
         });
+
+
+        musica.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBar.setProgress(progress);
+                controlador.changeMusicVolume(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+        fx.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBar.setProgress(progress);
+                controlador.changeFXVolume(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 
 

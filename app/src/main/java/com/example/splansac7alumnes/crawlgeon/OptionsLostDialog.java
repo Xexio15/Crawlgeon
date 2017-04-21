@@ -24,12 +24,13 @@ import android.widget.TextView;
 
 
 public class OptionsLostDialog extends Dialog {
-
+    private Controller controlador;
     private Context context;
-    public OptionsLostDialog(Context context, int themeResId){
+    public OptionsLostDialog(Context context, int themeResId, Controller controlador){
 
         super(context, themeResId);
         this.context = context;
+        this.controlador = controlador;
     }
 
 
@@ -65,7 +66,6 @@ public class OptionsLostDialog extends Dialog {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent levelSelection = new Intent(OptionsLostDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE

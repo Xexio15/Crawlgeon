@@ -3,6 +3,8 @@ package com.example.splansac7alumnes.crawlgeon.monsters;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.example.splansac7alumnes.crawlgeon.R;
+
 import java.io.Serializable;
 
 /**
@@ -12,11 +14,11 @@ import java.io.Serializable;
 public class Monster implements Serializable {
     private int vida;
     private int daño;
-    private ImageView sprite;
-    public Monster(int vida, int daño, ImageView sprite){
+    private int id;
+    public Monster(int vida, int daño, int id){
         this.vida = vida;
         this.daño = daño;
-        this.sprite = sprite;
+        this.id = id;
     }
 
     public int getVida(){
@@ -27,7 +29,7 @@ public class Monster implements Serializable {
         return daño;
     }
 
-    public ImageView getSprite() {
-        return sprite;
+    public int getID(){
+        return id;
     }
 }

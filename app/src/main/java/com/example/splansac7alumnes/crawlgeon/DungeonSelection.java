@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.PowerManager;
+import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 import java.io.IOException;
 
 public class DungeonSelection extends AppCompatActivity {
-
+    private Controller controlador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -31,6 +32,9 @@ public class DungeonSelection extends AppCompatActivity {
         final TextView click = (TextView) findViewById(R.id.textClick);
         click.bringToFront();
         click.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+        if(controlador == null){
+            controlador = controlador.getInstance();
+        }
         /**
          * Esta animacion de esta manera provoca interrupciones con el sonido de la puerta
          * */
@@ -65,10 +69,10 @@ public class DungeonSelection extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent toMenu = new Intent(DungeonSelection.this, MainMenu.class);
+                //Intent toMenu = new Intent(DungeonSelection.this, MainMenu.class);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
-                startActivity(toMenu);
+                //startActivity(toMenu);
             }
         });
 
@@ -83,14 +87,14 @@ public class DungeonSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ConstraintLayout dung = (ConstraintLayout) findViewById(R.id.activity_dungeon_selection);
-                MediaPlayer mp = MediaPlayer.create(DungeonSelection.this,R.raw.door_sound);
-                mp.seekTo(0);
-                mp.start();
+                controlador.initFX(DungeonSelection.this, R.raw.door_sound);
+                controlador.restartFX();
+                controlador.playFX();
                 sel_To_LvlSel.setEnabled(false);
                 Animation anim = AnimationUtils.loadAnimation(DungeonSelection.this, R.anim.desaparece_largo);
                 dung.startAnimation(anim);
 
-
+                MediaPlayer mp = controlador.getFXPlayer();
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
@@ -113,7 +117,7 @@ public class DungeonSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
-                Dialog dialog = new OptionsDialog(DungeonSelection.this,R.style.Crawl);
+                Dialog dialog = new OptionsDialog(DungeonSelection.this,R.style.Crawl, controlador);
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(DungeonSelection.this);
                 //El mostrem
@@ -142,10 +146,10 @@ public class DungeonSelection extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event ){
         if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
-            Intent toMenu = new Intent(DungeonSelection.this, MainMenu.class);
+            //Intent toMenu = new Intent(DungeonSelection.this, MainMenu.class);
             finish();
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
-            startActivity(toMenu);
+            //startActivity(toMenu);
             return true;
         }
         return super.onKeyDown(keyCode,event);

@@ -22,12 +22,13 @@ import android.widget.TextView;
 
 public class OptionsWinDialog extends Dialog{
 
-
+    private Controller controlador;
     private Context context;
-    public OptionsWinDialog(Context context, int themeResId){
+    public OptionsWinDialog(Context context, int themeResId, Controller controlador){
 
         super(context, themeResId);
         this.context = context;
+        this.controlador = controlador;
     }
 
 

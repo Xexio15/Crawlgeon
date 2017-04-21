@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by crreinal19.alumnes on 24/03/17.
@@ -19,9 +22,11 @@ import android.widget.TextView;
 
 public class OptionsGameDialog extends Dialog{
     private Context context;
-    public OptionsGameDialog(Context context, int themeResId){
+    private Controller controlador;
+    public OptionsGameDialog(Context context, int themeResId, Controller controlador){
         super(context, themeResId);
         this.context=context;
+        this.controlador = controlador;
     }
 
     @Override
@@ -37,6 +42,10 @@ public class OptionsGameDialog extends Dialog{
         ((TextView) findViewById(R.id.textMusic)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textFX)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textPause)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
+        SeekBar musica = (SeekBar)findViewById(R.id.musicVolume);
+        SeekBar fx = (SeekBar)findViewById(R.id.fxVolume);
+        musica.setProgress((int)controlador.getMusicVolume());
+        fx.setProgress((int)controlador.getFXVolume());
         /*
          * Boto resume que ens retorna al joc
          */
@@ -57,7 +66,6 @@ public class OptionsGameDialog extends Dialog{
         leave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent levelSelection = new Intent(OptionsGameDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
@@ -66,7 +74,46 @@ public class OptionsGameDialog extends Dialog{
 
             }
         });
+
+        musica.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBar.setProgress(progress);
+                controlador.changeMusicVolume(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+        fx.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBar.setProgress(progress);
+                controlador.changeMusicVolume(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
+
     /*
      * Metodo para deshabilitar el boton de atras
      */
