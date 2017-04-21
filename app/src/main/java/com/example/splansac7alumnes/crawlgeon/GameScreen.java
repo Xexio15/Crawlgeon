@@ -40,6 +40,7 @@ public class GameScreen extends AppCompatActivity {
     protected Tile elemento;
     protected boolean iguales;
     protected ArrayList<Integer> seleccion;
+    protected ArrayList<Integer> listaDeSelec;
     protected int posicionAnterior = -1;
 
     private TextView vidaPJ;
@@ -61,6 +62,7 @@ public class GameScreen extends AppCompatActivity {
         this.personatge = (Character)getIntent().getSerializableExtra("personatge");
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
+        this.listaDeSelec = new ArrayList<>();
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
         this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
         this.vidaEnemigo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
@@ -160,6 +162,7 @@ public class GameScreen extends AppCompatActivity {
                             text.setText("invalid");
                         } else {
                             actual = (int) (imatge.getTag());
+                            seleccionarTile(posicion);
                         }
                         return true;
                     }
@@ -171,15 +174,18 @@ public class GameScreen extends AppCompatActivity {
                             return false;
                         }
                         else {
+                            seleccionarTile(posicion);
                             actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
 
                             if (actual != anterior) {
                                 iguales = false;
                                 seleccion.add(null);
+                                listaDeSelec.add(posicion);
                             } else {
                                 if (posicion != posicionAnterior) {
                                     if(!seleccion.contains(posicion)) {
                                         seleccion.add(posicion);
+                                        listaDeSelec.add(posicion);
                                     }
                                 }
                             }
@@ -190,6 +196,7 @@ public class GameScreen extends AppCompatActivity {
                     }
 
                     else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
+                        deseleccionarTile(listaDeSelec);
                         if(seleccion.size() >= 3) {
                             if (iguales) {
                                 elemento=tile(imatge);
@@ -203,12 +210,14 @@ public class GameScreen extends AppCompatActivity {
                         }
 
                         seleccion = new ArrayList<>();
+                        listaDeSelec = new ArrayList<>();
                         posicionAnterior = -1;
                         return true;
                     }
                 }
 
                 seleccion = new ArrayList<>();
+                listaDeSelec = new ArrayList<>();
                 return false;
             }
         });
@@ -270,6 +279,14 @@ public class GameScreen extends AppCompatActivity {
             }
 
         }
+
+    public void seleccionarTile(int posicion){
+        ((ImageAdapter)(tablero.getAdapter())).seleccionarTile(posicion);
+    }
+
+    public void deseleccionarTile(ArrayList<Integer> listaDeSelec){
+        ((ImageAdapter)(tablero.getAdapter())).deseleccionarTile(listaDeSelec);
+    }
 
     public void actualizarBarra(ProgressBar bar, int vida){
         bar.setProgress(vida);

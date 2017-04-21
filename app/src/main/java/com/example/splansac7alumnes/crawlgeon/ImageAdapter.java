@@ -259,6 +259,20 @@ public class ImageAdapter extends BaseAdapter {
         }
     }
 
+    public void seleccionarTile(int posicion){
+        ImageView im = (ImageView) this.getItem(posicion);
+        im.setAlpha(0.5f);
+    }
+
+    public void deseleccionarTile(ArrayList<Integer> seleccion){
+        int i = 0;
+        while(i < seleccion.size()){
+            ImageView im = (ImageView) this.getItem(seleccion.get(i));
+            im.setAlpha(1.0f);
+            i++;
+        }
+    }
+
     public void rellenarTablero(int probVida, int probDefensa, int probAtaque, int probFuego, int probArcano, int probRayo, int probHielo){
 
         int x = 0;
