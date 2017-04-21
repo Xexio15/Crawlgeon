@@ -176,23 +176,30 @@ public class GameScreen extends AppCompatActivity {
                         else {
                             seleccionarTile(posicion);
                             actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
-
+                            text.setText(""+posicionAnterior+" "+posicion);
                             if (actual != anterior) {
                                 iguales = false;
                                 seleccion.add(null);
                                 listaDeSelec.add(posicion);
                             } else {
                                 if (posicion != posicionAnterior) {
-                                    if(!seleccion.contains(posicion)) {
+                                    //Comprobamos que sean coniguas
+                                    if(posicionAnterior == -1){
                                         seleccion.add(posicion);
-                                        listaDeSelec.add(posicion);
                                     }
+                                    else if((posicion == posicionAnterior-7 || posicion == posicionAnterior+7 || posicion == posicionAnterior-1 || posicion == posicionAnterior+1)) {
+                                        if (!seleccion.contains(posicion)) {
+                                            seleccion.add(posicion);
+                                        }
+                                    }
+                                    listaDeSelec.add(posicion);
                                 }
                             }
 
-                            posicionAnterior = posicion;
-                            return true;
+
                         }
+                        posicionAnterior = posicion;
+                        return true;
                     }
 
                     else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
@@ -218,6 +225,7 @@ public class GameScreen extends AppCompatActivity {
 
                 seleccion = new ArrayList<>();
                 listaDeSelec = new ArrayList<>();
+                posicionAnterior = -1;
                 return false;
             }
         });
