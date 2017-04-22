@@ -75,10 +75,7 @@ public class LevelSelection extends AppCompatActivity {
                 Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
-
-                lvl_01x01.putExtra("monstre", new Rat());
-
-                lvl_01x01.putExtra("personatge", controlador.getPersonaje());
+                controlador.setNivelActual(1);
                 startActivity(lvl_01x01);
 
             }

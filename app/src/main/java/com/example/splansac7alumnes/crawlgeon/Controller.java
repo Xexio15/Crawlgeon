@@ -17,6 +17,8 @@ public class Controller{
     private MediaPlayer reproMusica;
     private boolean isPlayingMusica;
     private boolean isPlayingFX;
+    private int nivelActual;
+    private int dungActual;
     private MediaPlayer reproFX;
     private static Controller instance = new Controller();
 
@@ -31,12 +33,12 @@ public class Controller{
      * Constructor privado (Singleton)
      */
     private Controller(){
-
          if(!loadData()){
              this.data = new Data();
              changeMusicVolume(100);
              changeFXVolume(100);
          }
+
     }
 
     /**
@@ -188,5 +190,45 @@ public class Controller{
      */
     public Character getPersonaje(){
         return data.getPersonaje();
+    }
+
+    /**
+     * Cambia el nivel acutal
+     * @param nivel
+     */
+    public void setNivelActual(int nivel){
+        this.nivelActual = nivel;
+    }
+
+    /**
+     * Devuelve el nivel actual
+     * @return
+     */
+    public int getNivelActual(){
+        return this.nivelActual;
+    }
+
+    /**
+     * Comprueba si el nivel actual es boss i por lo tanto si es el ultimo
+     * @return
+     */
+    public boolean isActualBoss(){
+        return data.getNiveles().get(nivelActual-1).isBoss();
+    }
+
+    public float[] getProbabilidadesIniciales(){
+        return data.getNiveles().get(nivelActual-1).getProbabilidadesIniciales();
+    }
+
+    public float[] getProbabilidades(){
+        return data.getNiveles().get(nivelActual-1).getProbabilidades();
+    }
+
+    /**
+     * Devuelve la id del monstruo correspondiente al nivel
+     * @return
+     */
+    public Monster getMonstruoNivelActual(){
+        return data.getNiveles().get(nivelActual-1).getMonstruo();
     }
 }

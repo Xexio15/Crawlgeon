@@ -68,8 +68,13 @@ public class GameScreen extends AppCompatActivity {
         controlador.playMusica();
 
         //Inicializamos
-        this.monstruo = (Monster) getIntent().getSerializableExtra("monstre");
-        this.personatge = (Character)getIntent().getSerializableExtra("personatge");
+        //this.monstruo = (Monster) getIntent().getSerializableExtra("monstre");
+        /**Al añadir mas niveles habra que cambiar esta primera linea i hacer control de niveles
+         *
+         */
+        controlador.setNivelActual(1);
+        this.monstruo = controlador.getMonstruoNivelActual();
+        this.personatge = controlador.getPersonaje();
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
         this.listaDeSelec = new ArrayList<>();
@@ -80,11 +85,7 @@ public class GameScreen extends AppCompatActivity {
         this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
         this.barraVidaPj = (ProgressBar) findViewById(R.id.barraVidaPJ);
 
-        /*******************************************************************************
-         *******************************************************************************
-         **********Al dar a next i no pasarse el Extra en el Intent da null*************
-         *******************************************************************************
-         *******************************************************************************/
+
         if(personatge == null){
             this.barraVidaPj.setMax(100);
             this.vidaPJ.setText("" + barraVidaPj.getMax());
@@ -155,7 +156,7 @@ public class GameScreen extends AppCompatActivity {
         tablero.setFocusable(false);
         tablero.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE); //Activamos el modo de seleccion multiple
         tablero.setNumColumns(7);
-        tablero.setAdapter(new ImageAdapter(this,tiles,(ImageView)findViewById(R.id.imAnim)));
+        tablero.setAdapter(new ImageAdapter(this,tiles,(ImageView)findViewById(R.id.imAnim), controlador.getProbabilidadesIniciales(),controlador.getProbabilidades()));
 
         Animation animation = AnimationUtils.loadAnimation(GameScreen.this,android.R.anim.fade_in);
         GridLayoutAnimationController controller = new GridLayoutAnimationController(animation, .2f, .2f);

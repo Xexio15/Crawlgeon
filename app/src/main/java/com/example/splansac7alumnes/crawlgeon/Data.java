@@ -4,6 +4,7 @@ import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 import com.example.splansac7alumnes.crawlgeon.monsters.Rat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**
@@ -14,7 +15,16 @@ public class Data implements Serializable{
     private Character personaje;
     private float volumenMusica;
     private float volumenFX;
+    private ArrayList<Level> niveles;//En caso de tener mas de una dungeon hacer una array de arrays
     //Niveles desbloqueados o por desbloquear
+
+    public Data(){
+        niveles = new ArrayList<>();
+        float[] probsIn1 = {30,25,20,15,10,0,0};
+        float[] probs1 = {20,20,20,20,20,0,0};
+        Level lvl1 = new Level(probsIn1, probs1, new Rat(), false, false, 1, 1);
+        niveles.add(lvl1);
+    }
 
     public void setVolumenMusica(float volumenMusica) {
         this.volumenMusica = volumenMusica;
@@ -46,6 +56,8 @@ public class Data implements Serializable{
         return volumenMusica;
     }
 
-
+    public ArrayList<Level> getNiveles(){
+        return  niveles;
+    }
 
 }

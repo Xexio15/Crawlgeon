@@ -41,13 +41,13 @@ public class ImageAdapter extends BaseAdapter {
     private ViewGroup grupo;
     private ImageView anim;
     private int rellenar = 2;
-    public ImageAdapter(Context c, TilesArray tiles, ImageView anim) {
+    public ImageAdapter(Context c, TilesArray tiles, ImageView anim, float[] probabilidadesIniciales, float[] probabilidades) {
         mContext = c;
         this.tiles = tiles;
         this.anim = anim;
         //Ataque Defensa Vida Fuego Hielo Rayo Arcano
-        setProbabilidadesIniciales(30,25,20,15,10,0,0);
-        setProbabilidades(20,20,20,20,20,0,0);
+        setProbabilidadesIniciales(probabilidadesIniciales);
+        setProbabilidades(probabilidades);
         rellenarTablero();
     }
 
@@ -332,42 +332,30 @@ public class ImageAdapter extends BaseAdapter {
 
     /**
      * Metodo para fijar las probabilidades del relleno inicial
-     * @param probAtaque
-     * @param probDefensa
-     * @param probVida
-     * @param probFuego
-     * @param probHielo
-     * @param probRayo
-     * @param probArcano
+     * @param probabilidadesIniciales
      */
-    public void setProbabilidadesIniciales(int probAtaque, int probDefensa, int probVida, int probFuego, int probHielo, int probRayo, int probArcano){
-        this.probAtaqueInicial =probAtaque;
-        this.probDefensaInicial =probDefensa;
-        this.probVidaInicial =probVida;
-        this.probFuegoInicial =probFuego;
-        this.probHieloInicial =probHielo;
-        this.probRayoInicial =probRayo;
-        this.probArcanoInicial =probArcano;
+    public void setProbabilidadesIniciales(float[] probabilidadesIniciales){
+        this.probAtaqueInicial = (int)probabilidadesIniciales[0];
+        this.probDefensaInicial = (int)probabilidadesIniciales[1];
+        this.probVidaInicial = (int)probabilidadesIniciales[2];
+        this.probFuegoInicial = (int)probabilidadesIniciales[3];
+        this.probHieloInicial = (int)probabilidadesIniciales[4];
+        this.probRayoInicial = (int)probabilidadesIniciales[5];
+        this.probArcanoInicial = (int)probabilidadesIniciales[6];
     }
 
     /**
      * Metodo para fijar las probabilidades del relleno de las fichas eliminadas
-     * @param probAtaque
-     * @param probDefensa
-     * @param probVida
-     * @param probFuego
-     * @param probHielo
-     * @param probRayo
-     * @param probArcano
+     * @param probabilidades
      */
-    public void setProbabilidades(int probAtaque, int probDefensa, int probVida, int probFuego, int probHielo, int probRayo, int probArcano){
-        this.probAtaque =probAtaque;
-        this.probDefensa =probDefensa;
-        this.probVida =probVida;
-        this.probFuego =probFuego;
-        this.probHielo =probHielo;
-        this.probRayo =probRayo;
-        this.probArcano =probArcano;
+    public void setProbabilidades(float[] probabilidades){
+        this.probAtaque = (int)probabilidades[0];
+        this.probDefensa = (int)probabilidades[1];
+        this.probVida = (int)probabilidades[2];
+        this.probFuego = (int)probabilidades[3];
+        this.probHielo = (int)probabilidades[4];
+        this.probRayo = (int)probabilidades[5];
+        this.probArcano = (int)probabilidades[6];
     }
 
 }
