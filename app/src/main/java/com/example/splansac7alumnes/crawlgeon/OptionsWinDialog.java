@@ -42,9 +42,11 @@ public class OptionsWinDialog extends Dialog{
         this.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//Amb WrapContent evitem que es posi
         // la imatge a tota la pantalla, proba a canviar per MATCH_PARENT i veus que es posa a pantalla completa
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
+
         ((TextView) findViewById(R.id.textWin)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textScore)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
-         /*
+
+         /**
           * Boto Next Level que obre la activity del següent nivell
           */
         Button next_lvl = (Button) findViewById(R.id.buttonNext);
@@ -59,7 +61,7 @@ public class OptionsWinDialog extends Dialog{
             }
         });
 
-        /*
+        /**
          * Boto Menu que obre el menu de seleccio de nivells
          */
         Button menu = (Button) findViewById(R.id.buttonLevelMenu);
@@ -78,7 +80,7 @@ public class OptionsWinDialog extends Dialog{
     }
 
 
-    /*
+    /**
      * Metodo para deshabilitar el boton de atras
      */
     public boolean onKeyDown(int keyCode, KeyEvent event){

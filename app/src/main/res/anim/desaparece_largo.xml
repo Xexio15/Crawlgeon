@@ -5,7 +5,6 @@
 <alpha xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="3500"
     android:fromAlpha="1"
-    android:toAlpha="0"/>
-
+    android:toAlpha="0.001"/>
 
 </set>

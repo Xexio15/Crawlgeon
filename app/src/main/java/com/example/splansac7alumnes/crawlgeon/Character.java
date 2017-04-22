@@ -13,6 +13,7 @@ public class Character implements Serializable {
     private int daño;
     private int nivel;
     private int idSprite = R.drawable.heroe;
+
     public Character (){
 
     }

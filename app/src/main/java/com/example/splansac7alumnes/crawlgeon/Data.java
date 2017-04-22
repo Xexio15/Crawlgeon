@@ -4,7 +4,6 @@ import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 import com.example.splansac7alumnes.crawlgeon.monsters.Rat;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 
 /**
@@ -15,9 +14,7 @@ public class Data implements Serializable{
     private Character personaje;
     private float volumenMusica;
     private float volumenFX;
-
     //Niveles desbloqueados o por desbloquear
-
 
     public void setVolumenMusica(float volumenMusica) {
         this.volumenMusica = volumenMusica;

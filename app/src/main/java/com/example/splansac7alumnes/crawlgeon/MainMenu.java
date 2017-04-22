@@ -53,6 +53,7 @@ public class MainMenu extends AppCompatActivity {
                 Intent menu_To_Sel = new Intent(MainMenu.this, DungeonSelection.class);
                 //Finalitzem el menu
                 //finish();
+
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right); //ANIMACIO SLIDE
                 //Iniciem la activity
@@ -93,6 +94,7 @@ public class MainMenu extends AppCompatActivity {
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            controlador.stopMusica();
                             MainMenu.this.finish();
                         }
                     })

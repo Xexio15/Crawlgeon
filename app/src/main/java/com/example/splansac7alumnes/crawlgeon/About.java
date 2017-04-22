@@ -17,9 +17,11 @@ public class About extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_layout);
+
         ((TextView) findViewById(R.id.textAbout)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textAbout2)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textAbout3)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+
         Button back = (Button) findViewById(R.id.botoBack);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

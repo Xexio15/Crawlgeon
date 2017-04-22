@@ -12,9 +12,11 @@ public class Tile {
     private ImageView imatge;
     private String element;
     private int drawable;
-    public Tile(int drawable, int damage){
+    private int fxID;
+    public Tile(int drawable, int damage, int fxID){
         this.drawable = drawable;
         this.damage = damage;
+        this.fxID = fxID;
 
     }
     public void setImatge(ImageView imatge){
@@ -43,5 +45,13 @@ public class Tile {
 
     public int getDamage(){
         return damage;
+    }
+
+    public int getFxID() {
+        return fxID;
+    }
+
+    public void setFxID(int fxID) {
+        this.fxID = fxID;
     }
 }

@@ -44,12 +44,13 @@ public class OptionsLostDialog extends Dialog {
         this.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//Amb WrapContent evitem que es posi
         // la imatge a tota la pantalla, proba a canviar per MATCH_PARENT i veus que es posa a pantalla completa
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
+
         ((TextView) findViewById(R.id.textLost)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
 
 
-         /*
+        /**
         * Boto about que obre la activity About
-         */
+        */
         Button retry = (Button) findViewById(R.id.btnRetry);
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +63,9 @@ public class OptionsLostDialog extends Dialog {
             }
         });
 
+        /**
+         * Boto que ens torna al menu de seleccio de nivell
+         */
         Button menu = (Button) findViewById(R.id.btnMenu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +82,7 @@ public class OptionsLostDialog extends Dialog {
 
     }
 
-    /*
+    /**
      * Metodo para deshabilitar el boton de atras
      */
     public boolean onKeyDown(int keyCode, KeyEvent event){

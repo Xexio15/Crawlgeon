@@ -2,7 +2,6 @@ package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
 import android.graphics.Typeface;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -19,11 +18,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import com.example.splansac7alumnes.crawlgeon.Tiles.Fire;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Health;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Shield;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
-
 import java.util.ArrayList;
 
 public class GameScreen extends AppCompatActivity {
@@ -60,9 +59,11 @@ public class GameScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem la pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_layout);
+
         if(controlador == null) {
             controlador = controlador.getInstance();
         }
+
         //Inicializamos
         this.monstruo = (Monster) getIntent().getSerializableExtra("monstre");
         this.personatge = (Character)getIntent().getSerializableExtra("personatge");
@@ -75,6 +76,7 @@ public class GameScreen extends AppCompatActivity {
         this.vidaPJ.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
         this.barraVidaPj = (ProgressBar) findViewById(R.id.barraVidaPJ);
+
         /*******************************************************************************
          *******************************************************************************
          **********Al dar a next i no pasarse el Extra en el Intent da null*************
@@ -142,7 +144,7 @@ public class GameScreen extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
      * Metodo que rellena la GridView i contiene los events de movimientos del dedo
      */
     public void fillGrid(){
@@ -151,9 +153,11 @@ public class GameScreen extends AppCompatActivity {
         tablero.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE); //Activamos el modo de seleccion multiple
         tablero.setNumColumns(7);
         tablero.setAdapter(new ImageAdapter(this,tiles,(ImageView)findViewById(R.id.imAnim)));
+
         Animation animation = AnimationUtils.loadAnimation(GameScreen.this,android.R.anim.fade_in);
         GridLayoutAnimationController controller = new GridLayoutAnimationController(animation, .2f, .2f);
         tablero.setLayoutAnimation(controller);
+
         tablero.setOnTouchListener(new AdapterView.OnTouchListener(){
             //Guardar en una variable uno de los objetos seleccionados
             //Con un booleano comparar si el objeto seleccionado anterior y el actual son iguales
@@ -167,18 +171,21 @@ public class GameScreen extends AppCompatActivity {
 
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {//Poner el dedo en la pantalla
                         iguales = true;
+
                         if (posicion == -1) {
                             text.setText("invalid");
                         } else {
                             actual = (int) (imatge.getTag());
                             seleccionarTile(posicion);
                         }
+
                         return true;
                     }
 
                     else if (event.getAction() == MotionEvent.ACTION_MOVE) {//Deslizar el dedo por la pantalla
                         int anterior = actual;
                         posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
+
                         if (posicion == -1) {
                             return false;
                         }
@@ -186,17 +193,21 @@ public class GameScreen extends AppCompatActivity {
                             seleccionarTile(posicion);
                             actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
                             text.setText(""+posicionAnterior+" "+posicion);
+
                             if (actual != anterior) {
                                 iguales = false;
                                 seleccion.add(null);
                                 listaDeSelec.add(posicion);
                             } else {
+
                                 if (posicion != posicionAnterior) {
+
                                     //Comprobamos que sean coniguas
                                     if(posicionAnterior == -1){
                                         seleccion.add(posicion);
                                     }
                                     else if((posicion == posicionAnterior-7 || posicion == posicionAnterior+7 || posicion == posicionAnterior-1 || posicion == posicionAnterior+1)) {
+
                                         if (!seleccion.contains(posicion)) {
                                             seleccion.add(posicion);
                                         }
@@ -213,7 +224,9 @@ public class GameScreen extends AppCompatActivity {
 
                     else if (event.getAction() == MotionEvent.ACTION_UP) {//Levantar el dedo de la pantalla
                         deseleccionarTile(listaDeSelec);
+
                         if(seleccion.size() >= 3) {
+
                             if (iguales) {
                                 elemento=tile(imatge);
                                 text.setText("BOOM" + elemento.getElement());
@@ -221,17 +234,16 @@ public class GameScreen extends AppCompatActivity {
                             } else {
                                 text.setText("NO NO...Diferentes");
                             }
+
                         }else if (seleccion.size() < 3){
                             text.setText("Minimo 3");
                         }
-
                         seleccion = new ArrayList<>();
                         listaDeSelec = new ArrayList<>();
                         posicionAnterior = -1;
                         return true;
                     }
                 }
-
                 seleccion = new ArrayList<>();
                 listaDeSelec = new ArrayList<>();
                 posicionAnterior = -1;
@@ -241,7 +253,7 @@ public class GameScreen extends AppCompatActivity {
 
 
     }
-        /*
+        /**
         * Metodo para deshabilitar el boton de atras
         */
         public boolean onKeyDown(int keyCode, KeyEvent event){
@@ -253,19 +265,25 @@ public class GameScreen extends AppCompatActivity {
                 return true;
             }
             return super.onKeyDown(keyCode,event);
-
         }
 
-    /*
-     * Metodo para realizar el hechizo
-     */
+        /**
+         * Metodo para realizar el hechizo
+         */
         public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
             ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
+
+            if(tile instanceof Fire){
+                controlador.initFX(GameScreen.this,tile.getFxID());
+                controlador.restartFX();
+                controlador.playFX();
+            }
 
             if(!(tile instanceof Health) && !(tile instanceof Shield)){
                 int daño = tile.getDamage() * seleccion.size();
                 int vida = Integer.parseInt(vidaEnemigo.getText().toString());
                 vida = vida - daño;
+
                 if(vida > 0) {
                     this.vidaEnemigo.setText("" + vida);
                     actualizarBarra(barraVidaEnemigo, vida);
@@ -275,6 +293,7 @@ public class GameScreen extends AppCompatActivity {
                     winDialog();
                 }
             }else{
+
                 if(tile instanceof Health){
                     /*******************************************************************************
                      *******************************************************************************
@@ -297,19 +316,28 @@ public class GameScreen extends AppCompatActivity {
 
         }
 
+    /**
+     * Pone en modo seleccion la Tile de la posicion pasada
+     */
     public void seleccionarTile(int posicion){
         ((ImageAdapter)(tablero.getAdapter())).seleccionarTile(posicion);
     }
 
+    /**
+     * Quita el modo seleccion de la lista de Tiles seleccionadas
+     */
     public void deseleccionarTile(ArrayList<Integer> listaDeSelec){
         ((ImageAdapter)(tablero.getAdapter())).deseleccionarTile(listaDeSelec);
     }
 
+    /**
+     * Cambia el valor de la barra de vida pasada
+     */
     public void actualizarBarra(ProgressBar bar, int vida){
         bar.setProgress(vida);
     }
 
-    /*
+    /**
      * Metodo para coger un tile del tipo necesitado
      */
     public Tile tile(ImageView imatge){
@@ -351,7 +379,7 @@ public class GameScreen extends AppCompatActivity {
             return null;
         }
 
-    /*
+    /**
      * Nos muestra el dialogo de ganar
      */
     public void winDialog(){
@@ -362,5 +390,5 @@ public class GameScreen extends AppCompatActivity {
     }
 
 
-    }
+}
 

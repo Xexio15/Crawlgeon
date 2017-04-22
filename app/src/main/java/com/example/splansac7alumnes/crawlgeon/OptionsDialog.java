@@ -46,35 +46,32 @@ public class OptionsDialog extends Dialog {
         this.setCanceledOnTouchOutside(true);//Si clickem fora es tanca(Diria que no funciona be)
         this.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//Amb WrapContent evitem que es posi
                                                     // la imatge a tota la pantalla, proba a canviar per MATCH_PARENT i veus que es posa a pantalla completa
-
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
+
         ((TextView) findViewById(R.id.textMusic)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textFX)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
+
         SeekBar musica = (SeekBar)findViewById(R.id.musicVolume);
         SeekBar fx = (SeekBar)findViewById(R.id.fxVolume);
         musica.setProgress((int)controlador.getMusicVolume());
-
         fx.setProgress((int)controlador.getFXVolume());
-         /*
+
+        /**
         * Boto about que obre la activity About
-         */
+        */
         Button about = (Button) findViewById(R.id.buttonAbout);
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/ub-pis/PIS_12/wiki"));
-                startActivity(intent);*/
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 Intent toAbout = new Intent(OptionsDialog.super.getOwnerActivity(),About.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
-
                 OptionsDialog.super.getOwnerActivity().startActivity(toAbout);
             }
         });
 
-
+        /**
+         * Listener que actualitza el volum de la musica
+         */
         musica.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -94,6 +91,9 @@ public class OptionsDialog extends Dialog {
         });
 
 
+        /**
+         * Listener que actualitza el volum dels efectes
+         */
         fx.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

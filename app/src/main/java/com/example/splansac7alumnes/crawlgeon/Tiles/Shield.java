@@ -12,7 +12,7 @@ import com.example.splansac7alumnes.crawlgeon.R;
 public class Shield extends Tile{
 
     public Shield(Context context){
-        super(R.drawable.defensa2,2);
+        super(R.drawable.defensa2,2,0);
         ImageView shield = new ImageView(context);
         shield.setImageResource(R.drawable.defensa2);
         super.setImatge(shield);

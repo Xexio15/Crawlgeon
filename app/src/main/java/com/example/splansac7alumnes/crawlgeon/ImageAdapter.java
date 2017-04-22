@@ -34,11 +34,11 @@ public class ImageAdapter extends BaseAdapter {
     private int numHielo = 0;
     private ViewGroup grupo;
     private ImageView anim;
+
     public ImageAdapter(Context c, TilesArray tiles, ImageView anim) {
         mContext = c;
         this.tiles = tiles;
         this.anim = anim;
-        //fill();
         rellenarTablero(20,20,30,5,8,7,10);//Probabilidades
     }
 
@@ -46,12 +46,10 @@ public class ImageAdapter extends BaseAdapter {
         return listaIdsImagenes.length;
     }
 
+    /**
+     * Devuelve el item de la posicion
+     */
     public Object getItem(int position) {
-        /*ImageView imatge = new ImageView(mContext);
-        imatge.setTag(listaIdsImagenes[position]);
-        imatge.setImageResource(listaIdsImagenes[position]);
-        return imatge;*/
-
         return grupo.getChildAt(position);
     }
 
@@ -79,43 +77,35 @@ public class ImageAdapter extends BaseAdapter {
         return imageView;
     }
 
-    // references to our images
-    /*private int[] listaIdsImagenes = new int[49];
-    public void fill(){
-        for(int x = 0; x <= 48; x++){
-            ArrayList<Tile> seleccion = tiles.getArray();
-            Random num = new Random();
-            int numero = num.nextInt(6-0+1)+0;
-            listaIdsImagenes[x] = seleccion.get(numero).getDrawableID();
-
-
-        }
-    }*/
-
+    /**
+     * Cambia el item de la posicion por el recurso pasado
+     */
     public void changeItem(int position, int res){
         listaIdsImagenes[position] = res;
         notifyDataSetChanged();
     }
+
+    /**
+     * Elimina el item de la posicion
+     */
     public void removeItem(int position){
         /*
          * Animacion de expandir
          */
-        //ImageView im = ((ImageView)grupo.getChildAt(position));
         anim.setImageResource(listaIdsImagenes[position]);
         anim.bringToFront();
         Animation lanz = AnimationUtils.loadAnimation(mContext,R.anim.lanzar_hechizo);
         lanz.reset();
         anim.startAnimation(lanz);
-        /*
-         *
-         */
+
 
         listaIdsImagenes[position] = 0;
         notifyDataSetChanged();
-
-
     }
 
+    /**
+     * Elimina los items del Array pasado
+     */
     public void removeItems(ArrayList<Integer> seleccion){
         Iterator<Integer> iterator = seleccion.iterator();
 
@@ -124,6 +114,9 @@ public class ImageAdapter extends BaseAdapter {
         }
     }
 
+    /**
+     * Elimina los items del array i mueve las tiles necesarias
+     */
     public void realizarHechizo(ArrayList<Integer> seleccion){//En proceso
         this.removeItems(seleccion);
         /*for(int i=48; i>=42; i++){
@@ -200,6 +193,7 @@ public class ImageAdapter extends BaseAdapter {
 
     }
 
+
     public void rellenarVacios(){
         //Not that way
         int nVida = 0;
@@ -259,11 +253,17 @@ public class ImageAdapter extends BaseAdapter {
         }
     }
 
+    /**
+     * Pone en modo seleccion la tile
+     */
     public void seleccionarTile(int posicion){
         ImageView im = (ImageView) this.getItem(posicion);
         im.setAlpha(0.5f);
     }
 
+    /**
+     * Quita el modo seleccion de la lista de tiles
+     */
     public void deseleccionarTile(ArrayList<Integer> seleccion){
         int i = 0;
         while(i < seleccion.size()){
@@ -273,6 +273,9 @@ public class ImageAdapter extends BaseAdapter {
         }
     }
 
+    /**
+     * Rellena el tablero en base a unas probabilidades
+     */
     public void rellenarTablero(int probVida, int probDefensa, int probAtaque, int probFuego, int probArcano, int probRayo, int probHielo){
 
         int x = 0;

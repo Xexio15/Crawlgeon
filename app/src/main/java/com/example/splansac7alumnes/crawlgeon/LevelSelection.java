@@ -22,14 +22,17 @@ public class LevelSelection extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_selection);
+
         if(controlador == null) {
             controlador = controlador.getInstance();
         }
+
         if(!controlador.isPlayingMusica()){
             controlador.initMusica(this, R.raw.menus_music);
             controlador.playMusica();
         }
-        /*
+
+        /**
         * Aquest boto ens tornara a la pantalla de seleccio de dungeon
         */
         Button lvlSel_To_DungSel = (Button) findViewById(R.id.buttonLvlSelToDungSel);
@@ -44,7 +47,7 @@ public class LevelSelection extends AppCompatActivity {
             }
         });
 
-        /*
+        /**
         * Aquest boto ens obrira un FragmentDialog que ens mostrara les opcions
         */
         Button options = (Button) findViewById(R.id.buttonOptions);
@@ -61,6 +64,9 @@ public class LevelSelection extends AppCompatActivity {
             }
         });
 
+        /**
+         * Aquest boto ens portara al primer nivell
+         */
         Button btn_01x01 = (Button) findViewById(R.id.btn_01x01);
         btn_01x01.setOnClickListener(new View.OnClickListener() {
             @Override

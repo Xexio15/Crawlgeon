@@ -22,19 +22,23 @@ import java.io.IOException;
 
 public class DungeonSelection extends AppCompatActivity {
     private Controller controlador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon_selection);
+
         ((TextView)findViewById(R.id.textLvlsComplete)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
         final TextView click = (TextView) findViewById(R.id.textClick);
         click.bringToFront();
         click.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+
         if(controlador == null){
             controlador = controlador.getInstance();
         }
+
         /**
          * Esta animacion de esta manera provoca interrupciones con el sonido de la puerta
          * */
@@ -61,7 +65,8 @@ public class DungeonSelection extends AppCompatActivity {
 
             }
         });*/
-        /*
+
+        /**
         * Aquest boto ens retornara a la pantalla d'inici des de la de seleccio de dungeon
         */
         Button sel_To_Menu = (Button) findViewById(R.id.buttonSelToMen);
@@ -76,9 +81,7 @@ public class DungeonSelection extends AppCompatActivity {
             }
         });
 
-
-
-        /*
+        /**
         * Aquest boto iniciara l'activity de Seleccio de Nivell i ens mostrara la pantalla que pertoca
         */
         final Button sel_To_LvlSel = (Button) findViewById(R.id.buttonDungeon);
@@ -86,7 +89,7 @@ public class DungeonSelection extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                ConstraintLayout dung = (ConstraintLayout) findViewById(R.id.activity_dungeon_selection);
+                final ConstraintLayout dung = (ConstraintLayout) findViewById(R.id.activity_dungeon_selection);
                 controlador.initFX(DungeonSelection.this, R.raw.door_sound);
                 controlador.restartFX();
                 controlador.playFX();
@@ -98,6 +101,7 @@ public class DungeonSelection extends AppCompatActivity {
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
+                        dung.setAlpha(0);
                         sel_To_LvlSel.setEnabled(true);
                         Intent toLvlSel = new Intent(DungeonSelection.this, LevelSelection.class);
                         finish();
@@ -108,7 +112,7 @@ public class DungeonSelection extends AppCompatActivity {
             }
         });
 
-        /*
+        /**
         * Aquest boto ens obrira un FragmentDialog que ens mostrara les opcions
         */
         Button options = (Button) findViewById(R.id.buttonOptions);
@@ -125,7 +129,7 @@ public class DungeonSelection extends AppCompatActivity {
             }
         });
 
-        /*
+        /**
         * Aquest boto iniciara l'activity de Equip i ens mostrara la pantalla que pertoca
         */
         Button equip = (Button) findViewById(R.id.buttonEquip);
@@ -139,8 +143,6 @@ public class DungeonSelection extends AppCompatActivity {
                 startActivity(toEquip);
             }
         });
-
-
     }
 
     @Override

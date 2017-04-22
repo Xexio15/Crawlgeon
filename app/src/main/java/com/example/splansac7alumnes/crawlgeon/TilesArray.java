@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class TilesArray {
     private ArrayList<Tile> tiles;
     private Context context;
+
     public TilesArray(Context context){
         this.context=context;
         tiles = new ArrayList(7);

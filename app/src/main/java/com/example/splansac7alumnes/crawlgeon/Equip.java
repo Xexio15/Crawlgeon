@@ -23,7 +23,8 @@ public class Equip extends AppCompatActivity {
         if(controlador == null) {
             controlador = controlador.getInstance();
         }
-          /*
+
+        /**
         * Aquest boto ens tornara a la pantalla de seleccio de dungeon
         */
         Button atras = (Button) findViewById(R.id.buttonEquipSelToDungSel);
@@ -38,7 +39,7 @@ public class Equip extends AppCompatActivity {
             }
         });
 
-        /*
+        /**
         * Aquest boto ens obrira un FragmentDialog que ens mostrara les opcions
         */
         Button options = (Button) findViewById(R.id.buttonOptions);

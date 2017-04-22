@@ -11,7 +11,7 @@ import com.example.splansac7alumnes.crawlgeon.R;
 
 public class Health extends Tile{
     public Health(Context context){
-        super(R.drawable.health_potion3,5);
+        super(R.drawable.health_potion3,5,0);
         ImageView health = new ImageView(context);
         health.setImageResource(R.drawable.health_potion3);
         super.setImatge(health);
