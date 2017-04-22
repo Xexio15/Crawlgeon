@@ -1,7 +1,6 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -25,21 +24,23 @@ public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     private TilesArray tiles;
     private int[] listaIdsImagenes = new int[49];
-    private int numVida = 0;
-    private int numDefensa = 0;
-    private int numAtaque = 0;
-    private int numFuego = 0;
-    private int numArcano = 0;
-    private int numRayo = 0;
-    private int numHielo = 0;
+    private int probVida = 0;
+    private int probDefensa = 0;
+    private int probAtaque = 0;
+    private int probFuego = 0;
+    private int probArcano = 0;
+    private int probRayo = 0;
+    private int probHielo = 0;
     private ViewGroup grupo;
     private ImageView anim;
-
+    private int rellenar = 2;
     public ImageAdapter(Context c, TilesArray tiles, ImageView anim) {
         mContext = c;
         this.tiles = tiles;
         this.anim = anim;
-        rellenarTablero(20,20,30,5,8,7,10);//Probabilidades
+        //Ataque Defensa Vida Fuego Hielo Rayo Arcano
+        setProbabilidades(30,25,20,15,10,0,0);
+        rellenarTablero();
     }
 
     public int getCount() {
@@ -119,23 +120,7 @@ public class ImageAdapter extends BaseAdapter {
      */
     public void realizarHechizo(ArrayList<Integer> seleccion){//En proceso
         this.removeItems(seleccion);
-        /*for(int i=48; i>=42; i++){
-            int inicial=i;
-            while(i>inicial-42) {
-                if (listaIdsImagenes[i] == 0) {
-                    for (int l = i - 7; l >= 0; l -= 7) {
-                        if (l >= 0) {
-                            if (listaIdsImagenes[l] != 0) {
-                                listaIdsImagenes[i] = listaIdsImagenes[l];
-                                listaIdsImagenes[l] = 0;
-                            }
-                        }
-                    }
-                } else {
-                    i -= 7;
-                }
-            }
-        }*/
+
         for (int x = 42; x <= 48; x++) {
             int i = x;
             while (i > 0) {
@@ -155,15 +140,12 @@ public class ImageAdapter extends BaseAdapter {
                     }
                 }
                 i -= 7;
-
             }
-
         }
-
         /*
          * Bucle para rellenar las Tiles eliminadas
          */
-        for (int i = 0; i < 49; i++){
+       /* for (int i = 0; i < 49; i++){
             Random num = new Random();
             if (listaIdsImagenes[i] == 0){
                 int numero = num.nextInt(6-0+1)+0;
@@ -172,15 +154,15 @@ public class ImageAdapter extends BaseAdapter {
                /*
                 * Animacion de expandir
                 */
-                Animation trans = AnimationUtils.loadAnimation(mContext,R.anim.aparece);
+               /* Animation trans = AnimationUtils.loadAnimation(mContext,R.anim.aparece);
                 trans.reset();
                 grupo.getChildAt(i).startAnimation(trans);
                 /*
                  *
                  */
-            }
-        }
-        //rellenarVacios();
+           /* }
+        }*/
+        rellenarVacios();
 
         /*int aux = listaIdsImagenes[0];
         listaIdsImagenes[0]=listaIdsImagenes[1];
@@ -191,66 +173,6 @@ public class ImageAdapter extends BaseAdapter {
 
 
 
-    }
-
-
-    public void rellenarVacios(){
-        //Not that way
-        int nVida = 0;
-        int nDefensa = 0;
-        int nAtaque = 0;
-        int nFuego = 0;
-        int nArcano = 0;
-        int nRayo = 0;
-        int nHielo = 0;
-        for( int i = 0; i < 49; i++){
-            if(listaIdsImagenes[i] == this.tiles.getArray().get(0).getDrawableID()){
-                nAtaque++;
-            }
-            else if(listaIdsImagenes[i] == tiles.getArray().get(1).getDrawableID()){
-                nDefensa++;
-            }
-            else if( listaIdsImagenes[i] == tiles.getArray().get(2).getDrawableID()){
-                nFuego++;
-            }
-            else if(listaIdsImagenes[i] == tiles.getArray().get(3).getDrawableID()){
-                nArcano++;
-            }
-            else if(listaIdsImagenes[i] == tiles.getArray().get(4).getDrawableID()){
-                nHielo++;
-            }
-            else if(listaIdsImagenes[i] == tiles.getArray().get(5).getDrawableID()){
-                nRayo++;
-            }
-            else if(listaIdsImagenes[i] == tiles.getArray().get(6).getDrawableID()){
-                nVida++;
-            }
-        }
-        for (int i = 0; i < 49; i++){
-            if (listaIdsImagenes[i] == 0){
-                if(nAtaque < numAtaque) {
-                    listaIdsImagenes[i] = tiles.getArray().get(0).getDrawableID();
-                }
-                else if(nDefensa < numDefensa){
-                    listaIdsImagenes[i] = tiles.getArray().get(1).getDrawableID();
-                }
-                else if(nFuego < numFuego){
-                    listaIdsImagenes[i] = tiles.getArray().get(2).getDrawableID();
-                }
-                else if(nArcano < numArcano){
-                    listaIdsImagenes[i] = tiles.getArray().get(3).getDrawableID();
-                }
-                else if(nHielo < numHielo){
-                    listaIdsImagenes[i] = tiles.getArray().get(4).getDrawableID();
-                }
-                else if(nRayo < numRayo){
-                    listaIdsImagenes[i] = tiles.getArray().get(5).getDrawableID();
-                }
-                else if(nVida < numVida){
-                    listaIdsImagenes[i] = tiles.getArray().get(6).getDrawableID();
-                }
-            }
-        }
     }
 
     /**
@@ -273,70 +195,128 @@ public class ImageAdapter extends BaseAdapter {
         }
     }
 
+    /*
+     * Rellena los huecos del tablero después de realizar un hechizo
+     */
+    public void rellenarVacios(){
+        //Not that way
+        int nVida = 0;
+        int nDefensa = 0;
+        int nAtaque = 0;
+        int nFuego = 0;
+        int nArcano = 0;
+        int nRayo = 0;
+        int nHielo = 0;
+        /*
+        * Cuenta el número de tiles que hay de cada tipo
+        */
+        for( int i = 0; i < 49; i++){
+            if(listaIdsImagenes[i] == this.tiles.getArray().get(0).getDrawableID()){
+                nAtaque++;
+            }
+            else if(listaIdsImagenes[i] == tiles.getArray().get(1).getDrawableID()){
+                nDefensa++;
+            }
+            else if( listaIdsImagenes[i] == tiles.getArray().get(2).getDrawableID()){
+                nFuego++;
+            }
+            else if(listaIdsImagenes[i] == tiles.getArray().get(3).getDrawableID()){
+                nArcano++;
+            }
+            else if(listaIdsImagenes[i] == tiles.getArray().get(4).getDrawableID()){
+                nHielo++;
+            }
+            else if(listaIdsImagenes[i] == tiles.getArray().get(5).getDrawableID()){
+                nRayo++;
+            }
+            else if(listaIdsImagenes[i] == tiles.getArray().get(6).getDrawableID()) {
+                nVida++;
+            }
+        }
+
+        int total = nAtaque+nDefensa+nFuego+nArcano+nHielo+nRayo+nVida; //numero de tiles que hay en el tablero
+
+        Iterator<Integer> iterator = null;
+        if(rellenar == 2){
+            iterator = rellenarAux(20, 20, 20, 20, 20, 0, 0,49-total).iterator();
+            rellenar = 0;
+        }
+        else{
+            /*Multiplicamos por dos, así es aleatorio (conservando las probabilidades), ya que el array tendra el doble de tiles necesitaads,
+            * se reordenaran de forma aleatoria y se usaran solo la mitad*/
+            int nAt=(probAtaque-nAtaque)*2;
+            int nD=(probDefensa-nDefensa)*2;
+            int nV=(probVida-nVida)*2;
+            int nF=(probFuego-nFuego)*2;
+            int nH=(probHielo-nHielo)*2;
+            int nR=(probRayo-nRayo)*2;
+            int nAr=(probArcano-nArcano)*2;
+            iterator = rellenarAux(nAt, nD, nV, nF, nH, nR, nAr, 49-total).iterator();
+            rellenar++;
+        }
+        for (int i = 0; i < 49; i++) {
+            if (listaIdsImagenes[i] == 0) {
+                listaIdsImagenes[i]=iterator.next();
+            }
+        }
+    }
+
     /**
      * Rellena el tablero en base a unas probabilidades
      */
-    public void rellenarTablero(int probVida, int probDefensa, int probAtaque, int probFuego, int probArcano, int probRayo, int probHielo){
-
-        int x = 0;
-        ArrayList<Tile> seleccion = tiles.getArray();
-        ArrayList<Integer> array = new ArrayList<>();
-
-        if( probVida != 0){
-            numVida = (int)(49*probVida)/100;
-            for(int i = 0; i <= numVida; i++){
-                array.add(seleccion.get(6).getDrawableID());
-                x+=1;
-            }
-        }
-        if(probDefensa != 0){
-            numDefensa = (int)(49*probDefensa)/100;
-            for(int i = 0; i <= numDefensa; i++){
-                array.add(seleccion.get(1).getDrawableID());
-                x+=1;
-            }
-        }
-        if( probAtaque != 0){
-            numAtaque = (int)(49*probAtaque)/100;
-            for(int i = 0; i <= numAtaque; i++){
-                array.add(seleccion.get(0).getDrawableID());
-                x+=1;
-            }
-        }
-        if(probFuego != 0){
-            numFuego = (int)(49*probFuego)/100;
-            for(int i = 0; i <= numFuego; i++){
-                array.add(seleccion.get(2).getDrawableID());
-                x+=1;
-            }
-        }
-        if( probArcano != 0){
-            numArcano = (int)(49*probArcano)/100;
-            for(int i = 0; i <= numArcano; i++){
-                array.add(seleccion.get(3).getDrawableID());
-                x+=1;
-            }
-        }
-        if(probRayo != 0){
-            numRayo = (int)(49*probRayo)/100;
-            for(int i = 0; i <= numRayo; i++){
-                array.add(seleccion.get(5).getDrawableID());
-                x+=1;
-            }
-        }
-        if( probHielo != 0){
-            numHielo = 49 - (numArcano+numAtaque+numDefensa+numFuego+numVida+numRayo);
-            for(int i = 0; i <= numHielo; i++){
-                array.add(seleccion.get(4).getDrawableID());
-                x+=1;
-            }
-        }
-        Random random = new Random();
-        Collections.shuffle(array,random);
-        Iterator<Integer> iterator = array.iterator();
+    public void rellenarTablero(){
+        Iterator<Integer> iterator = rellenarAux(probAtaque, probDefensa, probVida, probFuego, probHielo, probRayo, probArcano, 49).iterator();
         for (int n=0; n<49; n++){
             listaIdsImagenes[n] = iterator.next();
         }
+    }
+
+    ArrayList<Integer> rellenarAux(int numAtaque, int numDefensa, int numVida, int numFuego, int  numHielo, int numRayo, int numArcano, int total){
+        int x = 0;
+        ArrayList<Tile> arrayTiles = tiles.getArray();
+        ArrayList<Integer> array = new ArrayList<>();
+
+        for(int i = 0; i <= numVida; i++){
+            array.add(arrayTiles.get(6).getDrawableID());
+            x+=1;
+        }
+        for(int i = 0; i <= numDefensa; i++){
+            array.add(arrayTiles.get(1).getDrawableID());
+            x+=1;
+        }
+        for(int i = 0; i <= numAtaque && x<10; i++){
+            array.add(arrayTiles.get(0).getDrawableID());
+            x+=1;
+
+        }
+        for(int i = 0; i <= numFuego; i++){
+            array.add(arrayTiles.get(2).getDrawableID());
+            x+=1;
+        }
+        for(int i = 0; i <= numArcano; i++){
+            array.add(arrayTiles.get(3).getDrawableID());
+            x+=1;
+        }
+        for(int i = 0; i <= numRayo; i++){
+            array.add(arrayTiles.get(5).getDrawableID());
+            x+=1;
+        }
+        for(int i = 0; i <= numHielo; i++){
+            array.add(arrayTiles.get(4).getDrawableID());
+            x+=1;
+        }
+        Random random = new Random();
+        Collections.shuffle(array,random);
+        return array;
+    }
+    void setProbabilidades(int probAtaque, int probDefensa, int probVida, int probFuego, int probHielo, int probRayo, int probArcano){
+        this.probAtaque=probAtaque;
+        this.probDefensa=probDefensa;
+        this.probVida=probVida;
+        this.probFuego=probFuego;
+        this.probHielo=probHielo;
+        this.probRayo=probRayo;
+        this.probArcano=probArcano;
     }
 
 }
