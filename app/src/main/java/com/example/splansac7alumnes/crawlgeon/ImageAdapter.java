@@ -24,6 +24,13 @@ public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     private TilesArray tiles;
     private int[] listaIdsImagenes = new int[49];
+    private int probVidaInicial = 0;
+    private int probDefensaInicial = 0;
+    private int probAtaqueInicial = 0;
+    private int probFuegoInicial = 0;
+    private int probArcanoInicial = 0;
+    private int probRayoInicial = 0;
+    private int probHieloInicial = 0;
     private int probVida = 0;
     private int probDefensa = 0;
     private int probAtaque = 0;
@@ -39,7 +46,8 @@ public class ImageAdapter extends BaseAdapter {
         this.tiles = tiles;
         this.anim = anim;
         //Ataque Defensa Vida Fuego Hielo Rayo Arcano
-        setProbabilidades(30,25,20,15,10,0,0);
+        setProbabilidadesIniciales(30,25,20,15,10,0,0);
+        setProbabilidades(20,20,20,20,20,0,0);
         rellenarTablero();
     }
 
@@ -195,10 +203,10 @@ public class ImageAdapter extends BaseAdapter {
         }
     }
 
-    /*
+    /**
      * Rellena los huecos del tablero después de realizar un hechizo
      */
-    public void rellenarVacios(){
+    private void rellenarVacios(){
         //Not that way
         int nVida = 0;
         int nDefensa = 0;
@@ -238,19 +246,19 @@ public class ImageAdapter extends BaseAdapter {
 
         Iterator<Integer> iterator = null;
         if(rellenar == 2){
-            iterator = rellenarAux(20, 20, 20, 20, 20, 0, 0,49-total).iterator();
+            iterator = rellenarAux(probAtaque, probDefensa, probVida, probFuego, probHielo, probRayo, probArcano, 49-total).iterator();
             rellenar = 0;
         }
         else{
             /*Multiplicamos por dos, así es aleatorio (conservando las probabilidades), ya que el array tendra el doble de tiles necesitaads,
             * se reordenaran de forma aleatoria y se usaran solo la mitad*/
-            int nAt=(probAtaque-nAtaque)*2;
-            int nD=(probDefensa-nDefensa)*2;
-            int nV=(probVida-nVida)*2;
-            int nF=(probFuego-nFuego)*2;
-            int nH=(probHielo-nHielo)*2;
-            int nR=(probRayo-nRayo)*2;
-            int nAr=(probArcano-nArcano)*2;
+            int nAt=(probAtaqueInicial -nAtaque)*2;
+            int nD=(probDefensaInicial -nDefensa)*2;
+            int nV=(probVidaInicial -nVida)*2;
+            int nF=(probFuegoInicial -nFuego)*2;
+            int nH=(probHieloInicial -nHielo)*2;
+            int nR=(probRayoInicial -nRayo)*2;
+            int nAr=(probArcanoInicial -nArcano)*2;
             iterator = rellenarAux(nAt, nD, nV, nF, nH, nR, nAr, 49-total).iterator();
             rellenar++;
         }
@@ -264,44 +272,56 @@ public class ImageAdapter extends BaseAdapter {
     /**
      * Rellena el tablero en base a unas probabilidades
      */
-    public void rellenarTablero(){
-        Iterator<Integer> iterator = rellenarAux(probAtaque, probDefensa, probVida, probFuego, probHielo, probRayo, probArcano, 49).iterator();
+    private void rellenarTablero(){
+        Iterator<Integer> iterator = rellenarAux(probAtaqueInicial, probDefensaInicial, probVidaInicial, probFuegoInicial, probHieloInicial, probRayoInicial, probArcanoInicial, 49).iterator();
         for (int n=0; n<49; n++){
             listaIdsImagenes[n] = iterator.next();
         }
     }
 
-    ArrayList<Integer> rellenarAux(int numAtaque, int numDefensa, int numVida, int numFuego, int  numHielo, int numRayo, int numArcano, int total){
+    /**
+     * Rellena el tablero
+     *
+     * @param numAtaque
+     * @param numDefensa
+     * @param numVida
+     * @param numFuego
+     * @param numHielo
+     * @param numRayo
+     * @param numArcano
+     * @param total
+     * @return
+     */
+    private ArrayList<Integer> rellenarAux(int numAtaque, int numDefensa, int numVida, int numFuego, int  numHielo, int numRayo, int numArcano, int total){
         int x = 0;
         ArrayList<Tile> arrayTiles = tiles.getArray();
         ArrayList<Integer> array = new ArrayList<>();
 
-        for(int i = 0; i <= numVida; i++){
+        for(int i = 0; i < numVida; i++){
             array.add(arrayTiles.get(6).getDrawableID());
             x+=1;
         }
-        for(int i = 0; i <= numDefensa; i++){
+        for(int i = 0; i < numDefensa; i++){
             array.add(arrayTiles.get(1).getDrawableID());
             x+=1;
         }
-        for(int i = 0; i <= numAtaque && x<10; i++){
+        for(int i = 0; i < numAtaque; i++){
             array.add(arrayTiles.get(0).getDrawableID());
-            x+=1;
-
+            x += 1;
         }
-        for(int i = 0; i <= numFuego; i++){
+        for(int i = 0; i < numFuego; i++){
             array.add(arrayTiles.get(2).getDrawableID());
             x+=1;
         }
-        for(int i = 0; i <= numArcano; i++){
+        for(int i = 0; i < numArcano; i++){
             array.add(arrayTiles.get(3).getDrawableID());
             x+=1;
         }
-        for(int i = 0; i <= numRayo; i++){
+        for(int i = 0; i < numRayo; i++){
             array.add(arrayTiles.get(5).getDrawableID());
             x+=1;
         }
-        for(int i = 0; i <= numHielo; i++){
+        for(int i = 0; i < numHielo; i++){
             array.add(arrayTiles.get(4).getDrawableID());
             x+=1;
         }
@@ -309,14 +329,45 @@ public class ImageAdapter extends BaseAdapter {
         Collections.shuffle(array,random);
         return array;
     }
-    void setProbabilidades(int probAtaque, int probDefensa, int probVida, int probFuego, int probHielo, int probRayo, int probArcano){
-        this.probAtaque=probAtaque;
-        this.probDefensa=probDefensa;
-        this.probVida=probVida;
-        this.probFuego=probFuego;
-        this.probHielo=probHielo;
-        this.probRayo=probRayo;
-        this.probArcano=probArcano;
+
+    /**
+     * Metodo para fijar las probabilidades del relleno inicial
+     * @param probAtaque
+     * @param probDefensa
+     * @param probVida
+     * @param probFuego
+     * @param probHielo
+     * @param probRayo
+     * @param probArcano
+     */
+    public void setProbabilidadesIniciales(int probAtaque, int probDefensa, int probVida, int probFuego, int probHielo, int probRayo, int probArcano){
+        this.probAtaqueInicial =probAtaque;
+        this.probDefensaInicial =probDefensa;
+        this.probVidaInicial =probVida;
+        this.probFuegoInicial =probFuego;
+        this.probHieloInicial =probHielo;
+        this.probRayoInicial =probRayo;
+        this.probArcanoInicial =probArcano;
+    }
+
+    /**
+     * Metodo para fijar las probabilidades del relleno de las fichas eliminadas
+     * @param probAtaque
+     * @param probDefensa
+     * @param probVida
+     * @param probFuego
+     * @param probHielo
+     * @param probRayo
+     * @param probArcano
+     */
+    public void setProbabilidades(int probAtaque, int probDefensa, int probVida, int probFuego, int probHielo, int probRayo, int probArcano){
+        this.probAtaque =probAtaque;
+        this.probDefensa =probDefensa;
+        this.probVida =probVida;
+        this.probFuego =probFuego;
+        this.probHielo =probHielo;
+        this.probRayo =probRayo;
+        this.probArcano =probArcano;
     }
 
 }

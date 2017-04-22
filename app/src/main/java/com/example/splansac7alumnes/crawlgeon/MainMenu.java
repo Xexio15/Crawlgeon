@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,6 +18,10 @@ import android.widget.Button;
 public class MainMenu extends AppCompatActivity {
     private boolean shouldPlay;
     Controller controlador;
+
+    /**
+     * Modificamos onStop para evitar que pare la musica
+     */
     public void onStop() {
         super.onStop();
         if (!shouldPlay) { // it won't pause music if shouldPlay is true
@@ -30,9 +35,11 @@ public class MainMenu extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//Posem la pantalla completa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
         if(controlador == null){
             controlador = controlador.getInstance();
         }
+
         controlador.initMusica(this,R.raw.menus_music);
         shouldPlay = true;
         if(!controlador.isPlayingMusica()) {
@@ -41,7 +48,7 @@ public class MainMenu extends AppCompatActivity {
 
 
 
-        /*
+        /**
         * Aquest boto ens canviara de la pantalla d'inici a la pantalla de seleccio de dungeon
         */
         Button play = (Button) findViewById(R.id.buttonPlay);
@@ -62,7 +69,7 @@ public class MainMenu extends AppCompatActivity {
         });
 
 
-        /*
+        /**
         * Aquest boto ens obrira un FragmentDialog que ens mostrara les opcions
         */
         Button options = (Button) findViewById(R.id.buttonOptions);
@@ -81,7 +88,7 @@ public class MainMenu extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     * Metodo para confirmar la salida de la app cuando presionamos a la tecla de atras
     */
     @Override

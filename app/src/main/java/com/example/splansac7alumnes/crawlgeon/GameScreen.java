@@ -64,6 +64,9 @@ public class GameScreen extends AppCompatActivity {
             controlador = controlador.getInstance();
         }
 
+        controlador.initMusica(GameScreen.this,R.raw.level_music);
+        controlador.playMusica();
+
         //Inicializamos
         this.monstruo = (Monster) getIntent().getSerializableExtra("monstre");
         this.personatge = (Character)getIntent().getSerializableExtra("personatge");
@@ -169,6 +172,7 @@ public class GameScreen extends AppCompatActivity {
                     int posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
                     ImageView imatge = ((ImageView) tablero.getItemAtPosition(posicion));
 
+
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {//Poner el dedo en la pantalla
                         iguales = true;
 
@@ -195,21 +199,26 @@ public class GameScreen extends AppCompatActivity {
                             text.setText(""+posicionAnterior+" "+posicion);
 
                             if (actual != anterior) {
-                                iguales = false;
-                                seleccion.add(null);
-                                listaDeSelec.add(posicion);
+                                if(imatge != null) {
+                                    iguales = false;
+                                    seleccion.add(null);
+                                    listaDeSelec.add(posicion);
+                                }
                             } else {
 
                                 if (posicion != posicionAnterior) {
 
                                     //Comprobamos que sean coniguas
                                     if(posicionAnterior == -1){
-                                        seleccion.add(posicion);
+                                        if(imatge != null) {
+                                            seleccion.add(posicion);
+                                        }
                                     }
                                     else if((posicion == posicionAnterior-7 || posicion == posicionAnterior+7 || posicion == posicionAnterior-1 || posicion == posicionAnterior+1)) {
-
-                                        if (!seleccion.contains(posicion)) {
-                                            seleccion.add(posicion);
+                                        if(imatge != null) {
+                                            if (!seleccion.contains(posicion)) {
+                                                seleccion.add(posicion);
+                                            }
                                         }
                                     }
                                     listaDeSelec.add(posicion);
@@ -228,9 +237,11 @@ public class GameScreen extends AppCompatActivity {
                         if(seleccion.size() >= 3) {
 
                             if (iguales) {
-                                elemento=tile(imatge);
-                                text.setText("BOOM" + elemento.getElement());
-                                realizarHechizo(seleccion, elemento);
+                                elemento = tile(imatge);
+                                if(elemento != null) {
+                                    text.setText("BOOM" + elemento.getElement());
+                                    realizarHechizo(seleccion, elemento);
+                                }
                             } else {
                                 text.setText("NO NO...Diferentes");
                             }
@@ -273,7 +284,7 @@ public class GameScreen extends AppCompatActivity {
         public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
             ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
 
-            if(tile instanceof Fire){
+            if(tile.getFxID() != 0){
                 controlador.initFX(GameScreen.this,tile.getFxID());
                 controlador.restartFX();
                 controlador.playFX();
@@ -341,6 +352,7 @@ public class GameScreen extends AppCompatActivity {
      * Metodo para coger un tile del tipo necesitado
      */
     public Tile tile(ImageView imatge){
+        if(imatge != null) {
             //Basico
             if ((imatge.getTag()).equals(tiles.getArray().get(BASIC).getImatge().getTag())) {
                 return tiles.getArray().get(BASIC);
@@ -348,7 +360,7 @@ public class GameScreen extends AppCompatActivity {
 
             //Defensa
             if ((imatge.getTag()).equals(tiles.getArray().get(DEFENSE).getImatge().getTag())) {
-              return tiles.getArray().get(DEFENSE);
+                return tiles.getArray().get(DEFENSE);
             }
 
             //Fuego
@@ -375,9 +387,9 @@ public class GameScreen extends AppCompatActivity {
             if ((imatge.getTag()).equals(tiles.getArray().get(HEALTH).getImatge().getTag())) {
                 return tiles.getArray().get(HEALTH);
             }
-
-            return null;
         }
+        return null;
+    }
 
     /**
      * Nos muestra el dialogo de ganar

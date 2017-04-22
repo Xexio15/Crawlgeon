@@ -68,6 +68,7 @@ public class OptionsGameDialog extends Dialog{
         leave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.stopMusica();
                 Intent levelSelection = new Intent(OptionsGameDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
@@ -105,7 +106,7 @@ public class OptionsGameDialog extends Dialog{
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 seekBar.setProgress(progress);
-                controlador.changeMusicVolume(progress);
+                controlador.changeFXVolume(progress);
             }
 
             @Override

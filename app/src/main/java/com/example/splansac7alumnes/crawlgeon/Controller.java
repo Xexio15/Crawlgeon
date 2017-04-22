@@ -67,6 +67,14 @@ public class Controller{
     }
 
     /**
+     * Pone la reproduccion de la musica al segundo 0
+     */
+    public void restartMusica(){
+        reproMusica.seekTo(0);
+    }
+
+
+    /**
      * Devuelve si se esta reproduciendo musica
      */
     public boolean isPlayingMusica(){
