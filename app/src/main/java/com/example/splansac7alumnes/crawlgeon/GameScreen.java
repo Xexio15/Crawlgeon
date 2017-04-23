@@ -39,7 +39,7 @@ public class GameScreen extends AppCompatActivity {
     private static final int HEALTH = 6;
 
     protected GridView tablero;
-    protected int actual;
+    protected int actual = 1;
     protected Tile elemento;
     protected boolean iguales;
     protected ArrayList<Integer> seleccion;
@@ -317,6 +317,7 @@ public class GameScreen extends AppCompatActivity {
                     actualizarBarra(barraVidaEnemigo, 0);
                     this.vidaEnemigo.setText("DEAD");
                     int vidapj = Integer.parseInt(vidaPJ.getText().toString());
+                    controlador.desbloquearNivel();
                     if(vidapj == personatge.getVida()){
                         winDialog(3);
                     }else if(vidapj >= personatge.getVida()/2) {

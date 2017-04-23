@@ -67,4 +67,6 @@ public class Level {
     public void setBoss(boolean boss) {
         isBoss = boss;
     }
+
+    public void setDesbloqueado(){ bloqueado = false; };
 }
