@@ -21,6 +21,7 @@ import java.util.Random;
  */
 
 public class ImageAdapter extends BaseAdapter {
+    private int MATCH_SIZE = 3;
     private Context mContext;
     private TilesArray tiles;
     private int[] listaIdsImagenes = new int[49];
@@ -28,7 +29,7 @@ public class ImageAdapter extends BaseAdapter {
     private int probDefensaInicial = 0;
     private int probAtaqueInicial = 0;
     private int probFuegoInicial = 0;
-    private int probArcanoInicial = 0;
+    private int probArcanoInicial = 6;
     private int probRayoInicial = 0;
     private int probHieloInicial = 0;
     private int probVida = 0;
@@ -41,6 +42,8 @@ public class ImageAdapter extends BaseAdapter {
     private ViewGroup grupo;
     private ImageView anim;
     private int rellenar = 2;
+    private ArrayList<Integer> checked = new ArrayList();
+
     public ImageAdapter(Context c, TilesArray tiles, ImageView anim, float[] probabilidadesIniciales, float[] probabilidades) {
         mContext = c;
         this.tiles = tiles;
@@ -73,7 +76,7 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
+            imageView.setLayoutParams(new GridView.LayoutParams(125, 125));
             imageView.setPadding(0,0,0,0);
 
         } else {
@@ -356,6 +359,58 @@ public class ImageAdapter extends BaseAdapter {
         this.probHielo = (int)probabilidades[4];
         this.probRayo = (int)probabilidades[5];
         this.probArcano = (int)probabilidades[6];
+    }
+
+ /* EL codigo de abajo comprueba si quean tiles disponibles*/
+
+    public ArrayList<Integer> neighbours(int i){
+        ArrayList<Integer> positions = new ArrayList<>();
+        if ( i - 7 > 0)
+            positions.add(i-7);
+        if ( i % 7 != 0)
+            positions.add(i-1);
+        if ( i % 7 != 7 - 1)
+            positions.add(i+1);
+        if (i + 7 < 49)
+            positions.add( i + 7);
+        return positions;
+    }
+
+    public boolean check_contains(int position){
+        boolean trobat = false;
+        int i = 0;
+        while (i < checked.size() && !trobat){
+            if (checked.get(i) == position) return true;
+            i++;
+        }
+        return false;
+    }
+
+    public boolean check_tile(int position, int cost){
+        if ( cost >= MATCH_SIZE)
+            return true;
+        if (check_contains(position))
+            return false;
+        checked.add(position);
+        ArrayList<Integer> neighbours = neighbours(position);
+        for(int i = 0; i < neighbours.size(); i++){
+            if(listaIdsImagenes[position] == listaIdsImagenes[neighbours.get(i)]){
+                if ( check_tile(listaIdsImagenes[neighbours.get(i)], cost + 1 ))
+                    return true;
+            }
+
+        }
+        return false;
+    }
+
+
+    public boolean check_grid(){
+        checked.clear();
+        for(int i = 0; i < 7*7; i++){
+            if (check_tile(i,1))
+                return true;
+        }
+        return false;
     }
 
 }
