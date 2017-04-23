@@ -23,6 +23,9 @@ import com.example.splansac7alumnes.crawlgeon.Tiles.Health;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Shield;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class GameScreen extends AppCompatActivity {
@@ -46,8 +49,10 @@ public class GameScreen extends AppCompatActivity {
     protected Controller controlador;
     private TextView vidaPJ;
     private TextView vidaEnemigo;
+    private TextView armor;
     private ProgressBar barraVidaEnemigo;
     private ProgressBar barraVidaPj;
+    private ProgressBar barraArmor;
     private Monster monstruo;
     private Character personatge;
     private ImageView enemyImg;
@@ -80,10 +85,13 @@ public class GameScreen extends AppCompatActivity {
         this.listaDeSelec = new ArrayList<>();
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
         this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
+        this.armor  = (TextView) findViewById(R.id.armorPJ);
+        this.armor.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.vidaEnemigo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.vidaPJ.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
         this.barraVidaPj = (ProgressBar) findViewById(R.id.barraVidaPJ);
+        this.barraArmor = (ProgressBar) findViewById(R.id.barraArmorPJ);
 
 
         if(personatge == null){
@@ -93,6 +101,12 @@ public class GameScreen extends AppCompatActivity {
         }else {
             pjImg= (ImageView) findViewById(R.id.pjImg);
             pjImg.setImageResource(personatge.getID());
+
+
+            this.barraArmor.setMax((personatge.getVida()*20)/100);
+            this.barraArmor.setProgress(0);
+            this.armor.setText(""+0);
+
             this.barraVidaPj.setMax(personatge.getVida());
             this.vidaPJ.setText("" + barraVidaPj.getMax());
             this.barraVidaPj.setProgress(barraVidaPj.getMax());
@@ -302,15 +316,10 @@ public class GameScreen extends AppCompatActivity {
                 }else{
                     actualizarBarra(barraVidaEnemigo, 0);
                     this.vidaEnemigo.setText("DEAD");
-                    /*******************************************************************************
-                     *******************************************************************************
-                     *****Este  100 tendra que ser una variable que sea la vida del personaje*******
-                     *******************************************************************************
-                     *******************************************************************************/
                     int vidapj = Integer.parseInt(vidaPJ.getText().toString());
-                    if(vidapj == 100){
+                    if(vidapj == personatge.getVida()){
                         winDialog(3);
-                    }else if(vidapj >= 50) {
+                    }else if(vidapj >= personatge.getVida()/2) {
                         winDialog(2);
                     }else{
                         winDialog(1);
@@ -319,22 +328,20 @@ public class GameScreen extends AppCompatActivity {
             }else{
 
                 if(tile instanceof Health){
-                    /*******************************************************************************
-                     *******************************************************************************
-                     *****Este  100 tendra que ser una variable que sea la vida del personaje*******
-                     *******************************************************************************
-                     *******************************************************************************/
                     int vida = Integer.parseInt(vidaPJ.getText().toString());
-                    if(vida < 100) {
+                    if(vida < personatge.getVida()) {
                         vida = vida + tile.getDamage();
                         vidaPJ.setText(""+vida);
                     }
-                }else{
-                    /*******************************************************************************
-                     *******************************************************************************
-                     ************************Funcionamiento de la defensa***************************
-                     *******************************************************************************
-                     *******************************************************************************/
+                }else {
+                    int armadura = barraArmor.getProgress() + (personatge.getVida() / 100) * seleccion.size();
+                    if (armadura >= barraArmor.getMax()) {
+                        barraArmor.setProgress(barraArmor.getMax());
+                        armor.setText(barraArmor.getMax()+"");
+                    }else{
+                        barraArmor.setProgress(armadura);
+                        armor.setText(armadura+"");
+                    }
                 }
             }
 

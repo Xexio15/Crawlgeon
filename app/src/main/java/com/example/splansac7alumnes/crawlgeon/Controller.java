@@ -218,10 +218,19 @@ public class Controller{
         return data.getNiveles().get(nivelActual-1).isBoss();
     }
 
+
+    /**
+     * Devuelve un array con las probabilidades iniciales del nivel actual
+     * @return
+     */
     public float[] getProbabilidadesIniciales(){
         return data.getNiveles().get(nivelActual-1).getProbabilidadesIniciales();
     }
 
+    /**
+     * Devuelve un array con las probabilidades de sustitucion del nivel actual
+     * @return
+     */
     public float[] getProbabilidades(){
         return data.getNiveles().get(nivelActual-1).getProbabilidades();
     }
