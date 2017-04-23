@@ -565,77 +565,15 @@
                 android:layout_marginEnd="8dp" />
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/btn_01x01"
                 android:layout_width="140dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bossbasicdungeon"
+                android:background="@drawable/lvl1_basic_dungeon"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button9" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="140dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/lvl9basicdungeon"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_01x10" />
-
-            <Button
-                android:id="@+id/btn_01x10"
-                android:layout_width="140dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/lvl8basicdungeon"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_01x09" />
-
-            <Button
-                android:id="@+id/btn_01x04"
-                android:layout_width="140dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/lvl4basicdungeon"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_01x03" />
-
-            <Button
-                android:id="@+id/btn_01x06"
-                android:layout_width="140dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/lvl6basicdungeon"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_01x05" />
-
-            <Button
-                android:id="@+id/btn_01x09"
-                android:layout_width="140dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/lvl7basicdungeon"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_01x06" />
-
-            <Button
-                android:id="@+id/btn_01x03"
-                android:layout_width="140dp"
-                android:layout_height="55dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="9dp"
-                android:background="@drawable/lvl3basicdungeon"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_01x02" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_01x02"
@@ -649,15 +587,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_01x01" />
 
             <Button
-                android:id="@+id/btn_01x01"
+                android:id="@+id/btn_01x03"
+                android:layout_width="140dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/lvl3basicdungeon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_01x02" />
+
+            <Button
+                android:id="@+id/btn_01x04"
                 android:layout_width="140dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/lvl1_basic_dungeon"
+                android:background="@drawable/lvl4basicdungeon"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_01x03" />
 
             <Button
                 android:id="@+id/btn_01x05"
@@ -669,6 +618,57 @@
                 android:background="@drawable/lvl5basicdungeon"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_01x04" />
+
+            <Button
+                android:id="@+id/btn_01x06"
+                android:layout_width="140dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/lvl6basicdungeon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_01x05" />
+
+            <Button
+                android:id="@+id/btn_01x07"
+                android:layout_width="140dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/lvl7basicdungeon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_01x06" />
+
+            <Button
+                android:id="@+id/btn_01x08"
+                android:layout_width="140dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/lvl8basicdungeon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_01x07" />
+
+            <Button
+                android:id="@+id/btn_01x09"
+                android:layout_width="140dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/lvl9basicdungeon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_01x08" />
+
+            <Button
+                android:id="@+id/btn_01x10"
+                android:layout_width="140dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bossbasicdungeon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_01x09" />
 
             <ImageView
                 android:id="@+id/imageView3"
