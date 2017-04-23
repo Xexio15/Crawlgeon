@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -24,11 +25,13 @@ public class OptionsWinDialog extends Dialog{
 
     private Controller controlador;
     private Context context;
-    public OptionsWinDialog(Context context, int themeResId, Controller controlador){
+    private int puntuacion;
+    public OptionsWinDialog(Context context, int themeResId, Controller controlador, int puntuacion){
 
         super(context, themeResId);
         this.context = context;
         this.controlador = controlador;
+        this.puntuacion = puntuacion;
     }
 
 
@@ -44,11 +47,40 @@ public class OptionsWinDialog extends Dialog{
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
 
         ((TextView) findViewById(R.id.textWin)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
-        ((TextView) findViewById(R.id.textScore)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
 
-         /**
-          * Boto Next Level que obre la activity del següent nivell
-          */
+        ImageView star1 = (ImageView) findViewById(R.id.star1);
+        ImageView star2 = (ImageView) findViewById(R.id.star2);
+        ImageView star3 = (ImageView) findViewById(R.id.star3);
+        ImageView emptyStar1 = (ImageView) findViewById(R.id.emptyStar1);
+        ImageView emptyStar2 = (ImageView) findViewById(R.id.emptyStar2);
+        ImageView emptyStar3 = (ImageView) findViewById(R.id.emptyStar3);
+
+        if (this.puntuacion == 3){
+            star1.setAlpha(1.0f);
+            star2.setAlpha(1.0f);
+            star3.setAlpha(1.0f);
+            emptyStar1.setAlpha(0.0f);
+            emptyStar2.setAlpha(0.0f);
+            emptyStar3.setAlpha(0.0f);
+        }else if (this.puntuacion == 2){
+            star1.setAlpha(1.0f);
+            star2.setAlpha(1.0f);
+            star3.setAlpha(0.0f);
+            emptyStar1.setAlpha(0.0f);
+            emptyStar2.setAlpha(0.0f);
+            emptyStar3.setAlpha(1.0f);
+        }else{
+            star1.setAlpha(1.0f);
+            star2.setAlpha(0.0f);
+            star3.setAlpha(0.0f);
+            emptyStar1.setAlpha(0.0f);
+            emptyStar2.setAlpha(1.0f);
+            emptyStar3.setAlpha(1.0f);
+        }
+
+        /**
+         * Boto Next Level que obre la activity del següent nivell
+         */
         Button next_lvl = (Button) findViewById(R.id.buttonNext);
         next_lvl.setOnClickListener(new View.OnClickListener() {
             @Override

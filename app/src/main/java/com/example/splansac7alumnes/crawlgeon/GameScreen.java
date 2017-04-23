@@ -117,7 +117,7 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Creem el nou dialog que hem definit a la nostra classe OptionsDialog
-                OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador);
+                OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador,2);
                 dialog.setOwnerActivity(GameScreen.this);
                 //El mostrem
                 dialog.show();
@@ -302,7 +302,19 @@ public class GameScreen extends AppCompatActivity {
                 }else{
                     actualizarBarra(barraVidaEnemigo, 0);
                     this.vidaEnemigo.setText("DEAD");
-                    winDialog();
+                    /*******************************************************************************
+                     *******************************************************************************
+                     *****Este  100 tendra que ser una variable que sea la vida del personaje*******
+                     *******************************************************************************
+                     *******************************************************************************/
+                    int vidapj = Integer.parseInt(vidaPJ.getText().toString());
+                    if(vidapj == 100){
+                        winDialog(3);
+                    }else if(vidapj >= 50) {
+                        winDialog(2);
+                    }else{
+                        winDialog(1);
+                    }
                 }
             }else{
 
@@ -395,8 +407,8 @@ public class GameScreen extends AppCompatActivity {
     /**
      * Nos muestra el dialogo de ganar
      */
-    public void winDialog(){
-        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador);
+    public void winDialog(int puntuacion){
+        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
         dialog.show();
