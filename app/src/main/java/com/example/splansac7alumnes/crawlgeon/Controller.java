@@ -56,6 +56,7 @@ public class Controller{
      */
     public void playMusica(){
         isPlayingMusica = true;
+        reproMusica.setVolume(data.getVolumenMusica()/100,data.getVolumenMusica()/100);
         reproMusica.start();
     }
 
@@ -97,6 +98,7 @@ public class Controller{
      * Reproduce el efecto inicializado
      */
     public void playFX(){
+        reproFX.setVolume(data.getVolumenFX()/100, data.getVolumenFX()/100);
         reproFX.start();
     }
 
