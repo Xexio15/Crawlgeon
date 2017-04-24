@@ -17,7 +17,7 @@ public class Controller{
     private MediaPlayer reproMusica;
     private boolean isPlayingMusica;
     private boolean isPlayingFX;
-    private int nivelActual;
+    private int nivelActual = 1;
     private int dungActual;
     private MediaPlayer reproFX;
     private static Controller instance = new Controller();
@@ -218,10 +218,19 @@ public class Controller{
         return data.getNiveles().get(nivelActual-1).isBoss();
     }
 
+
+    /**
+     * Devuelve un array con las probabilidades iniciales del nivel actual
+     * @return
+     */
     public float[] getProbabilidadesIniciales(){
         return data.getNiveles().get(nivelActual-1).getProbabilidadesIniciales();
     }
 
+    /**
+     * Devuelve un array con las probabilidades de sustitucion del nivel actual
+     * @return
+     */
     public float[] getProbabilidades(){
         return data.getNiveles().get(nivelActual-1).getProbabilidades();
     }
@@ -232,5 +241,15 @@ public class Controller{
      */
     public Monster getMonstruoNivelActual(){
         return data.getNiveles().get(nivelActual-1).getMonstruo();
+    }
+
+    public void desbloquearNivel(){
+        if((nivelActual+1)<10) {
+            data.getNiveles().get(nivelActual).setDesbloqueado();
+        }
+    }
+
+    public boolean isBloqueado(int i){
+        return data.getNiveles().get(i-1).isBloqueado();
     }
 }
