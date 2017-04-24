@@ -18,8 +18,9 @@ public class Level {
     private int numDungeon;
     private int turnosPJ;
     private int turnosEnemigo;
+    private int puntuacion;
 
-    public Level(float[] probabilidadesIniciales, float[] probabilidades, Monster monstruo, boolean bloqueado, boolean isBoss, int numNivel, int numDungeon, int turnosPJ, int turnosEnemigo) {
+    public Level(float[] probabilidadesIniciales, float[] probabilidades, Monster monstruo, boolean bloqueado, boolean isBoss, int numNivel, int numDungeon, int turnosPJ, int turnosEnemigo, int puntuacion) {
         this.probabilidadesIniciales = probabilidadesIniciales;
         this.probabilidades = probabilidades;
         this.monstruo = monstruo;
@@ -29,6 +30,7 @@ public class Level {
         this.numDungeon = numDungeon;
         this.turnosPJ = turnosPJ;
         this.turnosEnemigo = turnosEnemigo;
+        this.puntuacion = puntuacion;
     }
 
 
@@ -50,6 +52,10 @@ public class Level {
 
     public boolean isBoss() {
         return isBoss;
+    }
+
+    public int getPuntuacion(){
+        return puntuacion;
     }
 
     public void setProbabilidadesIniciales(float[] probabilidadesIniciales) {
@@ -81,4 +87,8 @@ public class Level {
     public int getVidaMonstruo(){ return monstruo.getVida(); }
 
     public int getDañoMonstruo(){ return monstruo.getDaño(); }
+
+    public void setPuntuacion(int puntuacion){
+        this.puntuacion = puntuacion;
+    }
 }

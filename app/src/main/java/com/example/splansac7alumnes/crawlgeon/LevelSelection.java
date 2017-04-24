@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class LevelSelection extends AppCompatActivity {
     private Controller controlador;
@@ -269,6 +270,17 @@ public class LevelSelection extends AppCompatActivity {
             btn_01x10.setBackgroundResource(R.drawable.bossbloqueado);
         }
 
+        this.getStars1();
+        this.getStars2();
+        this.getStars3();
+        this.getStars4();
+        this.getStars5();
+        this.getStars6();
+        this.getStars7();
+        this.getStars8();
+        this.getStars9();
+        this.getStars10();
+
 
     }
     public boolean onKeyDown(int keyCode, KeyEvent event ){
@@ -280,6 +292,295 @@ public class LevelSelection extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode,event);
+    }
+
+    private void getStars1(){
+        ImageView star1x1 = (ImageView) findViewById(R.id.star1x1);
+        ImageView star1x2 = (ImageView) findViewById(R.id.star1x2);
+        ImageView star1x3 = (ImageView) findViewById(R.id.star1x3);
+        switch(controlador.getNivel(1).getPuntuacion()) {
+            case 0:
+                star1x1.setImageResource(R.drawable.emptystar);
+                star1x2.setImageResource(R.drawable.emptystar);
+                star1x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star1x1.setImageResource(R.drawable.star);
+                star1x2.setImageResource(R.drawable.emptystar);
+                star1x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star1x1.setImageResource(R.drawable.star);
+                star1x2.setImageResource(R.drawable.star);
+                star1x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star1x1.setImageResource(R.drawable.star);
+                star1x2.setImageResource(R.drawable.star);
+                star1x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars2() {
+        ImageView star2x1 = (ImageView) findViewById(R.id.star2x1);
+        ImageView star2x2 = (ImageView) findViewById(R.id.star2x2);
+        ImageView star2x3 = (ImageView) findViewById(R.id.star2x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star2x1.setImageResource(R.drawable.emptystar);
+                star2x2.setImageResource(R.drawable.emptystar);
+                star2x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star2x1.setImageResource(R.drawable.star);
+                star2x2.setImageResource(R.drawable.emptystar);
+                star2x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star2x1.setImageResource(R.drawable.star);
+                star2x2.setImageResource(R.drawable.star);
+                star2x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star2x1.setImageResource(R.drawable.star);
+                star2x2.setImageResource(R.drawable.star);
+                star2x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars3() {
+        ImageView star3x1 = (ImageView) findViewById(R.id.star3x1);
+        ImageView star3x2 = (ImageView) findViewById(R.id.star3x2);
+        ImageView star3x3 = (ImageView) findViewById(R.id.star3x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star3x1.setImageResource(R.drawable.emptystar);
+                star3x2.setImageResource(R.drawable.emptystar);
+                star3x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star3x1.setImageResource(R.drawable.star);
+                star3x2.setImageResource(R.drawable.emptystar);
+                star3x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star3x1.setImageResource(R.drawable.star);
+                star3x2.setImageResource(R.drawable.star);
+                star3x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star3x1.setImageResource(R.drawable.star);
+                star3x2.setImageResource(R.drawable.star);
+                star3x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars4(){
+        ImageView star4x1 = (ImageView) findViewById(R.id.star4x1);
+        ImageView star4x2 = (ImageView) findViewById(R.id.star4x2);
+        ImageView star4x3 = (ImageView) findViewById(R.id.star4x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star4x1.setImageResource(R.drawable.emptystar);
+                star4x2.setImageResource(R.drawable.emptystar);
+                star4x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star4x1.setImageResource(R.drawable.star);
+                star4x2.setImageResource(R.drawable.emptystar);
+                star4x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star4x1.setImageResource(R.drawable.star);
+                star4x2.setImageResource(R.drawable.star);
+                star4x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star4x1.setImageResource(R.drawable.star);
+                star4x2.setImageResource(R.drawable.star);
+                star4x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars5(){
+        ImageView star5x1 = (ImageView) findViewById(R.id.star5x1);
+        ImageView star5x2 = (ImageView) findViewById(R.id.star5x2);
+        ImageView star5x3 = (ImageView) findViewById(R.id.star5x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star5x1.setImageResource(R.drawable.emptystar);
+                star5x2.setImageResource(R.drawable.emptystar);
+                star5x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star5x1.setImageResource(R.drawable.star);
+                star5x2.setImageResource(R.drawable.emptystar);
+                star5x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star5x1.setImageResource(R.drawable.star);
+                star5x2.setImageResource(R.drawable.star);
+                star5x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star5x1.setImageResource(R.drawable.star);
+                star5x2.setImageResource(R.drawable.star);
+                star5x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars6() {
+        ImageView star6x1 = (ImageView) findViewById(R.id.star6x1);
+        ImageView star6x2 = (ImageView) findViewById(R.id.star6x2);
+        ImageView star6x3 = (ImageView) findViewById(R.id.star6x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star6x1.setImageResource(R.drawable.emptystar);
+                star6x2.setImageResource(R.drawable.emptystar);
+                star6x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star6x1.setImageResource(R.drawable.star);
+                star6x2.setImageResource(R.drawable.emptystar);
+                star6x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star6x1.setImageResource(R.drawable.star);
+                star6x2.setImageResource(R.drawable.star);
+                star6x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star6x1.setImageResource(R.drawable.star);
+                star6x2.setImageResource(R.drawable.star);
+                star6x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars7() {
+        ImageView star7x1 = (ImageView) findViewById(R.id.star7x1);
+        ImageView star7x2 = (ImageView) findViewById(R.id.star7x2);
+        ImageView star7x3 = (ImageView) findViewById(R.id.star7x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star7x1.setImageResource(R.drawable.emptystar);
+                star7x2.setImageResource(R.drawable.emptystar);
+                star7x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star7x1.setImageResource(R.drawable.star);
+                star7x2.setImageResource(R.drawable.emptystar);
+                star7x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star7x1.setImageResource(R.drawable.star);
+                star7x2.setImageResource(R.drawable.star);
+                star7x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star7x1.setImageResource(R.drawable.star);
+                star7x2.setImageResource(R.drawable.star);
+                star7x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars8() {
+        ImageView star8x1 = (ImageView) findViewById(R.id.star8x1);
+        ImageView star8x2 = (ImageView) findViewById(R.id.star8x2);
+        ImageView star8x3 = (ImageView) findViewById(R.id.star8x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star8x1.setImageResource(R.drawable.emptystar);
+                star8x2.setImageResource(R.drawable.emptystar);
+                star8x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star8x1.setImageResource(R.drawable.star);
+                star8x2.setImageResource(R.drawable.emptystar);
+                star8x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star8x1.setImageResource(R.drawable.star);
+                star8x2.setImageResource(R.drawable.star);
+                star8x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star8x1.setImageResource(R.drawable.star);
+                star8x2.setImageResource(R.drawable.star);
+                star8x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars9() {
+        ImageView star9x1 = (ImageView) findViewById(R.id.star9x1);
+        ImageView star9x2 = (ImageView) findViewById(R.id.star9x2);
+        ImageView star9x3 = (ImageView) findViewById(R.id.star9x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star9x1.setImageResource(R.drawable.emptystar);
+                star9x2.setImageResource(R.drawable.emptystar);
+                star9x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star9x1.setImageResource(R.drawable.star);
+                star9x2.setImageResource(R.drawable.emptystar);
+                star9x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star9x1.setImageResource(R.drawable.star);
+                star9x2.setImageResource(R.drawable.star);
+                star9x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star9x1.setImageResource(R.drawable.star);
+                star9x2.setImageResource(R.drawable.star);
+                star9x3.setImageResource(R.drawable.star);
+                break;
+        }
+    }
+
+    private void getStars10() {
+        ImageView star10x1 = (ImageView) findViewById(R.id.star10x1);
+        ImageView star10x2 = (ImageView) findViewById(R.id.star10x2);
+        ImageView star10x3 = (ImageView) findViewById(R.id.star10x3);
+
+        switch(controlador.getNivel(2).getPuntuacion()) {
+            case 0:
+                star10x1.setImageResource(R.drawable.emptystar);
+                star10x2.setImageResource(R.drawable.emptystar);
+                star10x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 1:
+                star10x1.setImageResource(R.drawable.star);
+                star10x2.setImageResource(R.drawable.emptystar);
+                star10x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 2:
+                star10x1.setImageResource(R.drawable.star);
+                star10x2.setImageResource(R.drawable.star);
+                star10x3.setImageResource(R.drawable.emptystar);
+                break;
+            case 3:
+                star10x1.setImageResource(R.drawable.star);
+                star10x2.setImageResource(R.drawable.star);
+                star10x3.setImageResource(R.drawable.star);
+                break;
+        }
     }
 
     /*public void iniciarNivel(){

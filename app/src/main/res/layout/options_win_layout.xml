@@ -91,40 +91,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.37" />
 
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            app:srcCompat="@drawable/emptystar"
-            android:id="@+id/emptyStar1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.18"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintHorizontal_bias="0.16" />
-
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            app:srcCompat="@drawable/emptystar"
-            android:id="@+id/emptyStar2"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.18"
-            app:layout_constraintLeft_toLeftOf="parent" />
-
-        <ImageView
-            android:layout_height="75dp"
-            app:srcCompat="@drawable/emptystar"
-            android:id="@+id/emptyStar3"
-            android:layout_width="75dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintHorizontal_bias="0.85"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.18" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

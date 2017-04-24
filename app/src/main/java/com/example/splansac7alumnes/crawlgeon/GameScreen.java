@@ -60,6 +60,7 @@ public class GameScreen extends AppCompatActivity {
     private Character personaje;
     private ImageView enemyImg;
     private ImageView pjImg;
+    private Level nivel;
 
 
     @Override
@@ -84,6 +85,7 @@ public class GameScreen extends AppCompatActivity {
         controlador.setNivelActual(1);
         this.monstruo = controlador.getMonstruoNivelActual();
         this.personaje = controlador.getPersonaje();
+        this.nivel = controlador.getActual();
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
         this.listaDeSelec = new ArrayList<>();
@@ -331,9 +333,12 @@ public class GameScreen extends AppCompatActivity {
                     controlador.desbloquearNivel();
                     if(vidapj == vidaMaxPersonaje){
                         winDialog(3);
+                        puntuarNivel(3);
                     }else if(vidapj >= vidaMaxPersonaje/2) {
+                        puntuarNivel(2);
                         winDialog(2);
                     }else{
+                        puntuarNivel(1);
                         winDialog(1);
                     }
                 }
@@ -400,6 +405,16 @@ public class GameScreen extends AppCompatActivity {
      */
     public void deseleccionarTile(ArrayList<Integer> listaDeSelec){
         ((ImageAdapter)(tablero.getAdapter())).deseleccionarTile(listaDeSelec);
+    }
+
+    /**
+     * Enseña la puntuacion del nivel en la pantalla de niveles
+     */
+    public void puntuarNivel(int puntuacion){
+        //Cuando haya mas dungeons tendremos de coger el num de la dungeon aqui
+        if (puntuacion > nivel.getPuntuacion()){
+            nivel.setPuntuacion(puntuacion);
+        }
     }
 
     /**

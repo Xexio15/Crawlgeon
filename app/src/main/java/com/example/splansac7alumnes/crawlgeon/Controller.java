@@ -263,4 +263,13 @@ public class Controller{
     public int getDañoMonstruo(){ return getActual().getDañoMonstruo(); }
 
     public int getVidaPersonaje(){ return getPersonaje().getVida(); }
+
+    /**
+     * Devuelve el nivel a partir de el indice pasado por parametro
+     * @param num
+     * @return
+     */
+    public Level getNivel(int num){
+        return data.getNiveles().get(num-1);
+    }
 }

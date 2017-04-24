@@ -51,31 +51,19 @@ public class OptionsWinDialog extends Dialog{
         ImageView star1 = (ImageView) findViewById(R.id.star1);
         ImageView star2 = (ImageView) findViewById(R.id.star2);
         ImageView star3 = (ImageView) findViewById(R.id.star3);
-        ImageView emptyStar1 = (ImageView) findViewById(R.id.emptyStar1);
-        ImageView emptyStar2 = (ImageView) findViewById(R.id.emptyStar2);
-        ImageView emptyStar3 = (ImageView) findViewById(R.id.emptyStar3);
 
         if (this.puntuacion == 3){
-            star1.setAlpha(1.0f);
-            star2.setAlpha(1.0f);
-            star3.setAlpha(1.0f);
-            emptyStar1.setAlpha(0.0f);
-            emptyStar2.setAlpha(0.0f);
-            emptyStar3.setAlpha(0.0f);
+            star1.setImageResource(R.drawable.star);
+            star2.setImageResource(R.drawable.star);
+            star3.setImageResource(R.drawable.star);
         }else if (this.puntuacion == 2){
-            star1.setAlpha(1.0f);
-            star2.setAlpha(1.0f);
-            star3.setAlpha(0.0f);
-            emptyStar1.setAlpha(0.0f);
-            emptyStar2.setAlpha(0.0f);
-            emptyStar3.setAlpha(1.0f);
+            star1.setImageResource(R.drawable.star);
+            star2.setImageResource(R.drawable.star);
+            star3.setImageResource(R.drawable.emptystar);
         }else{
-            star1.setAlpha(1.0f);
-            star2.setAlpha(0.0f);
-            star3.setAlpha(0.0f);
-            emptyStar1.setAlpha(0.0f);
-            emptyStar2.setAlpha(1.0f);
-            emptyStar3.setAlpha(1.0f);
+            star1.setImageResource(R.drawable.star);
+            star2.setImageResource(R.drawable.emptystar);
+            star3.setImageResource(R.drawable.emptystar);
         }
 
         /**
