@@ -42,12 +42,13 @@ public class ImageAdapter extends BaseAdapter {
     private ViewGroup grupo;
     private ImageView anim;
     private int rellenar = 2;
-    private ArrayList<Integer> checked = new ArrayList();
+    private ArrayList<Integer> checked;
 
     public ImageAdapter(Context c, TilesArray tiles, ImageView anim, float[] probabilidadesIniciales, float[] probabilidades) {
         mContext = c;
         this.tiles = tiles;
         this.anim = anim;
+        checked = new ArrayList();
         //Ataque Defensa Vida Fuego Hielo Rayo Arcano
         setProbabilidadesIniciales(probabilidadesIniciales);
         setProbabilidades(probabilidades);
@@ -76,7 +77,7 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(125, 125));
+            imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
             imageView.setPadding(0,0,0,0);
 
         } else {
