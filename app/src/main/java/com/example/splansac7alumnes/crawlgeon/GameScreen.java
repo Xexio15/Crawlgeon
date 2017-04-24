@@ -357,6 +357,7 @@ public class GameScreen extends AppCompatActivity {
                 }
             }
 
+
         }
 
     public void realizarAtaqueEnemigo(){
@@ -467,6 +468,9 @@ public class GameScreen extends AppCompatActivity {
         //El mostrem
         dialog.show();
     }
+
+
+
 
 
 }
