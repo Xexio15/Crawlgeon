@@ -129,7 +129,7 @@ public class ImageAdapter extends BaseAdapter {
     /**
      * Elimina los items del array i mueve las tiles necesarias
      */
-    public void realizarHechizo(ArrayList<Integer> seleccion){//En proceso
+    boolean realizarHechizo(ArrayList<Integer> seleccion){//En proceso
         this.removeItems(seleccion);
 
         for (int x = 42; x <= 48; x++) {
@@ -182,6 +182,7 @@ public class ImageAdapter extends BaseAdapter {
         //Notificamos los cambios
         notifyDataSetChanged();
 
+        return check_grid();
 
 
     }
@@ -361,25 +362,31 @@ public class ImageAdapter extends BaseAdapter {
         this.probArcano = (int)probabilidades[6];
     }
 
- /* EL codigo de abajo comprueba si quean tiles disponibles*/
+ /* EL codigo de abajo comprueba si quean tiles disponibles
+ *
+ *  //    | A |
+  	// ---|---|---
+  	//  B | i | C
+  	// ---|---|---
+  	//    | D |
+ * */
 
     public ArrayList<Integer> neighbours(int i){
         ArrayList<Integer> positions = new ArrayList<>();
-        if ( i - 7 > 0)
+        if ( i - 7 > 0)  //A
             positions.add(i-7);
-        if ( i % 7 != 0)
+        if ( i % 7 != 0) // B
             positions.add(i-1);
-        if ( i % 7 != 7 - 1)
+        if ( i % 7 != 7 - 1) // C
             positions.add(i+1);
-        if (i + 7 < 49)
+        if (i + 7 < 49) // D
             positions.add( i + 7);
         return positions;
     }
 
     public boolean check_contains(int position){
-        boolean trobat = false;
         int i = 0;
-        while (i < checked.size() && !trobat){
+        while (i < checked.size()){
             if (checked.get(i) == position) return true;
             i++;
         }
@@ -392,12 +399,11 @@ public class ImageAdapter extends BaseAdapter {
         if (check_contains(position))
             return false;
         checked.add(position);
-        ArrayList<Integer> neighbours = neighbours(position);
-        for(int i = 0; i < neighbours.size(); i++){
-            if(listaIdsImagenes[position] == listaIdsImagenes[neighbours.get(i)]){
-                if ( check_tile(listaIdsImagenes[neighbours.get(i)], cost + 1 ))
+        ArrayList<Integer> vecinos= neighbours(position);
+        for(int i = 0; i < vecinos.size(); i++){
+            if(listaIdsImagenes[vecinos.get(i)] == listaIdsImagenes[position])
+                if (check_tile(vecinos.get(i), cost + 1))
                     return true;
-            }
 
         }
         return false;
@@ -406,8 +412,8 @@ public class ImageAdapter extends BaseAdapter {
 
     public boolean check_grid(){
         checked.clear();
-        for(int i = 0; i < 7*7; i++){
-            if (check_tile(i,1))
+        for(int i = 0; i < 49; i++){
+            if (check_tile(i,0))
                 return true;
         }
         return false;

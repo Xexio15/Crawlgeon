@@ -310,7 +310,7 @@ public class GameScreen extends AppCompatActivity {
          * Metodo para realizar el hechizo
          */
         public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
-            ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
+            boolean quedan_movimientos = ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
 
             if(tile.getFxID() != 0){
                 controlador.initFX(GameScreen.this,tile.getFxID());
@@ -362,6 +362,7 @@ public class GameScreen extends AppCompatActivity {
                 }
             }
 
+            if (!quedan_movimientos) fillGrid();
 
         }
 
