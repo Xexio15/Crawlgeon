@@ -18,13 +18,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.example.splansac7alumnes.crawlgeon.Tiles.Fire;
+
 import com.example.splansac7alumnes.crawlgeon.Tiles.Health;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Shield;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -45,18 +43,24 @@ public class GameScreen extends AppCompatActivity {
     protected ArrayList<Integer> seleccion;
     protected ArrayList<Integer> listaDeSelec;
     protected int posicionAnterior = -1;
+    private int turnosPJ;
+    private int turnosMonstruo;
+    private int turnoActual = 0;
+    private int dañoMonstruo;
+    private int vidaMaxPersonaje;
 
     protected Controller controlador;
     private TextView vidaPJ;
-    private TextView vidaEnemigo;
+    private TextView vidaMonstruo;
     private TextView armor;
-    private ProgressBar barraVidaEnemigo;
-    private ProgressBar barraVidaPj;
+    private ProgressBar barraVidaMonstruo;
+    private ProgressBar barraVidaPJ;
     private ProgressBar barraArmor;
     private Monster monstruo;
-    private Character personatge;
+    private Character personaje;
     private ImageView enemyImg;
     private ImageView pjImg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,48 +83,53 @@ public class GameScreen extends AppCompatActivity {
          */
         controlador.setNivelActual(1);
         this.monstruo = controlador.getMonstruoNivelActual();
-        this.personatge = controlador.getPersonaje();
+        this.personaje = controlador.getPersonaje();
         this.tiles = new TilesArray(GameScreen.this);
         this.seleccion = new ArrayList<>();
         this.listaDeSelec = new ArrayList<>();
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
-        this.vidaEnemigo = (TextView) findViewById(R.id.vidaEnemigo);
+        this.vidaMonstruo = (TextView) findViewById(R.id.vidaEnemigo);
         this.armor  = (TextView) findViewById(R.id.armorPJ);
         this.armor.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
-        this.vidaEnemigo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
+        this.vidaMonstruo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.vidaPJ.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
-        this.barraVidaEnemigo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
-        this.barraVidaPj = (ProgressBar) findViewById(R.id.barraVidaPJ);
+        this.barraVidaMonstruo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
+        this.barraVidaPJ = (ProgressBar) findViewById(R.id.barraVidaPJ);
         this.barraArmor = (ProgressBar) findViewById(R.id.barraArmorPJ);
 
-
-        if(personatge == null){
-            this.barraVidaPj.setMax(100);
-            this.vidaPJ.setText("" + barraVidaPj.getMax());
-            this.barraVidaPj.setProgress(barraVidaPj.getMax());
+        if(personaje == null){
+            this.barraVidaPJ.setMax(100);
+            this.vidaPJ.setText("" + barraVidaPJ.getMax());
+            this.barraVidaPJ.setProgress(barraVidaPJ.getMax());
+            this.turnosPJ=1;
         }else {
             pjImg= (ImageView) findViewById(R.id.pjImg);
-            pjImg.setImageResource(personatge.getID());
+            pjImg.setImageResource(personaje.getID());
+            this.turnosPJ=controlador.getTurnosPJ();
 
-
-            this.barraArmor.setMax((personatge.getVida()*20)/100);
+            this.vidaMaxPersonaje=controlador.getVidaPersonaje();
+            this.barraArmor.setMax((vidaMaxPersonaje*20)/100);
             this.barraArmor.setProgress(0);
             this.armor.setText(""+0);
 
-            this.barraVidaPj.setMax(personatge.getVida());
-            this.vidaPJ.setText("" + barraVidaPj.getMax());
-            this.barraVidaPj.setProgress(barraVidaPj.getMax());
+            this.barraVidaPJ.setMax(vidaMaxPersonaje);
+            this.vidaPJ.setText("" + barraVidaPJ.getMax());
+            this.barraVidaPJ.setProgress(barraVidaPJ.getMax());
         }
         if(monstruo == null){
-            this.barraVidaEnemigo.setMax(50);
-            this.vidaEnemigo.setText("" + this.barraVidaEnemigo.getMax());
-            this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
+            this.barraVidaMonstruo.setMax(50);
+            this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax());
+            this.barraVidaMonstruo.setProgress(barraVidaMonstruo.getMax());
+            this.turnosMonstruo = 1;
+            this.dañoMonstruo = 5;
         }else {
             enemyImg= (ImageView) findViewById(R.id.imgEnemy);
             enemyImg.setImageResource(monstruo.getID());
-            this.barraVidaEnemigo.setMax(monstruo.getVida());
-            this.vidaEnemigo.setText("" + this.barraVidaEnemigo.getMax());
-            this.barraVidaEnemigo.setProgress(barraVidaEnemigo.getMax());
+            this.barraVidaMonstruo.setMax(controlador.getVidaMonstruo());
+            this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax());
+            this.barraVidaMonstruo.setProgress(barraVidaMonstruo.getMax());
+            this.turnosMonstruo = controlador.getTurnosMonstruo();
+            this.dañoMonstruo = controlador.getDañoMonstruo();
         }
 
         fillGrid();//Llenamos la Grid cuando se inicia la activity
@@ -256,6 +265,8 @@ public class GameScreen extends AppCompatActivity {
                                 if(elemento != null) {
                                     text.setText("BOOM" + elemento.getElement());
                                     realizarHechizo(seleccion, elemento);
+                                    turnoActual++;
+                                    realizarAtaqueEnemigo();
                                 }
                             } else {
                                 text.setText("NO NO...Diferentes");
@@ -307,20 +318,20 @@ public class GameScreen extends AppCompatActivity {
 
             if(!(tile instanceof Health) && !(tile instanceof Shield)){
                 int daño = tile.getDamage() * seleccion.size();
-                int vida = Integer.parseInt(vidaEnemigo.getText().toString());
+                int vida = Integer.parseInt(vidaMonstruo.getText().toString());
                 vida = vida - daño;
 
                 if(vida > 0) {
-                    this.vidaEnemigo.setText("" + vida);
-                    actualizarBarra(barraVidaEnemigo, vida);
+                    this.vidaMonstruo.setText("" + vida);
+                    actualizarBarra(barraVidaMonstruo, vida);
                 }else{
-                    actualizarBarra(barraVidaEnemigo, 0);
-                    this.vidaEnemigo.setText("DEAD");
+                    actualizarBarra(barraVidaMonstruo, 0);
+                    this.vidaMonstruo.setText("DEAD");
                     int vidapj = Integer.parseInt(vidaPJ.getText().toString());
                     controlador.desbloquearNivel();
-                    if(vidapj == personatge.getVida()){
+                    if(vidapj == vidaMaxPersonaje){
                         winDialog(3);
-                    }else if(vidapj >= personatge.getVida()/2) {
+                    }else if(vidapj >= vidaMaxPersonaje/2) {
                         winDialog(2);
                     }else{
                         winDialog(1);
@@ -330,12 +341,12 @@ public class GameScreen extends AppCompatActivity {
 
                 if(tile instanceof Health){
                     int vida = Integer.parseInt(vidaPJ.getText().toString());
-                    if(vida < personatge.getVida()) {
+                    if(vida < vidaMaxPersonaje) {
                         vida = vida + tile.getDamage();
                         vidaPJ.setText(""+vida);
                     }
                 }else {
-                    int armadura = barraArmor.getProgress() + (personatge.getVida() / 100) * seleccion.size();
+                    int armadura = barraArmor.getProgress() + (vidaMaxPersonaje / 100) * seleccion.size();
                     if (armadura >= barraArmor.getMax()) {
                         barraArmor.setProgress(barraArmor.getMax());
                         armor.setText(barraArmor.getMax()+"");
@@ -347,6 +358,34 @@ public class GameScreen extends AppCompatActivity {
             }
 
         }
+
+    public void realizarAtaqueEnemigo(){
+        if (turnoActual==turnosPJ){
+            for(int i = 0; i<turnosMonstruo; i++){
+                int vida = Integer.parseInt(vidaPJ.getText().toString());
+                int armadura = barraArmor.getProgress();
+                armadura = armadura - dañoMonstruo;
+                if (armadura > 0) {
+                    barraArmor.setProgress(armadura);
+                    armor.setText(armadura+"");
+                }else{
+                    barraArmor.setProgress(armadura);
+                    armor.setText(0 + "");
+                    vida = vida + armadura;
+                }
+
+                if(vida > 0) {
+                    this.vidaPJ.setText("" + vida);
+                    actualizarBarra(barraVidaPJ, vida);
+                }else{
+                    actualizarBarra(barraVidaPJ, 0);
+                    this.vidaPJ.setText("DEAD");
+                    loseDialog();
+                }
+            }
+            turnoActual = 0;
+        }
+    }
 
     /**
      * Pone en modo seleccion la Tile de la posicion pasada
@@ -417,6 +456,13 @@ public class GameScreen extends AppCompatActivity {
      */
     public void winDialog(int puntuacion){
         OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion);
+        dialog.setOwnerActivity(GameScreen.this);
+        //El mostrem
+        dialog.show();
+    }
+
+    public void loseDialog(){
+        OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this, R.style.Crawl, controlador);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
         dialog.show();

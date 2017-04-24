@@ -21,9 +21,7 @@ public class Monster implements Serializable {
         this.id = id;
     }
 
-    public int getVida(){
-        return vida;
-    }
+    public int getVida(){ return vida; }
 
     public int getDaño() {
         return daño;

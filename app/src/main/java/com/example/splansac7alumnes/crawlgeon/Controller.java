@@ -184,7 +184,6 @@ public class Controller{
         }else{
             return false;
         }
-
     }
 
     /**
@@ -215,7 +214,7 @@ public class Controller{
      * @return
      */
     public boolean isActualBoss(){
-        return data.getNiveles().get(nivelActual-1).isBoss();
+        return getActual().isBoss();
     }
 
 
@@ -224,7 +223,7 @@ public class Controller{
      * @return
      */
     public float[] getProbabilidadesIniciales(){
-        return data.getNiveles().get(nivelActual-1).getProbabilidadesIniciales();
+        return getActual().getProbabilidadesIniciales();
     }
 
     /**
@@ -232,7 +231,7 @@ public class Controller{
      * @return
      */
     public float[] getProbabilidades(){
-        return data.getNiveles().get(nivelActual-1).getProbabilidades();
+        return getActual().getProbabilidades();
     }
 
     /**
@@ -240,7 +239,7 @@ public class Controller{
      * @return
      */
     public Monster getMonstruoNivelActual(){
-        return data.getNiveles().get(nivelActual-1).getMonstruo();
+        return getActual().getMonstruo();
     }
 
     public void desbloquearNivel(){
@@ -252,4 +251,16 @@ public class Controller{
     public boolean isBloqueado(int i){
         return data.getNiveles().get(i-1).isBloqueado();
     }
+
+    public int getTurnosPJ(){ return getActual().getTurnosPJ(); };
+
+    public int getTurnosMonstruo(){ return getActual().getTurnosMonstruo(); };
+
+    public Level getActual(){ return data.getNiveles().get(nivelActual-1); }
+
+    public int getVidaMonstruo(){ return getActual().getVidaMonstruo(); }
+
+    public int getDañoMonstruo(){ return getActual().getDañoMonstruo(); }
+
+    public int getVidaPersonaje(){ return getPersonaje().getVida(); }
 }

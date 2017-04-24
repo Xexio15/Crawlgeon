@@ -22,16 +22,16 @@ public class Data implements Serializable{
         niveles = new ArrayList<>();
         float[] probsIn1 = {30,25,20,15,10,0,0};
         float[] probs1 = {20,20,20,20,20,0,0};
-        Level lvl1 = new Level(probsIn1, probs1, new Rat(), false, false, 1, 1);
-        Level lvl2 = new Level(probsIn1, probs1, new Rat(), true, false, 2, 1);
-        Level lvl3 = new Level(probsIn1, probs1, new Rat(), true, false, 3, 1);
-        Level lvl4 = new Level(probsIn1, probs1, new Rat(), true, false, 4, 1);
-        Level lvl5 = new Level(probsIn1, probs1, new Rat(), true, false, 5, 1);
-        Level lvl6 = new Level(probsIn1, probs1, new Rat(), true, false, 6, 1);
-        Level lvl7 = new Level(probsIn1, probs1, new Rat(), true, false, 7, 1);
-        Level lvl8 = new Level(probsIn1, probs1, new Rat(), true, false, 8, 1);
-        Level lvl9 = new Level(probsIn1, probs1, new Rat(), true, false, 9, 1);
-        Level lvl10 = new Level(probsIn1, probs1, new Rat(), true, true, 10, 1);
+        Level lvl1 = new Level(probsIn1, probs1, new Rat(), false, false, 1, 1, 1, 1);
+        Level lvl2 = new Level(probsIn1, probs1, new Rat(), true, false, 2, 1, 1, 1);
+        Level lvl3 = new Level(probsIn1, probs1, new Rat(), true, false, 3, 1, 1, 1);
+        Level lvl4 = new Level(probsIn1, probs1, new Rat(), true, false, 4, 1, 1, 1);
+        Level lvl5 = new Level(probsIn1, probs1, new Rat(), true, false, 5, 1, 1, 1);
+        Level lvl6 = new Level(probsIn1, probs1, new Rat(), true, false, 6, 1, 1, 1);
+        Level lvl7 = new Level(probsIn1, probs1, new Rat(), true, false, 7, 1, 1, 1);
+        Level lvl8 = new Level(probsIn1, probs1, new Rat(), true, false, 8, 1, 1 ,1);
+        Level lvl9 = new Level(probsIn1, probs1, new Rat(), true, false, 9, 1, 1, 1);
+        Level lvl10 = new Level(probsIn1, probs1, new Rat(), true, true, 10, 1, 1, 1);
         niveles.add(lvl1);
         niveles.add(lvl2);
         niveles.add(lvl3);
@@ -78,5 +78,7 @@ public class Data implements Serializable{
     public ArrayList<Level> getNiveles(){
         return  niveles;
     }
+
+
 
 }
