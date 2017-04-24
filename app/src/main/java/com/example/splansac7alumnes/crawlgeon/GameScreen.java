@@ -326,6 +326,7 @@ public class GameScreen extends AppCompatActivity {
                 }
             }
 
+
         }
 
     /**
@@ -401,6 +402,9 @@ public class GameScreen extends AppCompatActivity {
         //El mostrem
         dialog.show();
     }
+
+
+
 
 
 }
