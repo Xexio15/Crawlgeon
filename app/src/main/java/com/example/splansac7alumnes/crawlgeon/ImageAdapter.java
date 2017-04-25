@@ -77,7 +77,8 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
+            //imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
+            imageView.setAdjustViewBounds(true);
             imageView.setPadding(0,0,0,0);
 
         } else {

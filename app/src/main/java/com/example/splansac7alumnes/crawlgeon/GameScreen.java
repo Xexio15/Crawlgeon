@@ -347,8 +347,12 @@ public class GameScreen extends AppCompatActivity {
                 if(tile instanceof Health){
                     int vida = Integer.parseInt(vidaPJ.getText().toString());
                     if(vida < vidaMaxPersonaje) {
-                        vida = vida + tile.getDamage() * seleccion.size();
-                        vidaPJ.setText(""+vida);
+                        if(vida + tile.getDamage() * seleccion.size() > vidaMaxPersonaje){
+                            vidaPJ.setText(""+vidaMaxPersonaje);
+                        }else {
+                            vida = vida + tile.getDamage() * seleccion.size();
+                            vidaPJ.setText("" + vida);
+                        }
                     }
                 }else {
                     int armadura = barraArmor.getProgress() + (vidaMaxPersonaje / 100) * seleccion.size();
