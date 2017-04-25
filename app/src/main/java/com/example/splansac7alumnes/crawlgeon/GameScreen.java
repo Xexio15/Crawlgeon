@@ -267,8 +267,10 @@ public class GameScreen extends AppCompatActivity {
                                 if(elemento != null) {
                                     text.setText("BOOM" + elemento.getElement());
                                     realizarHechizo(seleccion, elemento);
+                                    reordenarTablero();
                                     turnoActual++;
                                     realizarAtaqueEnemigo();
+
                                 }
                             } else {
                                 text.setText("NO NO...Diferentes");
@@ -310,8 +312,8 @@ public class GameScreen extends AppCompatActivity {
          * Metodo para realizar el hechizo
          */
         public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
-            boolean quedan_movimientos = ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
 
+            ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
             if(tile.getFxID() != 0){
                 controlador.initFX(GameScreen.this,tile.getFxID());
                 controlador.restartFX();
@@ -347,8 +349,12 @@ public class GameScreen extends AppCompatActivity {
                 if(tile instanceof Health){
                     int vida = Integer.parseInt(vidaPJ.getText().toString());
                     if(vida < vidaMaxPersonaje) {
-                        vida = vida + tile.getDamage() * seleccion.size();
-                        vidaPJ.setText(""+vida);
+                        if(vida + tile.getDamage() * seleccion.size() > vidaMaxPersonaje){
+                            vidaPJ.setText(""+vidaMaxPersonaje);
+                        }else {
+                            vida = vida + tile.getDamage() * seleccion.size();
+                            vidaPJ.setText("" + vida);
+                        }
                     }
                 }else {
                     int armadura = barraArmor.getProgress() + (vidaMaxPersonaje / 100) * seleccion.size();
@@ -361,8 +367,6 @@ public class GameScreen extends AppCompatActivity {
                     }
                 }
             }
-
-            if (!quedan_movimientos) fillGrid();
 
         }
 
@@ -483,6 +487,15 @@ public class GameScreen extends AppCompatActivity {
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
         dialog.show();
+    }
+
+    /*
+     * Comprueba si hay movimientos para hacer y, si no hay, reordena las fichas que hay actualmente en el tablero
+     */
+    public void reordenarTablero(){
+        while(!((ImageAdapter)(tablero.getAdapter())).check_grid()){
+            ((ImageAdapter)(tablero.getAdapter())).reordenarTablero();
+        }
     }
 
 

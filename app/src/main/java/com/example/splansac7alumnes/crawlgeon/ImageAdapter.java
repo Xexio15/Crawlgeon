@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Random;
@@ -77,7 +78,8 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
+            //imageView.setLayoutParams(new GridView.LayoutParams(75, 75));
+            imageView.setAdjustViewBounds(true);
             imageView.setPadding(0,0,0,0);
 
         } else {
@@ -130,7 +132,7 @@ public class ImageAdapter extends BaseAdapter {
     /**
      * Elimina los items del array i mueve las tiles necesarias
      */
-    boolean realizarHechizo(ArrayList<Integer> seleccion){//En proceso
+    void realizarHechizo(ArrayList<Integer> seleccion){//En proceso
         this.removeItems(seleccion);
 
         for (int x = 42; x <= 48; x++) {
@@ -154,37 +156,11 @@ public class ImageAdapter extends BaseAdapter {
                 i -= 7;
             }
         }
-        /*
-         * Bucle para rellenar las Tiles eliminadas
-         */
-       /* for (int i = 0; i < 49; i++){
-            Random num = new Random();
-            if (listaIdsImagenes[i] == 0){
-                int numero = num.nextInt(6-0+1)+0;
-                listaIdsImagenes[i] = tiles.getArray().get(numero).getDrawableID();
 
-               /*
-                * Animacion de expandir
-                */
-               /* Animation trans = AnimationUtils.loadAnimation(mContext,R.anim.aparece);
-                trans.reset();
-                grupo.getChildAt(i).startAnimation(trans);
-                /*
-                 *
-                 */
-           /* }
-        }*/
         rellenarVacios();
-
-        /*int aux = listaIdsImagenes[0];
-        listaIdsImagenes[0]=listaIdsImagenes[1];
-        listaIdsImagenes[1]=aux;*/
 
         //Notificamos los cambios
         notifyDataSetChanged();
-
-        return check_grid();
-
 
     }
 
@@ -418,6 +394,26 @@ public class ImageAdapter extends BaseAdapter {
                 return true;
         }
         return false;
+    }
+
+    public void reordenarTablero(){
+        ArrayList<Integer> array = new ArrayList<>();
+        int i;
+        for(i=0; i<49; i++){
+            array.add(listaIdsImagenes[i]);
+        }
+
+        Random random = new Random();
+        Collections.shuffle(array,random);
+
+        Iterator<Integer> iterator = array.iterator();
+        i=0;
+        while(iterator.hasNext()){
+            listaIdsImagenes[i]=iterator.next();
+            i++;
+        }
+
+        notifyDataSetChanged();
     }
 
 }
