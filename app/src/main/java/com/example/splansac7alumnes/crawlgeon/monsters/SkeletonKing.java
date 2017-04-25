@@ -8,6 +8,6 @@ import com.example.splansac7alumnes.crawlgeon.R;
 
 public class SkeletonKing extends Monster {
     public SkeletonKing() {
-        super(1000, 20 , R.drawable.rat);
+        super(1000, 20 , R.drawable.rat, 0);
     }
 }

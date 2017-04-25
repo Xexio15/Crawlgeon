@@ -2,6 +2,7 @@ package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
 import android.graphics.Typeface;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -77,10 +78,6 @@ public class GameScreen extends AppCompatActivity {
         }
 
         //Inicializamos
-        //this.monstruo = (Monster) getIntent().getSerializableExtra("monstre");
-        /**Al añadir mas niveles habra que cambiar esta primera linea i hacer control de niveles
-         *
-         */
         this.monstruo = controlador.getMonstruoNivelActual();
         this.personaje = controlador.getPersonaje();
         this.nivel = controlador.getActual();
@@ -133,7 +130,8 @@ public class GameScreen extends AppCompatActivity {
             this.dañoMonstruo = 5;
         }else {
             enemyImg= (ImageView) findViewById(R.id.imgEnemy);
-            enemyImg.setImageResource(monstruo.getID());
+            //enemyImg.setImageResource(monstruo.getID());
+            animate(enemyImg, monstruo.getAnim());
             this.barraVidaMonstruo.setMax(controlador.getVidaMonstruo());
             this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax());
             this.barraVidaMonstruo.setProgress(barraVidaMonstruo.getMax());
@@ -515,7 +513,15 @@ public class GameScreen extends AppCompatActivity {
     }
 
 
-
+    public void animate(ImageView im, int imSequence){
+        if(imSequence != 0) {
+            im.setBackgroundResource(imSequence);
+            AnimationDrawable anim = (AnimationDrawable) im.getBackground();
+            anim.start();
+        }else{
+            im.setImageResource(monstruo.getID());
+        }
+    }
 
 
 }
