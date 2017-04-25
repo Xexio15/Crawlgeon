@@ -243,8 +243,18 @@ public class Controller{
     }
 
     public void desbloquearNivel(){
-        if((nivelActual+1)<10) {
-            data.getNiveles().get(nivelActual).setDesbloqueado();
+        /*
+        *   PARA CUANDO HAYA LOS 10 NIVELES PARA DESBLOQUEAR
+        *
+        *   if((nivelActual+1)<10) {
+        *       this.getNivel(nivelActual).setDesbloqueado();
+        *   }
+        */
+
+        if((nivelActual+1)<3) {
+            this.getNivel(nivelActual+1).setDesbloqueado();
+        }else if(nivelActual==2){
+            this.getNivel(10).setDesbloqueado();
         }
     }
 

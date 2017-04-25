@@ -74,15 +74,11 @@ public class GameScreen extends AppCompatActivity {
             controlador = controlador.getInstance();
         }
 
-        controlador.initMusica(GameScreen.this,R.raw.level_music);
-        controlador.playMusica();
-
         //Inicializamos
         //this.monstruo = (Monster) getIntent().getSerializableExtra("monstre");
         /**Al añadir mas niveles habra que cambiar esta primera linea i hacer control de niveles
          *
          */
-        controlador.setNivelActual(1);
         this.monstruo = controlador.getMonstruoNivelActual();
         this.personaje = controlador.getPersonaje();
         this.nivel = controlador.getActual();
@@ -98,6 +94,13 @@ public class GameScreen extends AppCompatActivity {
         this.barraVidaMonstruo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
         this.barraVidaPJ = (ProgressBar) findViewById(R.id.barraVidaPJ);
         this.barraArmor = (ProgressBar) findViewById(R.id.barraArmorPJ);
+
+        if(nivel.isBoss()){
+            controlador.initMusica(GameScreen.this,R.raw.boss_music);
+        }else{
+            controlador.initMusica(GameScreen.this,R.raw.level_music);
+        }
+        controlador.playMusica();
 
         if(personaje == null){
             this.barraVidaPJ.setMax(100);
@@ -313,7 +316,7 @@ public class GameScreen extends AppCompatActivity {
          */
         public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile){
 
-            ((ImageAdapter)(tablero.getAdapter())).realizarHechizo(seleccion);
+            this.imageAdapter().realizarHechizo(seleccion);
             if(tile.getFxID() != 0){
                 controlador.initFX(GameScreen.this,tile.getFxID());
                 controlador.restartFX();
@@ -402,14 +405,14 @@ public class GameScreen extends AppCompatActivity {
      * Pone en modo seleccion la Tile de la posicion pasada
      */
     public void seleccionarTile(int posicion){
-        ((ImageAdapter)(tablero.getAdapter())).seleccionarTile(posicion);
+        this.imageAdapter().seleccionarTile(posicion);
     }
 
     /**
      * Quita el modo seleccion de la lista de Tiles seleccionadas
      */
     public void deseleccionarTile(ArrayList<Integer> listaDeSelec){
-        ((ImageAdapter)(tablero.getAdapter())).deseleccionarTile(listaDeSelec);
+        this.imageAdapter().deseleccionarTile(listaDeSelec);
     }
 
     /**
@@ -493,9 +496,15 @@ public class GameScreen extends AppCompatActivity {
      * Comprueba si hay movimientos para hacer y, si no hay, reordena las fichas que hay actualmente en el tablero
      */
     public void reordenarTablero(){
-        while(!((ImageAdapter)(tablero.getAdapter())).check_grid()){
-            ((ImageAdapter)(tablero.getAdapter())).reordenarTablero();
+        while(!this.imageAdapter().check_grid()){
+            this.imageAdapter().reordenarTablero();
         }
+
+        this.imageAdapter().notifyDataSetChanged();
+    }
+
+    public ImageAdapter imageAdapter(){
+        return ((ImageAdapter)(tablero.getAdapter()));
     }
 
 

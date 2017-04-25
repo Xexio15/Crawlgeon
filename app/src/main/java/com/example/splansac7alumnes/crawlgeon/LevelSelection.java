@@ -109,7 +109,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(3);
-                //startActivity(lvl_01x03);
+                startActivity(lvl_01x03);
 
             }
         });
@@ -126,7 +126,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(4);
-                //startActivity(lvl_01x04);
+                startActivity(lvl_01x04);
 
             }
         });
@@ -143,7 +143,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(5);
-                //startActivity(lvl_01x05);
+                startActivity(lvl_01x05);
 
             }
         });
@@ -160,7 +160,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(6);
-                //startActivity(lvl_01x06);
+                startActivity(lvl_01x06);
 
             }
         });
@@ -177,7 +177,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(7);
-                //startActivity(lvl_01x07);
+                startActivity(lvl_01x07);
 
             }
         });
@@ -194,7 +194,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(8);
-                //startActivity(lvl_01x08);
+                startActivity(lvl_01x08);
 
             }
         });
@@ -211,7 +211,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(9);
-                //startActivity(lvl_01x09);
+                startActivity(lvl_01x09);
 
             }
         });
@@ -228,7 +228,7 @@ public class LevelSelection extends AppCompatActivity {
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 controlador.setNivelActual(10);
-                //startActivity(lvl_01x10);
+                startActivity(lvl_01x10);
 
             }
         });
@@ -356,7 +356,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star3x2 = (ImageView) findViewById(R.id.star3x2);
         ImageView star3x3 = (ImageView) findViewById(R.id.star3x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(3).getPuntuacion()) {
             case 0:
                 star3x1.setImageResource(R.drawable.emptystar);
                 star3x2.setImageResource(R.drawable.emptystar);
@@ -385,7 +385,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star4x2 = (ImageView) findViewById(R.id.star4x2);
         ImageView star4x3 = (ImageView) findViewById(R.id.star4x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(4).getPuntuacion()) {
             case 0:
                 star4x1.setImageResource(R.drawable.emptystar);
                 star4x2.setImageResource(R.drawable.emptystar);
@@ -414,7 +414,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star5x2 = (ImageView) findViewById(R.id.star5x2);
         ImageView star5x3 = (ImageView) findViewById(R.id.star5x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(5).getPuntuacion()) {
             case 0:
                 star5x1.setImageResource(R.drawable.emptystar);
                 star5x2.setImageResource(R.drawable.emptystar);
@@ -443,7 +443,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star6x2 = (ImageView) findViewById(R.id.star6x2);
         ImageView star6x3 = (ImageView) findViewById(R.id.star6x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(6).getPuntuacion()) {
             case 0:
                 star6x1.setImageResource(R.drawable.emptystar);
                 star6x2.setImageResource(R.drawable.emptystar);
@@ -472,7 +472,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star7x2 = (ImageView) findViewById(R.id.star7x2);
         ImageView star7x3 = (ImageView) findViewById(R.id.star7x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(7).getPuntuacion()) {
             case 0:
                 star7x1.setImageResource(R.drawable.emptystar);
                 star7x2.setImageResource(R.drawable.emptystar);
@@ -501,7 +501,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star8x2 = (ImageView) findViewById(R.id.star8x2);
         ImageView star8x3 = (ImageView) findViewById(R.id.star8x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(8).getPuntuacion()) {
             case 0:
                 star8x1.setImageResource(R.drawable.emptystar);
                 star8x2.setImageResource(R.drawable.emptystar);
@@ -530,7 +530,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star9x2 = (ImageView) findViewById(R.id.star9x2);
         ImageView star9x3 = (ImageView) findViewById(R.id.star9x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(9).getPuntuacion()) {
             case 0:
                 star9x1.setImageResource(R.drawable.emptystar);
                 star9x2.setImageResource(R.drawable.emptystar);
@@ -559,7 +559,7 @@ public class LevelSelection extends AppCompatActivity {
         ImageView star10x2 = (ImageView) findViewById(R.id.star10x2);
         ImageView star10x3 = (ImageView) findViewById(R.id.star10x3);
 
-        switch(controlador.getNivel(2).getPuntuacion()) {
+        switch(controlador.getNivel(10).getPuntuacion()) {
             case 0:
                 star10x1.setImageResource(R.drawable.emptystar);
                 star10x2.setImageResource(R.drawable.emptystar);

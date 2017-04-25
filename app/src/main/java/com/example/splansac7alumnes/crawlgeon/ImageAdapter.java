@@ -412,8 +412,6 @@ public class ImageAdapter extends BaseAdapter {
             listaIdsImagenes[i]=iterator.next();
             i++;
         }
-
-        notifyDataSetChanged();
     }
 
 }

@@ -1,7 +1,9 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
+import com.example.splansac7alumnes.crawlgeon.monsters.Orc;
 import com.example.splansac7alumnes.crawlgeon.monsters.Rat;
+import com.example.splansac7alumnes.crawlgeon.monsters.SkeletonKing;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,11 +22,16 @@ public class Data implements Serializable{
 
     public Data(){
         niveles = new ArrayList<>();
+        //Ataque Defensa Vida Fuego Hielo Rayo Arcano
         float[] probsIn1 = {30,25,20,15,10,0,0};
-        //float[] probsIn1 = {15,15,14,14,14,14,14};
+        float[] probsIn2 = {30,25,20,0,0,20,5};
+        float[] probsIn3 = {20,25,20,0,15,0,20};
+        //float[] probsInPruebas = {15,15,14,14,14,14,14};
         float[] probs1 = {20,20,20,20,20,0,0};
+        float[] probs2 = {20,20,20,0,0,20,20};
+        float[] probs3 = {20,20,20, 0,20,0,20};
         Level lvl1 = new Level(probsIn1, probs1, new Rat(), false, false, 1, 1, 1, 1, 0);
-        Level lvl2 = new Level(probsIn1, probs1, new Rat(), true, false, 2, 1, 1, 1, 0);
+        Level lvl2 = new Level(probsIn2, probs2, new Orc(), true, false, 2, 1, 1, 1, 0);
         Level lvl3 = new Level(probsIn1, probs1, new Rat(), true, false, 3, 1, 1, 1, 0);
         Level lvl4 = new Level(probsIn1, probs1, new Rat(), true, false, 4, 1, 1, 1, 0);
         Level lvl5 = new Level(probsIn1, probs1, new Rat(), true, false, 5, 1, 1, 1, 0);
@@ -32,7 +39,7 @@ public class Data implements Serializable{
         Level lvl7 = new Level(probsIn1, probs1, new Rat(), true, false, 7, 1, 1, 1, 0);
         Level lvl8 = new Level(probsIn1, probs1, new Rat(), true, false, 8, 1, 1 ,1, 0);
         Level lvl9 = new Level(probsIn1, probs1, new Rat(), true, false, 9, 1, 1, 1, 0);
-        Level lvl10 = new Level(probsIn1, probs1, new Rat(), true, true, 10, 1, 1, 1, 0);
+        Level lvl10 = new Level(probsIn3, probs3, new SkeletonKing(), true, true, 10, 1, 1, 1, 0);
         niveles.add(lvl1);
         niveles.add(lvl2);
         niveles.add(lvl3);

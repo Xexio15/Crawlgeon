@@ -74,8 +74,26 @@ public class OptionsWinDialog extends Dialog{
             @Override
             public void onClick(View v) {
                 if(!controlador.isActualBoss()) {
-                    controlador.setNivelActual(controlador.getNivelActual() + 1);
-                    controlador.restartMusica();
+
+
+                    int nivelActual = controlador.getNivelActual();
+
+                    /*  PARA CUANDO HAYA LOS 10 NIVELES
+                     *  if((nivelActual+1)<10) {
+                     *      controlador.setNivelActual(controlador.getNivelActual() + 1);
+                     *  }
+                     */
+                    if((nivelActual+1)<3) {
+                        controlador.setNivelActual(controlador.getNivelActual() + 1);
+                        //controlador.restartMusica();
+                    }else if(nivelActual==2){
+                        controlador.setNivelActual(10);
+
+                    }
+                    controlador.stopMusica();
+
+
+
                     Intent nextLevel = new Intent(OptionsWinDialog.super.getOwnerActivity(), GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
                     ((Activity) context).finish();//Finalitzem GameScreen
                     ((Activity) context).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out); //ANIMACIO FADE
