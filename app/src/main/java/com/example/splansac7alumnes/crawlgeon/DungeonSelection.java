@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DungeonSelection extends AppCompatActivity {
     private Controller controlador;
@@ -35,7 +36,10 @@ public class DungeonSelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon_selection);
 
-        ((TextView)findViewById(R.id.textLvlsComplete)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+
+
+
+
         final TextView click = (TextView) findViewById(R.id.textClick);
         click.bringToFront();
         click.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
@@ -43,7 +47,12 @@ public class DungeonSelection extends AppCompatActivity {
         if(controlador == null){
             controlador = controlador.getInstance();
         }
-
+        //((TextView)findViewById(R.id.textLvlsComplete)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+        TextView lvlsBlocked = (TextView) findViewById(R.id.textLvlsComplete);
+        lvlsBlocked.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+        String lvls = set_lvlUnlockedTXT();
+        lvlsBlocked.setText(lvls);
+        lvlsBlocked.append("/10");
         /**
          * Esta animacion de esta manera provoca interrupciones con el sonido de la puerta
          * */
@@ -161,4 +170,11 @@ public class DungeonSelection extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode,event);
     }
+
+    public String set_lvlUnlockedTXT(){
+        return String.valueOf(controlador.getNumLvlsBlocked());
+     }
+
+
+
 }

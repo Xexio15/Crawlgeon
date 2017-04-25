@@ -6,6 +6,8 @@ import android.media.MediaPlayer;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
 import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Created by Sergio Plans on 21/04/2017.
@@ -37,7 +39,9 @@ public class Controller{
              this.data = new Data();
              changeMusicVolume(100);
              changeFXVolume(100);
+
          }
+
 
     }
 
@@ -252,7 +256,7 @@ public class Controller{
         return data.getNiveles().get(i-1).isBloqueado();
     }
 
-    public int getTurnosPJ(){ return getActual().getTurnosPJ(); };
+    public int getTurnosPJ(){ return getActual().getTurnosPJ(); }
 
     public int getTurnosMonstruo(){ return getActual().getTurnosMonstruo(); };
 
@@ -271,5 +275,13 @@ public class Controller{
      */
     public Level getNivel(int num){
         return data.getNiveles().get(num-1);
+    }
+
+    public int getNumLvlsBlocked(){
+        int i = 0;
+        for(int j = 1; j <= 10; j++){
+            if(!isBloqueado(j)) i++;
+        }
+        return i;
     }
 }
