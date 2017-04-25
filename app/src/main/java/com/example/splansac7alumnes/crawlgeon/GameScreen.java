@@ -191,7 +191,7 @@ public class GameScreen extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(GameScreen.this,android.R.anim.fade_in);
         GridLayoutAnimationController controller = new GridLayoutAnimationController(animation, .2f, .2f);
         tablero.setLayoutAnimation(controller);
-
+        this.reordenarTablero();//Si la primera tabla no es valida
         tablero.setOnTouchListener(new AdapterView.OnTouchListener(){
             //Guardar en una variable uno de los objetos seleccionados
             //Con un booleano comparar si el objeto seleccionado anterior y el actual son iguales

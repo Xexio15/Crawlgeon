@@ -8,6 +8,6 @@ import com.example.splansac7alumnes.crawlgeon.R;
 
 public class Orc extends Monster{
     public Orc() {
-        super(100, 8, R.drawable.orc_static1, R.drawable.static_orc_anim);
+        super(100, 8, R.drawable.orc_static1, R.drawable.staticorcanim);
     }
 }
