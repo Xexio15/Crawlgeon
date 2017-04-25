@@ -21,6 +21,7 @@ public class Data implements Serializable{
     public Data(){
         niveles = new ArrayList<>();
         float[] probsIn1 = {30,25,20,15,10,0,0};
+        //float[] probsIn1 = {15,15,14,14,14,14,14};
         float[] probs1 = {20,20,20,20,20,0,0};
         Level lvl1 = new Level(probsIn1, probs1, new Rat(), false, false, 1, 1, 1, 1, 0);
         Level lvl2 = new Level(probsIn1, probs1, new Rat(), true, false, 2, 1, 1, 1, 0);
