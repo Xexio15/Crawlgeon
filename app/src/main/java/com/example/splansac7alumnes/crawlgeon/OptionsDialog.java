@@ -77,6 +77,7 @@ public class OptionsDialog extends Dialog {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 seekBar.setProgress(progress);
                 controlador.changeMusicVolume(progress);
+                controlador.saveData();
             }
 
             @Override

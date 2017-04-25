@@ -2,10 +2,19 @@ package com.example.splansac7alumnes.crawlgeon;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.os.Environment;
 
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -39,7 +48,6 @@ public class Controller{
              this.data = new Data();
              changeMusicVolume(100);
              changeFXVolume(100);
-
          }
 
 
@@ -174,20 +182,77 @@ public class Controller{
      * Guarda datos
      */
     public boolean saveData(){
-        return false;
+
+        /*ObjectOutput out;
+        try {
+            File outFile = new File("CrawlgeonData.data");
+            out = new ObjectOutputStream(new FileOutputStream(outFile));
+            out.writeObject(data);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;*/
+
+        File outFile = new File("CrawlgeonData.data");
+        try {
+            FileOutputStream fos = new FileOutputStream(outFile);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(this);
+            os.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            //return  false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            //return  false;
+        }
+        return true;
     }
 
     /**
      * Carga datos
      */
-    public boolean loadData(){
+    public boolean loadData() {
         //codigo para cargar archivo
         //Si la carga bien retorna true i no se volvera a inicializar en el constructor
+        /*ObjectInput in;
+        File inFile = new File("CrawlgeonDAta.data");
+        try {
+            in = new ObjectInputStream(new FileInputStream(inFile));
+            data = (Data) in.readObject();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         if(data != null){
             return true;
         }else{
             return false;
+        }*/
+        try {
+            File inFile = new File("CrawlgeonDAta.data");
+            FileInputStream fis = new FileInputStream(inFile);
+            ObjectInputStream is = new ObjectInputStream(fis);
+            data = (Data) is.readObject();
+            is.close();
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return  false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            //return  false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            //return  false;
         }
+        return  true;
     }
 
     /**
