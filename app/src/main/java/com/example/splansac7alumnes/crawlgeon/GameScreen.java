@@ -61,6 +61,8 @@ public class GameScreen extends AppCompatActivity {
     private ImageView enemyImg;
     private ImageView pjImg;
     private Level nivel;
+    private boolean enemigoMuerto;
+    private boolean pjMuerto;
 
 
     @Override
@@ -98,6 +100,8 @@ public class GameScreen extends AppCompatActivity {
         this.barraVidaMonstruo = (ProgressBar) findViewById(R.id.barraVidaEnemiga);
         this.barraVidaPJ = (ProgressBar) findViewById(R.id.barraVidaPJ);
         this.barraArmor = (ProgressBar) findViewById(R.id.barraArmorPJ);
+        this.enemigoMuerto = false;
+        this.pjMuerto = false;
 
         if(personaje == null){
             this.barraVidaPJ.setMax(100);
@@ -207,6 +211,7 @@ public class GameScreen extends AppCompatActivity {
                         } else {
                             actual = (int) (imatge.getTag());
                             seleccionarTile(posicion);
+                            listaDeSelec.add(posicion);
                         }
 
                         return true;
@@ -331,6 +336,7 @@ public class GameScreen extends AppCompatActivity {
                 }else{
                     actualizarBarra(barraVidaMonstruo, 0);
                     this.vidaMonstruo.setText("DEAD");
+                    this.enemigoMuerto = true;
                     int vidapj = Integer.parseInt(vidaPJ.getText().toString());
                     controlador.desbloquearNivel();
                     if(vidapj == vidaMaxPersonaje){
@@ -371,7 +377,7 @@ public class GameScreen extends AppCompatActivity {
         }
 
     public void realizarAtaqueEnemigo(){
-        if (turnoActual==turnosPJ){
+        if (turnoActual==turnosPJ && !this.enemigoMuerto && !this.pjMuerto){
             for(int i = 0; i<turnosMonstruo; i++){
                 int vida = Integer.parseInt(vidaPJ.getText().toString());
                 int armadura = barraArmor.getProgress();
@@ -391,6 +397,7 @@ public class GameScreen extends AppCompatActivity {
                 }else{
                     actualizarBarra(barraVidaPJ, 0);
                     this.vidaPJ.setText("DEAD");
+                    this.pjMuerto = true;
                     loseDialog();
                 }
             }
