@@ -141,7 +141,7 @@ public class GameScreen extends AppCompatActivity {
 
         fillGrid();//Llenamos la Grid cuando se inicia la activity
 
-        Button win = (Button) findViewById(R.id.buttonWin);
+        /*Button win = (Button) findViewById(R.id.buttonWin);
         win.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -175,7 +175,7 @@ public class GameScreen extends AppCompatActivity {
             public void onClick(View v) {
                 fillGrid();
             }
-        });
+        });*/
     }
 
     /**
@@ -199,7 +199,7 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(seleccion.size() < 49) {
-                    TextView text = (TextView) findViewById(R.id.textocualquiera);
+                    //TextView text = (TextView) findViewById(R.id.textocualquiera);
                     int posicion = tablero.pointToPosition((int) event.getX(), (int) event.getY());
                     ImageView imatge = ((ImageView) tablero.getItemAtPosition(posicion));
 
@@ -208,7 +208,7 @@ public class GameScreen extends AppCompatActivity {
                         iguales = true;
 
                         if (posicion == -1) {
-                            text.setText("invalid");
+                            //text.setText("invalid");
                         } else {
                             actual = (int) (imatge.getTag());
                             seleccionarTile(posicion);
@@ -228,7 +228,7 @@ public class GameScreen extends AppCompatActivity {
                         else {
                             seleccionarTile(posicion);
                             actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
-                            text.setText(""+posicionAnterior+" "+posicion);
+                            //text.setText(""+posicionAnterior+" "+posicion);
 
                             if (actual != anterior) {
                                 if(imatge != null) {
@@ -271,7 +271,7 @@ public class GameScreen extends AppCompatActivity {
                             if (iguales) {
                                 elemento = tile(imatge);
                                 if(elemento != null) {
-                                    text.setText("BOOM" + elemento.getElement());
+                                   // text.setText("BOOM" + elemento.getElement());
                                     realizarHechizo(seleccion, elemento);
                                     reordenarTablero();
                                     turnoActual++;
@@ -279,11 +279,11 @@ public class GameScreen extends AppCompatActivity {
 
                                 }
                             } else {
-                                text.setText("NO NO...Diferentes");
+                               // text.setText("NO NO...Diferentes");
                             }
 
                         }else if (seleccion.size() < 3){
-                            text.setText("Minimo 3");
+                           // text.setText("Minimo 3");
                         }
                         seleccion = new ArrayList<>();
                         listaDeSelec = new ArrayList<>();

@@ -8,127 +8,6 @@
     android:background="@drawable/dungeon_select_bg">
 
 
-    <Button
-        android:text="WIN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonWin"
-        android:layout_marginStart="152dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="96dp"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:text="LOSE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLose"
-        android:layout_marginEnd="144dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:text="Tiles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tiles"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textocualquiera"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textColor="@android:color/background_light" />
-
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="116dp"
-        android:layout_height="18dp"
-        android:id="@+id/barraVidaEnemiga"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="160dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@android:color/darker_gray"
-        android:progressTint="@android:color/holo_red_dark"
-        android:progress="50"
-        android:progressDrawable="@drawable/progreso_baar"
-        android:progressBackgroundTint="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/tablero"
-        android:layout_marginBottom="8dp" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="116dp"
-        android:layout_height="18dp"
-        android:id="@+id/barraVidaPJ"
-        android:layout_marginTop="160dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@android:color/darker_gray"
-        android:progressTint="@android:color/holo_red_dark"
-        android:progress="50"
-        android:progressDrawable="@drawable/progreso_baar"
-        android:progressBackgroundTint="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/tablero"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/barraArmorPJ"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="116dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/darker_gray"
-        android:progress="50"
-        android:progressBackgroundTint="@android:color/darker_gray"
-        android:progressDrawable="@drawable/armor_bar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/vidaPJ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="100"
-        android:textColor="@android:color/background_light"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@+id/barraVidaPJ"
-        app:layout_constraintBottom_toBottomOf="@+id/barraVidaPJ"
-        app:layout_constraintLeft_toLeftOf="@+id/barraVidaPJ"
-        app:layout_constraintRight_toRightOf="@+id/barraVidaPJ"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <TextView
-        android:id="@+id/vidaEnemigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="50"
-        android:textColor="@android:color/background_light"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@+id/barraVidaEnemiga"
-        app:layout_constraintBottom_toBottomOf="@+id/barraVidaEnemiga"
-        app:layout_constraintLeft_toLeftOf="@+id/barraVidaEnemiga"
-        app:layout_constraintRight_toRightOf="@+id/barraVidaEnemiga"
-        android:fontFamily="" />
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -153,47 +32,120 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
-        app:srcCompat="@android:color/transparent"
-        android:id="@+id/pjImg"
-        app:layout_constraintBottom_toTopOf="@+id/vidaPJ"
+    <RelativeLayout
+        android:layout_width="344dp"
+        android:layout_height="185dp"
+        app:layout_constraintBottom_toTopOf="@+id/tablero"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="48dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintVertical_bias="0.9"
-        android:layout_height="75dp"
-        android:layout_width="75dp" />
-
-    <ImageView
-        app:srcCompat="@android:color/transparent"
-        android:id="@+id/imgEnemy"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/vidaEnemigo"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="56dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
-
-    <TextView
-        android:id="@+id/armorPJ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="100"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@+id/barraArmorPJ"
-        app:layout_constraintBottom_toBottomOf="@+id/barraArmorPJ"
-        app:layout_constraintLeft_toLeftOf="@+id/barraArmorPJ"
-        app:layout_constraintRight_toRightOf="@+id/barraArmorPJ"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="116dp"
+            android:layout_height="18dp"
+            android:id="@+id/barraVidaPJ"
+            android:background="@android:color/darker_gray"
+            android:progressTint="@android:color/holo_red_dark"
+            android:progress="50"
+            android:progressDrawable="@drawable/progreso_baar"
+            android:progressBackgroundTint="@android:color/darker_gray"
+            android:layout_marginBottom="13dp"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
+
+        <ProgressBar
+            android:id="@+id/barraArmorPJ"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="116dp"
+            android:layout_height="18dp"
+            android:background="@android:color/darker_gray"
+            android:progress="50"
+            android:progressBackgroundTint="@android:color/darker_gray"
+            android:progressDrawable="@drawable/armor_bar"
+            android:layout_below="@+id/imgEnemy"
+            android:layout_alignStart="@+id/barraVidaPJ" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="116dp"
+            android:layout_height="18dp"
+            android:id="@+id/barraVidaEnemiga"
+            android:background="@android:color/darker_gray"
+            android:progressTint="@android:color/holo_red_dark"
+            android:progress="50"
+            android:progressDrawable="@drawable/progreso_baar"
+            android:progressBackgroundTint="@android:color/darker_gray"
+            android:layout_marginEnd="11dp"
+            android:layout_below="@+id/imgEnemy"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/armorPJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_alignLeft="@id/barraArmorPJ"
+            android:layout_alignTop="@id/barraArmorPJ"
+            android:layout_alignRight="@id/barraArmorPJ"
+            android:layout_alignBottom="@id/barraArmorPJ"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/vidaEnemigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            android:layout_alignLeft="@id/barraVidaEnemiga"
+            android:layout_alignTop="@id/barraVidaEnemiga"
+            android:layout_alignRight="@id/barraVidaEnemiga"
+            android:layout_alignBottom="@id/barraVidaEnemiga"
+            android:fontFamily=""
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/vidaPJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="100"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            android:layout_alignLeft="@id/barraVidaPJ"
+            android:layout_alignTop="@id/barraVidaPJ"
+            android:layout_alignRight="@id/barraVidaPJ"
+            android:layout_alignBottom="@id/barraVidaPJ"
+            android:textAlignment="center" />
+
+        <ImageView
+            app:srcCompat="@android:color/transparent"
+            android:id="@+id/imgEnemy"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/barraVidaEnemiga"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="25dp"/>
+
+        <ImageView
+            app:srcCompat="@android:color/transparent"
+            android:id="@+id/pjImg"
+            android:layout_height="75dp"
+            android:layout_width="75dp"
+            android:layout_alignBottom="@+id/imgEnemy"
+            android:layout_alignStart="@+id/vidaPJ"
+            android:layout_marginStart="11dp" />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
