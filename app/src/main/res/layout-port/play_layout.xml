@@ -85,18 +85,17 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <ProgressBar
+        android:id="@+id/barraArmorPJ"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="116dp"
         android:layout_height="18dp"
-        android:id="@+id/barraArmorPJ"
-        android:background="@android:color/darker_gray"
-        android:progressTint="@android:color/holo_red_dark"
-        android:progress="50"
-        android:progressDrawable="@drawable/armor_bar"
-        android:progressBackgroundTint="@android:color/darker_gray"
         android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray"
+        android:progress="50"
+        android:progressBackgroundTint="@android:color/darker_gray"
+        android:progressDrawable="@drawable/armor_bar"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
