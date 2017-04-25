@@ -39,6 +39,7 @@ public class MainMenu extends AppCompatActivity {
         if(controlador == null){
             controlador = controlador.getInstance();
         }
+        controlador.loadData();
 
         controlador.initMusica(this,R.raw.menus_music);
         shouldPlay = true;
