@@ -2,13 +2,14 @@ package com.example.splansac7alumnes.crawlgeon;
 
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Sergio Plans on 22/04/2017.
  */
 
-public class Level {
+public class Level implements Serializable{
     private float[] probabilidadesIniciales = new float[7];
     private float[] probabilidades = new float[7];
     private Monster monstruo;

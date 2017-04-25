@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">Crawlgeon</string>
-    <string name="version">Version xx.xxx</string>
+    <string name="version">v. 0.1.0-pre-alpha</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="musica">Music</string>
     <string name="efectes">FX</string>
+    <string name="agradecimientos">Music:\n
+                                    Dungeon Crawl Kevin MacLeod (incompetech.com)\n\n
 
+                                    Sound Effects:\n
+                                    http://superpowers-html5.com/\n
+                                    Iwan \'qubodup\' Gabovitch http://qubodup.net qubodup@gmail.com\n
+                                    ViRiX Dreamcore (David Mckee) www.soundcloud.com/virix\&quot;\n
+                                    artisticdude from OpenGameArt.org</string>
 </resources>

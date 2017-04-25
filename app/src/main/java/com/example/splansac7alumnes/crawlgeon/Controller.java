@@ -15,6 +15,7 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -32,11 +33,13 @@ public class Controller{
     private int dungActual;
     private MediaPlayer reproFX;
     private static Controller instance = new Controller();
+    private Context context;
 
     /**
      * Nos da la instancia del controlador
      */
     public static Controller getInstance(){
+
         return instance;
     }
 
@@ -44,15 +47,34 @@ public class Controller{
      * Constructor privado (Singleton)
      */
     private Controller(){
-         if(!loadData()){
-             this.data = new Data();
-             changeMusicVolume(100);
-             changeFXVolume(100);
-         }
-
 
     }
 
+    /**
+     * Elimina los datos completamente
+     */
+    public void deleteData(){
+        this.data = new Data();
+    }
+
+    /**
+     * Set del context inicial
+     * @param context
+     */
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    /**
+     * Inicializa Data si es null sino lo carga
+     */
+    public  void initData(){
+        if(!loadData()){
+            this.data = new Data();
+            changeMusicVolume(100);
+            changeFXVolume(100);
+        }
+    }
     /**
      * Inicia el reproductor de musica con el archivo pasado
      */
@@ -182,32 +204,19 @@ public class Controller{
      * Guarda datos
      */
     public boolean saveData(){
+        ObjectOutput out = null;
 
-        /*ObjectOutput out;
         try {
-            File outFile = new File("CrawlgeonData.data");
-            out = new ObjectOutputStream(new FileOutputStream(outFile));
+            this.dades = new File(context.getFilesDir(),"CrawlgeonData.data");
+            out = new ObjectOutputStream(new FileOutputStream(this.dades));
             out.writeObject(data);
             out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;*/
-
-        File outFile = new File("CrawlgeonData.data");
-        try {
-            FileOutputStream fos = new FileOutputStream(outFile);
-            ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(this);
-            os.close();
-            fos.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            //return  false;
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
-            //return  false;
+            return false;
         }
         return true;
     }
@@ -216,43 +225,26 @@ public class Controller{
      * Carga datos
      */
     public boolean loadData() {
-        //codigo para cargar archivo
-        //Si la carga bien retorna true i no se volvera a inicializar en el constructor
-        /*ObjectInput in;
-        File inFile = new File("CrawlgeonDAta.data");
+        ObjectInputStream input;
+        this.dades = new File(context.getFilesDir(), "CrawlgeonData.data");
         try {
-            in = new ObjectInputStream(new FileInputStream(inFile));
-            data = (Data) in.readObject();
-            in.close();
-        } catch (IOException e) {
+            input = new ObjectInputStream(new FileInputStream(this.dades));
+            this.data = (Data) input.readObject();
+            input.close();
+        } catch (StreamCorruptedException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        if(data != null){
-            return true;
-        }else{
             return false;
-        }*/
-        try {
-            File inFile = new File("CrawlgeonDAta.data");
-            FileInputStream fis = new FileInputStream(inFile);
-            ObjectInputStream is = new ObjectInputStream(fis);
-            data = (Data) is.readObject();
-            is.close();
-            fis.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return  false;
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
-            //return  false;
+            return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            //return  false;
+            return false;
         }
-        return  true;
+        return true;
     }
 
     /**

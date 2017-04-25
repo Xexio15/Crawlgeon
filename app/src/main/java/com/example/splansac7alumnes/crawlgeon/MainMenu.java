@@ -3,6 +3,7 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity {
     private boolean shouldPlay;
@@ -38,8 +40,10 @@ public class MainMenu extends AppCompatActivity {
 
         if(controlador == null){
             controlador = controlador.getInstance();
+            controlador.setContext(this);
+            controlador.initData();
         }
-        controlador.loadData();
+        //controlador.loadData();
 
         controlador.initMusica(this,R.raw.menus_music);
         shouldPlay = true;
@@ -87,6 +91,8 @@ public class MainMenu extends AppCompatActivity {
 
             }
         });
+
+        ((TextView) findViewById(R.id.version)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
     }
 
     /**

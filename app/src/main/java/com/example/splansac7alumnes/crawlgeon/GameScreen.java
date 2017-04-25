@@ -487,6 +487,7 @@ public class GameScreen extends AppCompatActivity {
         OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
+        controlador.saveData();
         dialog.show();
     }
 
@@ -494,6 +495,7 @@ public class GameScreen extends AppCompatActivity {
         OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this, R.style.Crawl, controlador);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
+        controlador.saveData();
         dialog.show();
     }
 
