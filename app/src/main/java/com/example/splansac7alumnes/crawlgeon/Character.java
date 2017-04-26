@@ -13,6 +13,7 @@ public class Character implements Serializable {
     private int daño;
     private int nivel;
     private int idSprite = R.drawable.heroe;
+    private int staticAnim = R.drawable.staticpjanim;
 
     public Character (){
 
@@ -34,6 +35,10 @@ public class Character implements Serializable {
         return vida;
     }
 
+    public int getStaticAnim(){
+        return staticAnim;
+    }
+
     public void setVida(int vida) {
         this.vida = vida;
     }
@@ -44,6 +49,10 @@ public class Character implements Serializable {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    public void setStaticAnim(int anim){
+        this.staticAnim = anim;
     }
 
 

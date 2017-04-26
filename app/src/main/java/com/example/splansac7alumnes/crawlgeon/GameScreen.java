@@ -110,7 +110,8 @@ public class GameScreen extends AppCompatActivity {
             this.turnosPJ=1;
         }else {
             pjImg= (ImageView) findViewById(R.id.pjImg);
-            pjImg.setImageResource(personaje.getID());
+            //pjImg.setImageResource(personaje.getID());
+            animate(pjImg,personaje.getStaticAnim());
             this.turnosPJ=controlador.getTurnosPJ();
 
             this.vidaMaxPersonaje=controlador.getVidaPersonaje();
