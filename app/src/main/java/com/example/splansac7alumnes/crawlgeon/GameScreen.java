@@ -478,7 +478,12 @@ public class GameScreen extends AppCompatActivity {
      */
     public void winDialog(int puntuacion){
         Level nivel = controlador.getNivel(controlador.getNivelActual());
-        int expGanada = nivel.getXpBase() + (nivel.getXpPerStar() * (puntuacion - nivel.getPuntuacion()));
+        int expGanada;
+        if(puntuacion < nivel.getPuntuacion()){
+            expGanada = nivel.getXpBase();
+        }else {
+            expGanada = nivel.getXpBase() + (nivel.getXpPerStar() * (puntuacion - nivel.getPuntuacion()));
+        }
         String score = "";
         if(personaje.subeNivel(expGanada)){
             score = "LEVEL UP!";
