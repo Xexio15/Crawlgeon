@@ -26,12 +26,14 @@ public class OptionsWinDialog extends Dialog{
     private Controller controlador;
     private Context context;
     private int puntuacion;
-    public OptionsWinDialog(Context context, int themeResId, Controller controlador, int puntuacion){
+    private String score;
+    public OptionsWinDialog(Context context, int themeResId, Controller controlador, int puntuacion, String score){
 
         super(context, themeResId);
         this.context = context;
         this.controlador = controlador;
         this.puntuacion = puntuacion;
+        this.score = score;
     }
 
 
@@ -47,6 +49,9 @@ public class OptionsWinDialog extends Dialog{
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
 
         ((TextView) findViewById(R.id.textWin)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
+        TextView xp = ((TextView) findViewById(R.id.xp));
+        xp.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
+        xp.setText(score);
 
         ImageView star1 = (ImageView) findViewById(R.id.star1);
         ImageView star2 = (ImageView) findViewById(R.id.star2);

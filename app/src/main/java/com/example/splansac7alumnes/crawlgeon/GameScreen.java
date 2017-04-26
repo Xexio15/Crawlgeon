@@ -25,6 +25,7 @@ import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class GameScreen extends AppCompatActivity {
     private TilesArray tiles;
@@ -208,7 +209,6 @@ public class GameScreen extends AppCompatActivity {
                         iguales = true;
 
                         if (posicion == -1) {
-                            //text.setText("invalid");
                         } else {
                             actual = (int) (imatge.getTag());
                             seleccionarTile(posicion);
@@ -228,7 +228,6 @@ public class GameScreen extends AppCompatActivity {
                         else {
                             seleccionarTile(posicion);
                             actual = (int) ((ImageView) tablero.getItemAtPosition(posicion)).getTag();
-                            //text.setText(""+posicionAnterior+" "+posicion);
 
                             if (actual != anterior) {
                                 if(imatge != null) {
@@ -271,19 +270,13 @@ public class GameScreen extends AppCompatActivity {
                             if (iguales) {
                                 elemento = tile(imatge);
                                 if(elemento != null) {
-                                   // text.setText("BOOM" + elemento.getElement());
                                     realizarHechizo(seleccion, elemento);
                                     reordenarTablero();
                                     turnoActual++;
                                     realizarAtaqueEnemigo();
 
                                 }
-                            } else {
-                               // text.setText("NO NO...Diferentes");
                             }
-
-                        }else if (seleccion.size() < 3){
-                           // text.setText("Minimo 3");
                         }
                         seleccion = new ArrayList<>();
                         listaDeSelec = new ArrayList<>();
@@ -325,14 +318,14 @@ public class GameScreen extends AppCompatActivity {
                 controlador.restartFX();
                 controlador.playFX();
             }
-
+            float bonus = tile.getDamage()* ((float)0.1*personaje.getNivel());
             if(!(tile instanceof Health) && !(tile instanceof Shield)){
-                float daño = tile.getDamage() * seleccion.size();
+                float daño = (tile.getDamage() + bonus) * seleccion.size();
                 float vida = Float.parseFloat(vidaMonstruo.getText().toString());
                 vida = vida - daño;
 
                 if(vida > 0) {
-                    this.vidaMonstruo.setText("" + vida);
+                    this.vidaMonstruo.setText("" + String.format(Locale.US,"%.2f", vida));
                     actualizarBarra(barraVidaMonstruo, vida);
                 }else{
                     actualizarBarra(barraVidaMonstruo, 0);
@@ -344,11 +337,11 @@ public class GameScreen extends AppCompatActivity {
                         winDialog(3);
                         puntuarNivel(3);
                     }else if(vidapj >= vidaMaxPersonaje/2) {
-                        puntuarNivel(2);
                         winDialog(2);
+                        puntuarNivel(2);
                     }else{
-                        puntuarNivel(1);
                         winDialog(1);
+                        puntuarNivel(1);
                     }
                 }
             }else{
@@ -356,11 +349,11 @@ public class GameScreen extends AppCompatActivity {
                 if(tile instanceof Health){
                     float vida = Float.parseFloat(vidaPJ.getText().toString());
                     if(vida < vidaMaxPersonaje) {
-                        if(vida + tile.getDamage() * seleccion.size() > vidaMaxPersonaje){
-                            vidaPJ.setText(""+vidaMaxPersonaje);
+                        if((vida + (tile.getDamage() + bonus) * seleccion.size() ) > vidaMaxPersonaje){
+                            vidaPJ.setText(""+String.format(Locale.US,"%.2f", vidaMaxPersonaje));
                         }else {
-                            vida = vida + tile.getDamage() * seleccion.size();
-                            vidaPJ.setText("" + vida);
+                            vida = vida + ((tile.getDamage() + bonus) * seleccion.size());
+                            vidaPJ.setText("" + String.format(Locale.US,"%.2f", vida));
                         }
                     }
                 }else {
@@ -370,7 +363,7 @@ public class GameScreen extends AppCompatActivity {
                         armor.setText(barraArmor.getMax()+"");
                     }else{
                         barraArmor.setProgress(Math.round(armadura));
-                        armor.setText(armadura+"");
+                        armor.setText(String.format(Locale.US,"%.2f", armadura)+"");
                     }
                 }
             }
@@ -385,7 +378,7 @@ public class GameScreen extends AppCompatActivity {
                 armadura = armadura - dañoMonstruo;
                 if (armadura > 0) {
                     barraArmor.setProgress(Math.round(armadura));
-                    armor.setText(armadura+"");
+                    armor.setText(String.format(Locale.US,"%.2f", armadura)+"");
                 }else{
                     barraArmor.setProgress(Math.round(armadura));
                     armor.setText(0 + "");
@@ -393,7 +386,7 @@ public class GameScreen extends AppCompatActivity {
                 }
 
                 if(vida > 0) {
-                    this.vidaPJ.setText("" + vida);
+                    this.vidaPJ.setText("" + String.format(Locale.US,"%.2f", vida));
                     actualizarBarra(barraVidaPJ, vida);
                 }else{
                     actualizarBarra(barraVidaPJ, 0);
@@ -484,11 +477,20 @@ public class GameScreen extends AppCompatActivity {
      * Nos muestra el dialogo de ganar
      */
     public void winDialog(int puntuacion){
-        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion);
+        Level nivel = controlador.getNivel(controlador.getNivelActual());
+        int expGanada = nivel.getXpBase() + (nivel.getXpPerStar() * (puntuacion - nivel.getPuntuacion()));
+        String score = "";
+        if(personaje.subeNivel(expGanada)){
+            score = "LEVEL UP!";
+        }else{
+            score = expGanada+" XP!";
+        }
+        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion, score);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
         controlador.saveData();
         dialog.show();
+
     }
 
     public void loseDialog(){

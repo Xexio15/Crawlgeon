@@ -19,8 +19,9 @@ public class Level implements Serializable{
     private int turnosPJ;
     private int turnosEnemigo;
     private int puntuacion;
-
-    public Level(float[] probabilidadesIniciales, float[] probabilidades, Monster monstruo, boolean bloqueado, boolean isBoss, int numNivel, int numDungeon, int turnosPJ, int turnosEnemigo, int puntuacion) {
+    private int xpBase;
+    private int xpPerStar;
+    public Level(float[] probabilidadesIniciales, float[] probabilidades, Monster monstruo, boolean bloqueado, boolean isBoss, int numNivel, int numDungeon, int turnosPJ, int turnosEnemigo, int puntuacion, int xpBase) {
         this.probabilidadesIniciales = probabilidadesIniciales;
         this.probabilidades = probabilidades;
         this.monstruo = monstruo;
@@ -31,6 +32,8 @@ public class Level implements Serializable{
         this.turnosPJ = turnosPJ;
         this.turnosEnemigo = turnosEnemigo;
         this.puntuacion = puntuacion;
+        this.xpBase = xpBase;
+        this.xpPerStar = xpBase/2;
     }
 
 
@@ -90,5 +93,13 @@ public class Level implements Serializable{
 
     public void setPuntuacion(int puntuacion){
         this.puntuacion = puntuacion;
+    }
+
+    public int getXpBase(){
+        return xpBase;
+    }
+
+    public int getXpPerStar(){
+        return xpPerStar;
     }
 }
