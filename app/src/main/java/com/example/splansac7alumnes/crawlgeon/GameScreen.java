@@ -13,7 +13,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.GridLayoutAnimationController;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.view.KeyEvent;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -47,8 +46,8 @@ public class GameScreen extends AppCompatActivity {
     private int turnosPJ;
     private int turnosMonstruo;
     private int turnoActual = 0;
-    private int dañoMonstruo;
-    private int vidaMaxPersonaje;
+    private float dañoMonstruo;
+    private float vidaMaxPersonaje;
 
     protected Controller controlador;
     private TextView vidaPJ;
@@ -115,11 +114,11 @@ public class GameScreen extends AppCompatActivity {
             this.turnosPJ=controlador.getTurnosPJ();
 
             this.vidaMaxPersonaje=controlador.getVidaPersonaje();
-            this.barraArmor.setMax((vidaMaxPersonaje*20)/100);
+            this.barraArmor.setMax((Math.round(vidaMaxPersonaje)*20)/100);
             this.barraArmor.setProgress(0);
             this.armor.setText(""+0);
 
-            this.barraVidaPJ.setMax(vidaMaxPersonaje);
+            this.barraVidaPJ.setMax(Math.round(vidaMaxPersonaje));
             this.vidaPJ.setText("" + barraVidaPJ.getMax());
             this.barraVidaPJ.setProgress(barraVidaPJ.getMax());
         }
@@ -133,8 +132,8 @@ public class GameScreen extends AppCompatActivity {
             enemyImg= (ImageView) findViewById(R.id.imgEnemy);
             //enemyImg.setImageResource(monstruo.getID());
             animate(enemyImg, monstruo.getAnim());
-            this.barraVidaMonstruo.setMax(controlador.getVidaMonstruo());
-            this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax());
+            this.barraVidaMonstruo.setMax(Math.round(controlador.getVidaMonstruo()));
+            this.vidaMonstruo.setText("" + Math.round(this.barraVidaMonstruo.getMax()));
             this.barraVidaMonstruo.setProgress(barraVidaMonstruo.getMax());
             this.turnosMonstruo = controlador.getTurnosMonstruo();
             this.dañoMonstruo = controlador.getDañoMonstruo();
@@ -328,8 +327,8 @@ public class GameScreen extends AppCompatActivity {
             }
 
             if(!(tile instanceof Health) && !(tile instanceof Shield)){
-                int daño = tile.getDamage() * seleccion.size();
-                int vida = Integer.parseInt(vidaMonstruo.getText().toString());
+                float daño = tile.getDamage() * seleccion.size();
+                float vida = Float.parseFloat(vidaMonstruo.getText().toString());
                 vida = vida - daño;
 
                 if(vida > 0) {
@@ -339,7 +338,7 @@ public class GameScreen extends AppCompatActivity {
                     actualizarBarra(barraVidaMonstruo, 0);
                     this.vidaMonstruo.setText("DEAD");
                     this.enemigoMuerto = true;
-                    int vidapj = Integer.parseInt(vidaPJ.getText().toString());
+                    float vidapj = Float.parseFloat(vidaPJ.getText().toString());
                     controlador.desbloquearNivel();
                     if(vidapj == vidaMaxPersonaje){
                         winDialog(3);
@@ -355,7 +354,7 @@ public class GameScreen extends AppCompatActivity {
             }else{
 
                 if(tile instanceof Health){
-                    int vida = Integer.parseInt(vidaPJ.getText().toString());
+                    float vida = Float.parseFloat(vidaPJ.getText().toString());
                     if(vida < vidaMaxPersonaje) {
                         if(vida + tile.getDamage() * seleccion.size() > vidaMaxPersonaje){
                             vidaPJ.setText(""+vidaMaxPersonaje);
@@ -365,12 +364,12 @@ public class GameScreen extends AppCompatActivity {
                         }
                     }
                 }else {
-                    int armadura = barraArmor.getProgress() + (vidaMaxPersonaje / 100) * seleccion.size();
+                    float armadura = barraArmor.getProgress() + (vidaMaxPersonaje / 100) * seleccion.size();
                     if (armadura >= barraArmor.getMax()) {
                         barraArmor.setProgress(barraArmor.getMax());
                         armor.setText(barraArmor.getMax()+"");
                     }else{
-                        barraArmor.setProgress(armadura);
+                        barraArmor.setProgress(Math.round(armadura));
                         armor.setText(armadura+"");
                     }
                 }
@@ -381,14 +380,14 @@ public class GameScreen extends AppCompatActivity {
     public void realizarAtaqueEnemigo(){
         if (turnoActual==turnosPJ && !this.enemigoMuerto && !this.pjMuerto){
             for(int i = 0; i<turnosMonstruo; i++){
-                int vida = Integer.parseInt(vidaPJ.getText().toString());
-                int armadura = barraArmor.getProgress();
+                float vida = Float.parseFloat((vidaPJ.getText().toString()));
+                float armadura = barraArmor.getProgress();
                 armadura = armadura - dañoMonstruo;
                 if (armadura > 0) {
-                    barraArmor.setProgress(armadura);
+                    barraArmor.setProgress(Math.round(armadura));
                     armor.setText(armadura+"");
                 }else{
-                    barraArmor.setProgress(armadura);
+                    barraArmor.setProgress(Math.round(armadura));
                     armor.setText(0 + "");
                     vida = vida + armadura;
                 }
@@ -434,8 +433,8 @@ public class GameScreen extends AppCompatActivity {
     /**
      * Cambia el valor de la barra de vida pasada
      */
-    public void actualizarBarra(ProgressBar bar, int vida){
-        bar.setProgress(vida);
+    public void actualizarBarra(ProgressBar bar, float vida){
+        bar.setProgress(Math.round(vida));
     }
 
     /**

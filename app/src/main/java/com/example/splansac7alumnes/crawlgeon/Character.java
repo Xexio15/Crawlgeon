@@ -1,7 +1,5 @@
 package com.example.splansac7alumnes.crawlgeon;
 
-import android.widget.ImageView;
-
 import java.io.Serializable;
 
 /**
@@ -9,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class Character implements Serializable {
-    private int vida = 100;
+    private float vida = 100;
     private int daño;
     private int nivel;
     private int idSprite = R.drawable.heroe;
@@ -31,7 +29,7 @@ public class Character implements Serializable {
         return idSprite;
     }
 
-    public int getVida() {
+    public float getVida() {
         return vida;
     }
 
@@ -39,7 +37,7 @@ public class Character implements Serializable {
         return staticAnim;
     }
 
-    public void setVida(int vida) {
+    public void setVida(float vida) {
         this.vida = vida;
     }
 

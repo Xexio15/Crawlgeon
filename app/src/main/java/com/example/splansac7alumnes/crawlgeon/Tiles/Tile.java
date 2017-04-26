@@ -7,13 +7,13 @@ import android.widget.ImageView;
  */
 
 public class Tile {
-    private int damage;
+    private float damage;
 
     private ImageView imatge;
     private String element;
     private int drawable;
     private int fxID;
-    public Tile(int drawable, int damage, int fxID){
+    public Tile(int drawable, float damage, int fxID){
         this.drawable = drawable;
         this.damage = damage;
         this.fxID = fxID;
@@ -43,7 +43,7 @@ public class Tile {
         return drawable;
     }
 
-    public int getDamage(){
+    public float getDamage(){
         return damage;
     }
 

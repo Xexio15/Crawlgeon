@@ -2,7 +2,6 @@ package com.example.splansac7alumnes.crawlgeon;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.os.Environment;
 
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
@@ -11,13 +10,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 /**
  * Created by Sergio Plans on 21/04/2017.
@@ -329,11 +325,11 @@ public class Controller{
 
     public Level getActual(){ return data.getNiveles().get(nivelActual-1); }
 
-    public int getVidaMonstruo(){ return getActual().getVidaMonstruo(); }
+    public float getVidaMonstruo(){ return getActual().getVidaMonstruo(); }
 
-    public int getDañoMonstruo(){ return getActual().getDañoMonstruo(); }
+    public float getDañoMonstruo(){ return getActual().getDañoMonstruo(); }
 
-    public int getVidaPersonaje(){ return getPersonaje().getVida(); }
+    public float getVidaPersonaje(){ return getPersonaje().getVida(); }
 
     /**
      * Devuelve el nivel a partir de el indice pasado por parametro

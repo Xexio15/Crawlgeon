@@ -3,7 +3,6 @@ package com.example.splansac7alumnes.crawlgeon;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by Sergio Plans on 22/04/2017.
@@ -85,9 +84,9 @@ public class Level implements Serializable{
 
     public int getTurnosMonstruo(){ return turnosEnemigo; };
 
-    public int getVidaMonstruo(){ return monstruo.getVida(); }
+    public float getVidaMonstruo(){ return monstruo.getVida(); }
 
-    public int getDañoMonstruo(){ return monstruo.getDaño(); }
+    public float getDañoMonstruo(){ return monstruo.getDaño(); }
 
     public void setPuntuacion(int puntuacion){
         this.puntuacion = puntuacion;

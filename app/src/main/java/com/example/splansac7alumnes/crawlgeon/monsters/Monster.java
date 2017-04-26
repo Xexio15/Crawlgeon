@@ -1,10 +1,5 @@
 package com.example.splansac7alumnes.crawlgeon.monsters;
 
-import android.content.Context;
-import android.widget.ImageView;
-
-import com.example.splansac7alumnes.crawlgeon.R;
-
 import java.io.Serializable;
 
 /**
@@ -12,20 +7,20 @@ import java.io.Serializable;
  */
 
 public class Monster implements Serializable {
-    private int vida;
-    private int daño;
+    private float vida;
+    private float daño;
     private int id;
     private int anim;
-    public Monster(int vida, int daño, int id, int anim){
+    public Monster(float vida, float daño, int id, int anim){
         this.vida = vida;
         this.daño = daño;
         this.id = id;
         this.anim = anim;
     }
 
-    public int getVida(){ return vida; }
+    public float getVida(){ return vida; }
 
-    public int getDaño() {
+    public float getDaño() {
         return daño;
     }
 
