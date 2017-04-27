@@ -14,6 +14,8 @@ public class Character implements Serializable {
     private int xpNecesaria;
     private int idSprite = R.drawable.heroe;
     private int staticAnim = R.drawable.staticpjanim;
+    private float bonusAtaque = 0; //+0%
+
 
     public Character (){
         xpActual = 0;
@@ -63,12 +65,11 @@ public class Character implements Serializable {
      * Si sube de nivel, lo sube i retorna true sino retorna false i no lo sube
      * @return
      */
-    public boolean subeNivel(int xpGanada){
+    public boolean subirEXP(int xpGanada){
         xpActual = xpActual + xpGanada;
         if(xpActual >= xpNecesaria){
-            nivel++;
+            subirNivel();
             if(xpActual > xpNecesaria){
-
                 int xp = xpActual - xpNecesaria;
                 xpActual = xp;
             }else {
@@ -79,8 +80,21 @@ public class Character implements Serializable {
         }else{
             return false;
         }
+
+
+    }
+    public void subirNivel(){
+        nivel = nivel+1;
+        bonusAtaque = (float)0.1*nivel;
+        vida = Math.round((float)1.26*vida);
+        if(nivel==3){
+            vida = Math.round((float)1.26*5*vida);
+        }
     }
 
+    public float getBonusTile(){
+        return bonusAtaque;
+    }
 
 
 
