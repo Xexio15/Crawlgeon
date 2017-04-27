@@ -51,6 +51,8 @@ public class Controller{
      */
     public void deleteData(){
         this.data = new Data();
+        changeMusicVolume(100);
+        changeFXVolume(100);
     }
 
     /**
