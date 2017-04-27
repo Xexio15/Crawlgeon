@@ -347,6 +347,6 @@ public class Controller{
         for(int j = 1; j <= 10; j++){
             if(!isBloqueado(j)) i++;
         }
-        return i;
+        return i-1;
     }
 }
