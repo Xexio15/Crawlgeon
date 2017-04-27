@@ -49,6 +49,7 @@ public class GameScreen extends AppCompatActivity {
     private int turnoActual = 0;
     private float dañoMonstruo;
     private float vidaMaxPersonaje;
+    private float armaduraMaxPersonaje;
 
     protected Controller controlador;
     private TextView vidaPJ;
@@ -106,7 +107,7 @@ public class GameScreen extends AppCompatActivity {
         if(personaje == null){
             this.barraVidaPJ.setMax(100);
             this.vidaPJ.setText("" + barraVidaPJ.getMax());
-            this.barraVidaPJ.setProgress(barraVidaPJ.getMax());
+            actualizarBarra(this.barraVidaPJ,barraVidaPJ.getMax());
             this.turnosPJ=1;
         }else {
             pjImg= (ImageView) findViewById(R.id.pjImg);
@@ -115,18 +116,19 @@ public class GameScreen extends AppCompatActivity {
             this.turnosPJ=controlador.getTurnosPJ();
 
             this.vidaMaxPersonaje=controlador.getVidaPersonaje();
-            this.barraArmor.setMax((Math.round(vidaMaxPersonaje)*20)/100);
-            this.barraArmor.setProgress(0);
+            this.armaduraMaxPersonaje=(Math.round(vidaMaxPersonaje)*20)/100;
+            this.barraArmor.setMax(Math.round(armaduraMaxPersonaje));
+            actualizarBarra(barraArmor,0);
             this.armor.setText(""+0);
 
             this.barraVidaPJ.setMax(Math.round(vidaMaxPersonaje));
-            this.vidaPJ.setText("" + barraVidaPJ.getMax());
-            this.barraVidaPJ.setProgress(barraVidaPJ.getMax());
+            this.vidaPJ.setText("" + String.format(Locale.US,"%.2f", vidaMaxPersonaje));
+            actualizarBarra(this.barraVidaPJ,barraVidaPJ.getMax());
         }
         if(monstruo == null){
             this.barraVidaMonstruo.setMax(50);
             this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax());
-            this.barraVidaMonstruo.setProgress(barraVidaMonstruo.getMax());
+            actualizarBarra(this.barraVidaMonstruo,barraVidaMonstruo.getMax());
             this.turnosMonstruo = 1;
             this.dañoMonstruo = 5;
         }else {
@@ -135,7 +137,7 @@ public class GameScreen extends AppCompatActivity {
             animate(enemyImg, monstruo.getAnim());
             this.barraVidaMonstruo.setMax(Math.round(controlador.getVidaMonstruo()));
             this.vidaMonstruo.setText("" + Math.round(this.barraVidaMonstruo.getMax()));
-            this.barraVidaMonstruo.setProgress(barraVidaMonstruo.getMax());
+            actualizarBarra(this.barraVidaMonstruo,barraVidaMonstruo.getMax());
             this.turnosMonstruo = controlador.getTurnosMonstruo();
             this.dañoMonstruo = controlador.getDañoMonstruo();
         }
@@ -180,7 +182,7 @@ public class GameScreen extends AppCompatActivity {
     }
 
     /**
-     * Metodo que rellena la GridView i contiene los events de movimientos del dedo
+     *  Metodo que contiene los events de movimientos del dedo
      */
     public void fillGrid(){
         tablero = (GridView) findViewById(R.id.tablero);
@@ -214,7 +216,6 @@ public class GameScreen extends AppCompatActivity {
                             seleccionarTile(posicion);
                             listaDeSelec.add(posicion);
                         }
-
                         return true;
                     }
 
@@ -318,10 +319,10 @@ public class GameScreen extends AppCompatActivity {
                 controlador.restartFX();
                 controlador.playFX();
             }
-            float bonus = tile.getDamage()* ((float)0.1*personaje.getNivel());
+
             if(!(tile instanceof Health) && !(tile instanceof Shield)){
-                float daño = (tile.getDamage() + bonus) * seleccion.size();
-                float vida = Float.parseFloat(vidaMonstruo.getText().toString());
+                float daño = (tileDamage(tile) * seleccion.size());
+                float vida = vidaMonstruo();
                 vida = vida - daño;
 
                 if(vida > 0) {
@@ -331,7 +332,7 @@ public class GameScreen extends AppCompatActivity {
                     actualizarBarra(barraVidaMonstruo, 0);
                     this.vidaMonstruo.setText("DEAD");
                     this.enemigoMuerto = true;
-                    float vidapj = Float.parseFloat(vidaPJ.getText().toString());
+                    float vidapj = vidaPJ();
                     controlador.desbloquearNivel();
                     if(vidapj == vidaMaxPersonaje){
                         winDialog(3);
@@ -347,40 +348,39 @@ public class GameScreen extends AppCompatActivity {
             }else{
 
                 if(tile instanceof Health){
-                    float vida = Float.parseFloat(vidaPJ.getText().toString());
-                    if(vida < vidaMaxPersonaje) {
-                        if((vida + (tile.getDamage() + bonus) * seleccion.size() ) > vidaMaxPersonaje){
+                    float vida = vidaPJ() + tileSupport(tile) * seleccion.size();
+                    if(vida >= vidaMaxPersonaje){
                             vidaPJ.setText(""+String.format(Locale.US,"%.2f", vidaMaxPersonaje));
-                        }else {
-                            vida = vida + ((tile.getDamage() + bonus) * seleccion.size());
-                            vidaPJ.setText("" + String.format(Locale.US,"%.2f", vida));
-                        }
+                            vida = vidaMaxPersonaje;
+                    }else {
+                        vidaPJ.setText("" + String.format(Locale.US,"%.2f", vida));
                     }
+                    actualizarBarra(barraVidaPJ,vida);
                 }else {
-                    float armadura = barraArmor.getProgress() + (vidaMaxPersonaje / 100) * seleccion.size();
-                    if (armadura >= barraArmor.getMax()) {
-                        barraArmor.setProgress(barraArmor.getMax());
-                        armor.setText(barraArmor.getMax()+"");
+                    float armadura = armaduraPJ() + tileSupport(tile) * seleccion.size();
+                    if (armadura >= armaduraMaxPersonaje) {
+                        armadura=armaduraMaxPersonaje;
+                        armor.setText(armaduraMaxPersonaje+"");
                     }else{
-                        barraArmor.setProgress(Math.round(armadura));
                         armor.setText(String.format(Locale.US,"%.2f", armadura)+"");
                     }
+                    actualizarBarra(barraArmor,Math.round(armadura));
                 }
             }
-
         }
 
     public void realizarAtaqueEnemigo(){
         if (turnoActual==turnosPJ && !this.enemigoMuerto && !this.pjMuerto){
             for(int i = 0; i<turnosMonstruo; i++){
-                float vida = Float.parseFloat((vidaPJ.getText().toString()));
-                float armadura = barraArmor.getProgress();
+                float vida = vidaPJ();
+
+                float armadura = armaduraPJ();
                 armadura = armadura - dañoMonstruo;
                 if (armadura > 0) {
-                    barraArmor.setProgress(Math.round(armadura));
+                    actualizarBarra(barraArmor,Math.round(armadura));
                     armor.setText(String.format(Locale.US,"%.2f", armadura)+"");
                 }else{
-                    barraArmor.setProgress(Math.round(armadura));
+                    actualizarBarra(barraArmor,Math.round(armadura));
                     armor.setText(0 + "");
                     vida = vida + armadura;
                 }
@@ -480,7 +480,7 @@ public class GameScreen extends AppCompatActivity {
         Level nivel = controlador.getNivel(controlador.getNivelActual());
         int expGanada = nivel.getXpBase() + (nivel.getXpPerStar() * (puntuacion - nivel.getPuntuacion()));
         String score = "";
-        if(personaje.subeNivel(expGanada)){
+        if(personaje.subirEXP(expGanada)){
             score = "LEVEL UP!";
         }else{
             score = expGanada+" XP!";
@@ -527,6 +527,29 @@ public class GameScreen extends AppCompatActivity {
         }
     }
 
+    public float vidaPJ(){
+        return Float.parseFloat(vidaPJ.getText().toString());
+    }
+
+    public float vidaMonstruo(){
+        return Float.parseFloat(vidaMonstruo.getText().toString());
+    }
+
+    public float armaduraPJ(){
+        return Float.parseFloat(armor.getText().toString());
+    }
+
+    public float tileDamage(Tile tile){
+        float tileDamage = tile.getDamage();
+        tileDamage = tileDamage + tileDamage*personaje.getBonusTile();
+        return tileDamage;
+    }
+
+    public float tileSupport(Tile tile){
+        float tileDamage = tile.getDamage();
+        tileDamage = (vidaMaxPersonaje/100)*tileDamage;
+        return tileDamage;
+    }
 
 }
 

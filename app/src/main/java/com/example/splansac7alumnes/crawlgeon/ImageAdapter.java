@@ -132,7 +132,7 @@ public class ImageAdapter extends BaseAdapter {
     /**
      * Elimina los items del array i mueve las tiles necesarias
      */
-    void realizarHechizo(ArrayList<Integer> seleccion){//En proceso
+    void realizarHechizo(ArrayList<Integer> seleccion){
         this.removeItems(seleccion);
 
         for (int x = 42; x <= 48; x++) {
