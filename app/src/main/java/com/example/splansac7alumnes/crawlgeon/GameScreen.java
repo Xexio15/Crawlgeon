@@ -79,6 +79,7 @@ public class GameScreen extends AppCompatActivity {
         }
 
         //Inicializamos
+
         this.monstruo = controlador.getMonstruoNivelActual();
         this.personaje = controlador.getPersonaje();
         this.nivel = controlador.getActual();
@@ -88,6 +89,9 @@ public class GameScreen extends AppCompatActivity {
         this.vidaPJ = (TextView) findViewById(R.id.vidaPJ);
         this.vidaMonstruo = (TextView) findViewById(R.id.vidaEnemigo);
         this.armor  = (TextView) findViewById(R.id.armorPJ);
+        TextView lvl = ((TextView)findViewById(R.id.lvl));
+        lvl.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/PixelFont.ttf"));
+        lvl.setText("LvL "+ personaje.getNivel());
         this.armor.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.vidaMonstruo.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
         this.vidaPJ.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
@@ -104,43 +108,32 @@ public class GameScreen extends AppCompatActivity {
         }
         controlador.playMusica();
 
-        if(personaje == null){
-            this.barraVidaPJ.setMax(100);
-            this.vidaPJ.setText("" + barraVidaPJ.getMax());
-            actualizarBarra(this.barraVidaPJ,barraVidaPJ.getMax());
-            this.turnosPJ=1;
-        }else {
-            pjImg= (ImageView) findViewById(R.id.pjImg);
-            //pjImg.setImageResource(personaje.getID());
-            animate(pjImg,personaje.getStaticAnim());
-            this.turnosPJ=controlador.getTurnosPJ();
 
-            this.vidaMaxPersonaje=controlador.getVidaPersonaje();
-            this.armaduraMaxPersonaje=(Math.round(vidaMaxPersonaje)*20)/100;
-            this.barraArmor.setMax(Math.round(armaduraMaxPersonaje));
-            actualizarBarra(barraArmor,0);
-            this.armor.setText(""+0);
+        pjImg= (ImageView) findViewById(R.id.pjImg);
+        //pjImg.setImageResource(personaje.getID());
+        animate(pjImg,personaje.getStaticAnim());
+        this.turnosPJ=controlador.getTurnosPJ();
 
-            this.barraVidaPJ.setMax(Math.round(vidaMaxPersonaje));
-            this.vidaPJ.setText("" + String.format(Locale.US,"%.2f", vidaMaxPersonaje));
-            actualizarBarra(this.barraVidaPJ,barraVidaPJ.getMax());
-        }
-        if(monstruo == null){
-            this.barraVidaMonstruo.setMax(50);
-            this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax());
-            actualizarBarra(this.barraVidaMonstruo,barraVidaMonstruo.getMax());
-            this.turnosMonstruo = 1;
-            this.dañoMonstruo = 5;
-        }else {
-            enemyImg= (ImageView) findViewById(R.id.imgEnemy);
-            //enemyImg.setImageResource(monstruo.getID());
-            animate(enemyImg, monstruo.getAnim());
-            this.barraVidaMonstruo.setMax(Math.round(controlador.getVidaMonstruo()));
-            this.vidaMonstruo.setText("" + Math.round(this.barraVidaMonstruo.getMax()));
-            actualizarBarra(this.barraVidaMonstruo,barraVidaMonstruo.getMax());
-            this.turnosMonstruo = controlador.getTurnosMonstruo();
-            this.dañoMonstruo = controlador.getDañoMonstruo();
-        }
+        this.vidaMaxPersonaje=controlador.getVidaPersonaje();
+        this.armaduraMaxPersonaje=(Math.round(vidaMaxPersonaje)*20)/100;
+        this.barraArmor.setMax(Math.round(armaduraMaxPersonaje));
+        actualizarBarra(barraArmor,0);
+        this.armor.setText(""+0+".00");
+
+        this.barraVidaPJ.setMax(Math.round(vidaMaxPersonaje));
+        this.vidaPJ.setText("" + String.format(Locale.US,"%.2f", vidaMaxPersonaje));
+        actualizarBarra(this.barraVidaPJ,barraVidaPJ.getMax());
+
+
+        enemyImg= (ImageView) findViewById(R.id.imgEnemy);
+        //enemyImg.setImageResource(monstruo.getID());
+        animate(enemyImg, monstruo.getAnim());
+        this.barraVidaMonstruo.setMax(Math.round(controlador.getVidaMonstruo()));
+        this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax() + ".00");
+        actualizarBarra(this.barraVidaMonstruo,barraVidaMonstruo.getMax());
+        this.turnosMonstruo = controlador.getTurnosMonstruo();
+        this.dañoMonstruo = controlador.getDañoMonstruo();
+
 
         fillGrid();//Llenamos la Grid cuando se inicia la activity
 
