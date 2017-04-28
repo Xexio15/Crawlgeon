@@ -107,7 +107,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.43" />
+            app:layout_constraintVertical_bias="0.43"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/textoBarraEXP"
@@ -126,11 +128,13 @@
             android:textAlignment="center"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="@+id/buttonLevelMenu"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="@+id/barraEXP"
             app:layout_constraintRight_toRightOf="@+id/barraEXP"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.453" />
+            app:layout_constraintVertical_bias="0.45"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/xp"
@@ -144,7 +148,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.434" />
+            app:layout_constraintVertical_bias="0.43" />
 
     </android.support.constraint.ConstraintLayout>
 
