@@ -14,6 +14,7 @@ public class Character implements Serializable {
     private int xpNecesaria;
     private int idSprite = R.drawable.heroe;
     private int staticAnim = R.drawable.staticpjanim;
+    private int electricAnim = R.drawable.electricanim;
     private float bonusAtaque = 0; //+0%
 
 
@@ -43,6 +44,10 @@ public class Character implements Serializable {
         return staticAnim;
     }
 
+    public int getElectricAnim(){
+        return electricAnim;
+    }
+
     public void setVida(float vida) {
         this.vida = vida;
     }
@@ -57,6 +62,10 @@ public class Character implements Serializable {
 
     public void setStaticAnim(int anim){
         this.staticAnim = anim;
+    }
+
+    public void setElectricAnim(int anim){
+        this.electricAnim = anim;
     }
 
 

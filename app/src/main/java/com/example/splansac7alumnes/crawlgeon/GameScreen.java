@@ -26,6 +26,8 @@ import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameScreen extends AppCompatActivity {
     private TilesArray tiles;
@@ -65,6 +67,10 @@ public class GameScreen extends AppCompatActivity {
     private Level nivel;
     private boolean enemigoMuerto;
     private boolean pjMuerto;
+    private AnimationDrawable staticAnim;
+    private AnimationDrawable electricAnim;
+    private AnimationDrawable staticMonster;
+    private AnimationDrawable monsterAttack;
 
 
     @Override
@@ -111,7 +117,12 @@ public class GameScreen extends AppCompatActivity {
 
         pjImg= (ImageView) findViewById(R.id.pjImg);
         //pjImg.setImageResource(personaje.getID());
-        animate(pjImg,personaje.getStaticAnim());
+        /*
+        pjImg.setBackgroundResource(personaje.getStaticAnim());
+        staticAnim = (AnimationDrawable) pjImg.getBackground();
+        staticAnim.start();
+        */
+        staticAnim = animate(pjImg,personaje.getStaticAnim());
         this.turnosPJ=controlador.getTurnosPJ();
 
         this.vidaMaxPersonaje=controlador.getVidaPersonaje();
@@ -127,7 +138,7 @@ public class GameScreen extends AppCompatActivity {
 
         enemyImg= (ImageView) findViewById(R.id.imgEnemy);
         //enemyImg.setImageResource(monstruo.getID());
-        animate(enemyImg, monstruo.getAnim());
+        staticMonster = animate(enemyImg, monstruo.getStaticAnim());
         this.barraVidaMonstruo.setMax(Math.round(controlador.getVidaMonstruo()));
         this.vidaMonstruo.setText("" + this.barraVidaMonstruo.getMax() + ".00");
         actualizarBarra(this.barraVidaMonstruo,barraVidaMonstruo.getMax());
@@ -312,7 +323,7 @@ public class GameScreen extends AppCompatActivity {
                 controlador.restartFX();
                 controlador.playFX();
             }
-
+            realizarAnimacionHechizo(tile);
             if(!(tile instanceof Health) && !(tile instanceof Shield)){
                 float daño = (tileDamage(tile) * seleccion.size());
                 float vida = vidaMonstruo();
@@ -360,10 +371,12 @@ public class GameScreen extends AppCompatActivity {
                     actualizarBarra(barraArmor,Math.round(armadura));
                 }
             }
+
         }
 
     public void realizarAtaqueEnemigo(){
         if (turnoActual==turnosPJ && !this.enemigoMuerto && !this.pjMuerto){
+            ataqueEnemigoAnim();
             for(int i = 0; i<turnosMonstruo; i++){
                 float vida = vidaPJ();
                 float armadura = armaduraPJ();
@@ -514,14 +527,72 @@ public class GameScreen extends AppCompatActivity {
     }
 
 
-    public void animate(ImageView im, int imSequence){
+    public AnimationDrawable animate(ImageView im, int imSequence){
         if(imSequence != 0) {
             im.setBackgroundResource(imSequence);
             AnimationDrawable anim = (AnimationDrawable) im.getBackground();
             anim.start();
+            return anim;
         }else{
             im.setImageResource(monstruo.getID());
+            return null;
         }
+    }
+
+    public void realizarAnimacionHechizo(Tile tile){
+        staticAnim.stop();
+        pjImg.setBackgroundResource(personaje.getElectricAnim());
+        electricAnim = (AnimationDrawable) pjImg.getBackground();
+        animacionAtaque(pjImg,electricAnim);
+        /*
+        if(tile.getElement().equals("Basic")){
+
+        }else if(tile.getElement().equals("Shield")){
+
+        }else if(tile.getElement().equals("Health")){
+
+        }else if(tile.getElement().equals("Fire")){
+
+        }else if(tile.getElement().equals("Ice")){
+
+        }else if(tile.getElement().equals("Lighting")){
+
+        }else if(tile.getElement().equals("Arcane")){
+
+        }*/
+    }
+
+    public void animacionAtaque(ImageView im, final AnimationDrawable anim){
+        im.post(new Runnable() {
+            @Override
+            public void run() {
+                anim.start();
+            }
+        });
+        Timer time = new Timer();
+        int sec = calcularSegundosAnimacion(anim);
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                anim.stop();
+            }
+        };
+        time.schedule(timerTask,(long) sec);
+    }
+
+    public int calcularSegundosAnimacion(AnimationDrawable anim){
+        int secSum = 0;
+        for (int i= 0; i < electricAnim.getNumberOfFrames();i++){
+            secSum += electricAnim.getDuration(i);
+        }
+        return secSum;
+    }
+
+    public void ataqueEnemigoAnim(){
+        staticMonster.stop();
+        enemyImg.setBackgroundResource(monstruo.getAttackAnim());
+        monsterAttack = (AnimationDrawable) enemyImg.getBackground();
+        animacionAtaque(enemyImg,monsterAttack);
     }
 
     public float vidaPJ(){
