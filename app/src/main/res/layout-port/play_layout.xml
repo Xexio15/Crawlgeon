@@ -89,14 +89,14 @@
             android:id="@+id/armorPJ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_alignLeft="@id/barraArmorPJ"
-            android:layout_alignTop="@id/barraArmorPJ"
-            android:layout_alignRight="@id/barraArmorPJ"
             android:layout_alignBottom="@id/barraArmorPJ"
-            android:textAlignment="center" />
+            android:layout_alignLeft="@id/barraArmorPJ"
+            android:layout_alignRight="@id/barraArmorPJ"
+            android:layout_alignTop="@id/barraArmorPJ"
+            android:text="100"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/vidaEnemigo"

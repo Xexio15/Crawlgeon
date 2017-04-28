@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 /**
@@ -27,13 +28,17 @@ public class OptionsWinDialog extends Dialog{
     private Context context;
     private int puntuacion;
     private String score;
-    public OptionsWinDialog(Context context, int themeResId, Controller controlador, int puntuacion, String score){
+    private int expNecesaria;
+    private int expActual;
+    public OptionsWinDialog(Context context, int themeResId, Controller controlador, int puntuacion, String score, int expActual, int expNecesaria){
 
         super(context, themeResId);
         this.context = context;
         this.controlador = controlador;
         this.puntuacion = puntuacion;
         this.score = score;
+        this.expActual = expActual;
+        this.expNecesaria = expNecesaria;
     }
 
 
@@ -70,6 +75,13 @@ public class OptionsWinDialog extends Dialog{
             star2.setImageResource(R.drawable.emptystar);
             star3.setImageResource(R.drawable.emptystar);
         }
+
+        ProgressBar barraEXP = (ProgressBar)findViewById(R.id.barraEXP);
+        barraEXP.setMax(expNecesaria);
+        barraEXP.setProgress(expActual);
+        TextView textoBarra = ((TextView)findViewById(R.id.textoBarraEXP));
+        textoBarra.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));//Canviem la font del text
+        textoBarra.setText(expActual + " / " + expNecesaria);
 
         /**
          * Boto Next Level que obre la activity del següent nivell

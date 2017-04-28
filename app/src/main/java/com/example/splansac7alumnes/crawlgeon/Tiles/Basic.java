@@ -12,7 +12,7 @@ import com.example.splansac7alumnes.crawlgeon.R;
 public class Basic extends Tile{
 
     public Basic(Context context){
-        super(R.drawable.ataque_basico_2,1,R.raw.basic);
+        super(R.drawable.ataque_basico_2,1000,R.raw.basic);
         if(context == null){
             System.out.print("es nulo");
         }

@@ -68,14 +68,16 @@ public class Character implements Serializable {
     public boolean subirEXP(int xpGanada){
         xpActual = xpActual + xpGanada;
         if(xpActual >= xpNecesaria){
-            subirNivel();
-            if(xpActual > xpNecesaria){
-                int xp = xpActual - xpNecesaria;
-                xpActual = xp;
-            }else {
-                xpActual = 0;
+            while(xpActual>=xpNecesaria) {
+                subirNivel();
+                if (xpActual > xpNecesaria) {
+                    int xp = xpActual - xpNecesaria;
+                    xpActual = xp;
+                } else {
+                    xpActual = 0;
+                }
+                xpNecesaria = Math.round(xpNecesaria * ((float) 1.25));
             }
-            xpNecesaria = Math.round(xpNecesaria * ((float) 1.25));
             return true;
         }else{
             return false;
@@ -96,7 +98,8 @@ public class Character implements Serializable {
         return bonusAtaque;
     }
 
+    public int getXpNecesaria() { return xpNecesaria; }
 
-
+    public int getXpActual() { return xpActual; }
 
 }

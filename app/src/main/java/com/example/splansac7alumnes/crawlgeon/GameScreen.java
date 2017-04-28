@@ -334,7 +334,7 @@ public class GameScreen extends AppCompatActivity {
                     this.enemigoMuerto = true;
                     float vidapj = vidaPJ();
                     controlador.desbloquearNivel();
-                    if(vidapj == vidaMaxPersonaje){
+                    if(vidapj >= vidaMaxPersonaje/100*80){
                         winDialog(3);
                         puntuarNivel(3);
                     }else if(vidapj >= vidaMaxPersonaje/2) {
@@ -373,7 +373,6 @@ public class GameScreen extends AppCompatActivity {
         if (turnoActual==turnosPJ && !this.enemigoMuerto && !this.pjMuerto){
             for(int i = 0; i<turnosMonstruo; i++){
                 float vida = vidaPJ();
-
                 float armadura = armaduraPJ();
                 armadura = armadura - dañoMonstruo;
                 if (armadura > 0) {
@@ -486,11 +485,11 @@ public class GameScreen extends AppCompatActivity {
         }
         String score = "";
         if(personaje.subirEXP(expGanada)){
-            score = "LEVEL UP!";
+            score = "UP!  ";
         }else{
             score = expGanada+" XP!";
         }
-        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion, score);
+        OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion, score, personaje.getXpActual(), personaje.getXpNecesaria());
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
         controlador.saveData();
