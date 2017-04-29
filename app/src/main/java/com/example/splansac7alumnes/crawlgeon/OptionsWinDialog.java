@@ -53,10 +53,13 @@ public class OptionsWinDialog extends Dialog{
         // la imatge a tota la pantalla, proba a canviar per MATCH_PARENT i veus que es posa a pantalla completa
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
 
-        ((TextView) findViewById(R.id.textWin)).setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
+        TextView lvlComp = ((TextView) findViewById(R.id.textWin));
+        lvlComp.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
         TextView xp = ((TextView) findViewById(R.id.xp));
         xp.setTypeface(Typeface.createFromAsset(context.getAssets(),"fonts/PixelFont.ttf"));
         xp.setText(score);
+
+
 
         ImageView star1 = (ImageView) findViewById(R.id.star1);
         ImageView star2 = (ImageView) findViewById(R.id.star2);
@@ -87,6 +90,11 @@ public class OptionsWinDialog extends Dialog{
          * Boto Next Level que obre la activity del següent nivell
          */
         Button next_lvl = (Button) findViewById(R.id.buttonNext);
+        if(controlador.isActualBoss()){
+            next_lvl.setEnabled(false);
+            next_lvl.setAlpha(0);
+            lvlComp.setText("BOSS DEFEATED");
+        }
         next_lvl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
