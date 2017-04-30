@@ -199,13 +199,13 @@ public class Controller{
     }
 
     public void playButtonSound(Context ctx){
-        this.initFX(ctx, R.raw.clicksound);
+        this.initFX(ctx, R.raw.buttonsound);
         this.restartFX();
         this.playFX();
     }
 
     public void playBackButtonSound(Context ctx){
-        this.initFX(ctx, R.raw.clickbacksound);
+        this.initFX(ctx, R.raw.buttonbacksound);
         this.restartFX();
         this.playFX();
     }
