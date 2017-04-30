@@ -14,8 +14,6 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-
 /**
  * Created by crreinal19.alumnes on 24/03/17.
  */
@@ -57,6 +55,7 @@ public class OptionsGameDialog extends Dialog{
 
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(context);
                 dismiss();
             }
         });
@@ -68,6 +67,7 @@ public class OptionsGameDialog extends Dialog{
         leave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(context);
                 controlador.stopMusica();
                 Intent levelSelection = new Intent(OptionsGameDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen

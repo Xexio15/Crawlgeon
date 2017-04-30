@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -99,7 +97,7 @@ public class OptionsWinDialog extends Dialog{
             @Override
             public void onClick(View v) {
                 if(!controlador.isActualBoss()) {
-
+                    controlador.playButtonSound(context);
 
                     int nivelActual = controlador.getNivelActual();
 
@@ -135,6 +133,7 @@ public class OptionsWinDialog extends Dialog{
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(context);
                 controlador.stopMusica();
                 Intent levelSelection = new Intent(OptionsWinDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen

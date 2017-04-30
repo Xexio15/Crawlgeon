@@ -3,12 +3,9 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -55,6 +52,7 @@ public class OptionsLostDialog extends Dialog {
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(context);
                 controlador.restartMusica();
                 Intent gameScreen = new Intent(OptionsLostDialog.super.getOwnerActivity(),GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
                 ((Activity)context).finish();//Finalitzem GameScreen
@@ -71,6 +69,7 @@ public class OptionsLostDialog extends Dialog {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(context);
                 controlador.stopMusica();
                 Intent levelSelection = new Intent(OptionsLostDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen

@@ -10,8 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import java.util.ResourceBundle;
-
 public class Equip extends AppCompatActivity {
     private Controller controlador;
     @Override
@@ -33,6 +31,7 @@ public class Equip extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent toDungSel = new Intent(Equip.this, DungeonSelection.class);
+                controlador.playBackButtonSound(Equip.this);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 startActivity(toDungSel);
@@ -49,6 +48,7 @@ public class Equip extends AppCompatActivity {
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
                 Dialog dialog = new OptionsDialog(Equip.this,R.style.Crawl, controlador);
+                controlador.playButtonSound(Equip.this);
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(Equip.this);
                 //El mostrem

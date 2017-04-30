@@ -3,25 +3,15 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;//Recordar que el import debe ser V4
-import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by Sergio Plans on 10/03/2017.
@@ -64,6 +54,7 @@ public class OptionsDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+                controlador.playButtonSound(context);
                 Intent toAbout = new Intent(OptionsDialog.super.getOwnerActivity(),About.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
                 OptionsDialog.super.getOwnerActivity().startActivity(toAbout);
             }

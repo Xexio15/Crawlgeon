@@ -4,13 +4,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
-import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,7 +16,7 @@ import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity {
     private boolean shouldPlay;
-    Controller controlador;
+    private Controller controlador;
 
     /**
      * Modificamos onStop para evitar que pare la musica
@@ -57,8 +54,6 @@ public class MainMenu extends AppCompatActivity {
             controlador.playMusica();
         }
 
-
-
         /**
         * Aquest boto ens canviara de la pantalla d'inici a la pantalla de seleccio de dungeon
         */
@@ -71,7 +66,7 @@ public class MainMenu extends AppCompatActivity {
                 Intent menu_To_Sel = new Intent(MainMenu.this, DungeonSelection.class);
                 //Finalitzem el menu
                 //finish();
-
+                controlador.playButtonSound(MainMenu.this);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right); //ANIMACIO SLIDE
                 //Iniciem la activity
@@ -90,6 +85,7 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
                 Dialog dialog = new OptionsDialog(MainMenu.this,R.style.Crawl, controlador);//Passem el context actual, passem el tema que volem
+                controlador.playButtonSound(MainMenu.this);
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(MainMenu.this);
                 //El mostrem

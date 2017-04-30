@@ -198,6 +198,18 @@ public class Controller{
         return data.getVolumenFX();
     }
 
+    public void playButtonSound(Context ctx){
+        this.initFX(ctx, R.raw.clicksound);
+        this.restartFX();
+        this.playFX();
+    }
+
+    public void playBackButtonSound(Context ctx){
+        this.initFX(ctx, R.raw.clickbacksound);
+        this.restartFX();
+        this.playFX();
+    }
+
     /**
      * Guarda datos
      */

@@ -4,8 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
-import android.os.PowerManager;
-import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,9 +15,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class DungeonSelection extends AppCompatActivity {
     private Controller controlador;
@@ -89,6 +84,7 @@ public class DungeonSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Intent toMenu = new Intent(DungeonSelection.this, MainMenu.class);
+                controlador.playBackButtonSound(DungeonSelection.this);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 //startActivity(toMenu);
@@ -136,6 +132,7 @@ public class DungeonSelection extends AppCompatActivity {
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
                 Dialog dialog = new OptionsDialog(DungeonSelection.this,R.style.Crawl, controlador);
+                controlador.playButtonSound(DungeonSelection.this);
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(DungeonSelection.this);
                 //El mostrem
@@ -152,6 +149,7 @@ public class DungeonSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent toEquip = new Intent(DungeonSelection.this, Equip.class);
+                controlador.playButtonSound(DungeonSelection.this);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 startActivity(toEquip);

@@ -40,6 +40,7 @@ public class LevelSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
+                controlador.playBackButtonSound(LevelSelection.this);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
                 startActivity(toDungSel);
@@ -56,6 +57,7 @@ public class LevelSelection extends AppCompatActivity {
             public void onClick(View v) {
                 //Creem un Dialog pero instanciem OptionsDialog
                 Dialog dialog = new OptionsDialog(LevelSelection.this,R.style.Crawl, controlador);
+                controlador.playButtonSound(LevelSelection.this);
                 //Pasem la activitat actual
                 dialog.setOwnerActivity(LevelSelection.this);
                 //El mostrem
@@ -71,6 +73,7 @@ public class LevelSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 controlador.setNivelActual(1);
+                controlador.playButtonSound(LevelSelection.this);
                 //iniciarNivel();
                 controlador.stopMusica();
                 Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
@@ -87,6 +90,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x02 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -104,6 +108,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x03 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -121,6 +126,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x04.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x04 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -138,6 +144,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x05.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x05 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -155,6 +162,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x06.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x06 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -172,6 +180,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x07.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x07 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -189,6 +198,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x08.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x08 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -206,6 +216,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x09.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x09 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -223,6 +234,7 @@ public class LevelSelection extends AppCompatActivity {
         btn_01x10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                controlador.playButtonSound(LevelSelection.this);
                 controlador.stopMusica();
                 Intent lvl_01x10 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
