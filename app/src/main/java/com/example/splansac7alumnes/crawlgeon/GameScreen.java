@@ -283,17 +283,17 @@ public class GameScreen extends AppCompatActivity {
      */
     public int getAnimacionAtaquePJ(Tile tile){
         if(tile instanceof Basic){
-            //return personaje.getBasicAnim();
+            return personaje.getBasicAnim();
         }else if(tile instanceof Shield){
-            //return personaje.getDefAnim();
+            return personaje.getDefAnim();
         }else if(tile instanceof Health){
-            //return personaje.getHealAnim();
+            return personaje.getHealAnim();
         }else if(tile instanceof Fire){
-            //return personaje.getFireAnim();
+            return personaje.getFireAnim();
         }else if(tile instanceof Ice){
-            //return personaje.getIceAnim();
+            return personaje.getIceAnim();
         }else if(tile instanceof Arcane){
-            //return personaje.getArcaneAnim();
+            return personaje.getArcaneAnim();
         }else if(tile instanceof Lighting){
             return personaje.getElectricAnim();
         }

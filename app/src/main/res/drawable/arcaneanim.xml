@@ -4,10 +4,11 @@
     <item android:drawable="@drawable/attack1" android:duration="100" />
     <item android:drawable="@drawable/attack2" android:duration="100" />
     <item android:drawable="@drawable/attack3" android:duration="100" />
-    <item android:drawable="@drawable/electricattack1" android:duration="250" />
-    <item android:drawable="@drawable/electricattack2" android:duration="250" />
-    <item android:drawable="@drawable/electricattack1" android:duration="250" />
-    <item android:drawable="@drawable/electricattack2" android:duration="250" />
+    <item android:drawable="@drawable/arcaneattack1" android:duration="200" />
+    <item android:drawable="@drawable/arcaneattack2" android:duration="200" />
+    <item android:drawable="@drawable/arcaneattack3" android:duration="200" />
+    <item android:drawable="@drawable/arcaneattack4" android:duration="350" />
+    <item android:drawable="@drawable/arcaneattack5" android:duration="350" />
     <item android:drawable="@drawable/attack3" android:duration="100" />
     <item android:drawable="@drawable/attack2" android:duration="100" />
     <item android:drawable="@drawable/attack1" android:duration="100" />

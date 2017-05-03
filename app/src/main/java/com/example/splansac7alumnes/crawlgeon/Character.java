@@ -12,9 +12,15 @@ public class Character implements Serializable {
     private int nivel;
     private int xpActual;
     private int xpNecesaria;
-    private int idSprite = R.drawable.heroe;
+    private int idSprite = R.drawable.staticpj1;
     private int staticAnim = R.drawable.staticpjanim;
     private int electricAnim = R.drawable.electricanim;
+    private int iceAnim = R.drawable.iceanim;
+    private int fireAnim = R.drawable.fireanim;
+    private int arcaneAnim = R.drawable.arcaneanim;
+    private int swordAnim = R.drawable.swordanim;
+    private int shieldAnim = R.drawable.shieldanim;
+    private int potionAnim = R.drawable.potionanim;
     private float bonusAtaque = 0; //+0%
 
 
@@ -48,6 +54,30 @@ public class Character implements Serializable {
         return electricAnim;
     }
 
+    public int getIceAnim(){
+        return iceAnim;
+    }
+
+    public int getFireAnim(){
+        return fireAnim;
+    }
+
+    public int getArcaneAnim(){
+        return arcaneAnim;
+    }
+
+    public int getBasicAnim(){
+        return swordAnim;
+    }
+
+    public int getDefAnim(){
+        return shieldAnim;
+    }
+
+    public int getHealAnim(){
+        return potionAnim;
+    }
+
     public void setVida(float vida) {
         this.vida = vida;
     }
@@ -66,6 +96,30 @@ public class Character implements Serializable {
 
     public void setElectricAnim(int anim){
         this.electricAnim = anim;
+    }
+
+    public void setIceAnim(int anim){
+        this.iceAnim = anim;
+    }
+
+    public void setFireAnim(int anim){
+        this.fireAnim = anim;
+    }
+
+    public void setArcaneAnim(int anim){
+        this.arcaneAnim = anim;
+    }
+
+    public void setBasicAnim(int anim){
+        this.swordAnim = anim;
+    }
+
+    public void setDefAnim(int anim){
+        this.shieldAnim = anim;
+    }
+
+    public void setHealAnim(int anim){
+        this.potionAnim = anim;
     }
 
 
