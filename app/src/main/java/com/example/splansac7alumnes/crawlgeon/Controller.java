@@ -3,6 +3,7 @@ package com.example.splansac7alumnes.crawlgeon;
 import android.content.Context;
 import android.media.MediaPlayer;
 
+import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
 
 import java.io.File;
@@ -14,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.util.ArrayList;
 
 /**
  * Created by Sergio Plans on 21/04/2017.
@@ -30,6 +32,8 @@ public class Controller{
     private MediaPlayer reproFX;
     private static Controller instance = new Controller();
     private Context context;
+    private int seekMusic;
+    private boolean shouldPlay;
 
     /**
      * Nos da la instancia del controlador
@@ -46,6 +50,13 @@ public class Controller{
 
     }
 
+    public boolean isShouldPlay(){
+        return shouldPlay;
+    }
+
+    public void setShouldPlay(boolean x){
+        shouldPlay = x;
+    }
     /**
      * Elimina los datos completamente
      */
@@ -98,6 +109,27 @@ public class Controller{
     public void stopMusica(){
         isPlayingMusica = false;
         reproMusica.stop();
+        reproMusica = null;
+    }
+
+    /**
+     * Recupera on habia parat
+     */
+    public void resumeMusica(){
+        isPlayingMusica = true;
+        reproMusica.setVolume(data.getVolumenMusica()/100,data.getVolumenMusica()/100);
+        reproMusica.start();
+        reproMusica.seekTo(seekMusic);
+
+    }
+
+    /**
+     * Atura la musica guardant el punt on s'ha parat
+     */
+    public void pauseMusica(){
+        isPlayingMusica = false;
+        reproMusica.pause();
+        seekMusic = reproMusica.getCurrentPosition();
         reproMusica = null;
     }
 
@@ -360,5 +392,9 @@ public class Controller{
             if(!isBloqueado(j)) i++;
         }
         return i-1;
+    }
+
+    public ArrayList<Tile> getTiles(){
+        return new TilesArray(context).getArray();
     }
 }

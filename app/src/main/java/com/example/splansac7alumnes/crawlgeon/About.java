@@ -1,10 +1,14 @@
 package com.example.splansac7alumnes.crawlgeon;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.PowerManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,10 +26,10 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.about_layout);
         this.controlador = controlador.getInstance();
 
-        ((TextView) findViewById(R.id.agradecimientos)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
-        ((TextView) findViewById(R.id.textAbout)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
-        ((TextView) findViewById(R.id.textAbout2)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
-        ((TextView) findViewById(R.id.textAbout3)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+        ((TextView) findViewById(R.id.agradecimientos)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/PixelFont.ttf"));
+        ((TextView) findViewById(R.id.textAbout)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/PixelFont.ttf"));
+        ((TextView) findViewById(R.id.textAbout2)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/PixelFont.ttf"));
+        ((TextView) findViewById(R.id.textAbout3)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/PixelFont.ttf"));
 
         Button back = (Button) findViewById(R.id.botoBack);
         back.setOnClickListener(new View.OnClickListener() {
@@ -33,9 +37,12 @@ public class About extends AppCompatActivity {
             public void onClick(View v) {
                 controlador.playBackButtonSound(About.this);
                 finish();
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out); //ANIMACIO FADE
             }
         });
+
+
+
 
         Button borrar = (Button) findViewById(R.id.borrarDatos);
         borrar.setOnClickListener(new View.OnClickListener() {
@@ -55,4 +62,42 @@ public class About extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event ){
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
+            controlador.playBackButtonSound(About.this);
+            finish();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!controlador.isPlayingMusica()) {
+            controlador.initMusica(this, R.raw.menus_music);
+            controlador.setShouldPlay (true);
+            controlador.resumeMusica();
+        }
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        PowerManager mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        //shouldPlay = false;
+
+        if (!mPowerManager.isInteractive()){
+            controlador.setShouldPlay(false);
+        }
+        if (!controlador.isShouldPlay() && controlador.isPlayingMusica()) { // it won't pause music if shouldPlay is true
+            controlador.pauseMusica();
+        }
+    }
+
 }

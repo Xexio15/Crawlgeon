@@ -1,7 +1,9 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -298,6 +300,7 @@ public class LevelSelection extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event ){
         if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
             Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
+            controlador.playBackButtonSound(LevelSelection.this);
             finish();
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
             startActivity(toDungSel);
@@ -602,4 +605,31 @@ public class LevelSelection extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
         startActivity(lvl_01x01);
     }*/
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!controlador.isPlayingMusica()) {
+            controlador.initMusica(this, R.raw.menus_music);
+            controlador.setShouldPlay (true);
+            controlador.resumeMusica();
+        }
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        PowerManager mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        //shouldPlay = false;
+
+        if (!mPowerManager.isInteractive()){
+            controlador.setShouldPlay(false);
+        }
+        if (!controlador.isShouldPlay() && controlador.isPlayingMusica()) { // it won't pause music if shouldPlay is true
+            controlador.pauseMusica();
+        }
+    }
 }

@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/equip">
+    android:background="@drawable/dungeon_select_bg">
 
     <Button
         android:id="@+id/buttonEquipSelToDungSel"
         android:background="@drawable/atras"
         android:layout_width="40dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_height="40dp"
         android:minWidth="40dp"
-        android:minHeight="40dp" />
+        android:minHeight="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/buttonOptions"
@@ -30,4 +30,270 @@
         android:layout_height="40dp"
         android:minHeight="40dp"
         android:minWidth="40dp" />
+
+    <LinearLayout
+        android:layout_height="462dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_width="327dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.72"
+        app:layout_constraintVertical_bias="0.89"
+        android:background="@color/black_overlay"
+        android:alpha="1"
+        android:clipToPadding="false"
+        android:numColumns="3"
+        android:clipChildren="true"
+        android:backgroundTintMode="multiply"
+        android:id="@+id/grid"
+        android:rowCount="8"
+        app:layout_goneMarginBottom="16dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:srcCompat="@drawable/heroe"
+            android:id="@+id/pj"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:text="Lvl"
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/background_light"
+                android:textAlignment="textEnd" />
+
+            <ProgressBar
+                android:id="@+id/barraEXP"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:progressDrawable="@drawable/exp_bar"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.31"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.43"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_gravity="bottom|center_horizontal" />
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:showDividers="middle"
+        android:layout_gravity="start">
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/life"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_weight="0.5"
+            android:layout_gravity="fill|start"
+            android:gravity="left|center_vertical" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fireDmg"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_weight="0.5"
+            android:textAlignment="viewStart"
+            android:layout_gravity="top|fill"
+            android:gravity="start"
+            android:layout_marginLeft="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:showDividers="middle"
+        android:layout_gravity="start">
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/armor"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_weight="0.5"
+            android:layout_gravity="fill|start"
+            android:gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_weight="0.5"
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/iceDmg"
+            android:layout_row="5"
+            android:layout_column="1"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_gravity="top|fill"
+            android:gravity="left|center_vertical"
+            android:layout_marginLeft="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:showDividers="middle"
+        android:layout_gravity="start">
+        <TextView
+            android:layout_weight="0.5"
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/basicDmg"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_gravity="fill|start"
+            android:gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_weight="0.5"
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lightDmg"
+            android:layout_row="6"
+            android:layout_column="1"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_gravity="top|fill"
+            android:gravity="left|center_vertical"
+            android:layout_marginLeft="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:showDividers="middle"
+        android:layout_gravity="start">
+
+        <TextView
+            android:layout_weight="0.5"
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/defenseDmg"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_gravity="fill|start"
+            android:gravity="left|center_vertical" />
+
+        <TextView
+            android:layout_weight="0.5"
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/arcaneDmg"
+            android:layout_row="7"
+            android:layout_column="1"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:layout_gravity="top|fill"
+            android:gravity="left|center_vertical"
+            android:layout_marginLeft="16dp" />
+    </LinearLayout>
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/healthDmg"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/background_light"
+            android:textStyle="normal|bold"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:textSize="18sp"
+            android:textAlignment="textStart"
+            android:layout_gravity="start" />
+
+
+
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

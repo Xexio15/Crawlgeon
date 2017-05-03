@@ -1,8 +1,10 @@
 package com.example.splansac7alumnes.crawlgeon;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -612,6 +614,42 @@ public class GameScreen extends AppCompatActivity {
         float tileDamage = tile.getDamage();
         tileDamage = (vidaMaxPersonaje/100)*tileDamage;
         return tileDamage;
+    }
+
+
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!controlador.isPlayingMusica()) {
+            if(!controlador.getActual().isBoss()){
+                controlador.initMusica(this, R.raw.level_music);
+            }else{
+                controlador.initMusica(this, R.raw.boss_music);
+            }
+            controlador.setShouldPlay (true);
+            controlador.resumeMusica();
+        }
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        PowerManager mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        //shouldPlay = false;
+
+        if (!mPowerManager.isInteractive()){
+            controlador.setShouldPlay(false);
+        }
+        if (!controlador.isShouldPlay() && controlador.isPlayingMusica()) { // it won't pause music if shouldPlay is true
+            controlador.pauseMusica();
+        }
     }
 
 }
