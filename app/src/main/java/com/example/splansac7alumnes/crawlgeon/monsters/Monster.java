@@ -12,12 +12,24 @@ public class Monster implements Serializable {
     private int id;
     private int staticanim;
     private int attackanim;
-    public Monster(float vida, float daño, int id, int staticanim,int attackanim){
+    private int attackSound;
+    private int deathSound;
+    public Monster(float vida, float daño, int id, int staticanim,int attackanim, int attackSound, int deathSound){
         this.vida = vida;
         this.daño = daño;
         this.id = id;
         this.staticanim = staticanim;
         this.attackanim = attackanim;
+        this.attackSound = attackSound;
+        this.deathSound = deathSound;
+    }
+
+    public int getDeathSound() {
+        return deathSound;
+    }
+
+    public int getAttackSound() {
+        return attackSound;
     }
 
     public float getVida(){ return vida; }
