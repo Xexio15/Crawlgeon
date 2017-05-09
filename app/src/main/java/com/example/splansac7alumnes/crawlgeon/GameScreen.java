@@ -342,11 +342,13 @@ public class GameScreen extends AppCompatActivity {
      * Metodo de espera a la animacion enemiga
      */
     public void enemyAttackAnimation(){
+
         enemyImg.setBackgroundResource(monstruo.getAttackAnim());
         AnimationDrawable anim = (AnimationDrawable)getDrawable(monstruo.getAttackAnim());
         AnimationDrawableHandler cad = new AnimationDrawableHandler(anim) {
             @Override
             void onAnimationFinish() {
+
                 realizarAtaqueEnemigo();
                 animationRunning = false;
                 animate(enemyImg, monstruo.getStaticAnim());
@@ -355,6 +357,9 @@ public class GameScreen extends AppCompatActivity {
         enemyImg.setBackgroundDrawable(cad);
         //iniciamos la animacion
         cad.start();
+        controlador.initFX(GameScreen.this, monstruo.getAttackSound());
+        controlador.playFX();
+
     }
 
     /**
@@ -370,6 +375,8 @@ public class GameScreen extends AppCompatActivity {
                 this.vidaMonstruo.setText("" + String.format(Locale.US, "%.2f", vida));
                 actualizarBarra(barraVidaMonstruo, vida);
             } else {
+                controlador.initFX(GameScreen.this, monstruo.getDeathSound());
+                controlador.playFX();
                 actualizarBarra(barraVidaMonstruo, 0);
                 this.vidaMonstruo.setText("DEAD");
                 this.enemigoMuerto = true;
@@ -461,6 +468,7 @@ public class GameScreen extends AppCompatActivity {
         //Cuando haya mas dungeons tendremos de coger el num de la dungeon aqui
         if (puntuacion > nivel.getPuntuacion()) {
             nivel.setPuntuacion(puntuacion);
+            controlador.saveData();
         }
     }
 
@@ -534,7 +542,6 @@ public class GameScreen extends AppCompatActivity {
         OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion, score, personaje.getXpActual(), personaje.getXpNecesaria());
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
-        controlador.saveData();
         dialog.show();
 
     }

@@ -99,5 +99,6 @@ public class About extends AppCompatActivity {
             controlador.pauseMusica();
         }
     }
+    }
 
-}
+
