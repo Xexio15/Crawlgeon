@@ -388,10 +388,10 @@ public class Controller{
 
     public int getNumLvlsBlocked(){
         int i = 0;
-        for(int j = 1; j <= 10; j++){
+        for(int j = 2; j <= 10; j++){
             if(!isBloqueado(j)) i++;
         }
-        return i-1;
+        return i;
     }
 
     public ArrayList<Tile> getTiles(){

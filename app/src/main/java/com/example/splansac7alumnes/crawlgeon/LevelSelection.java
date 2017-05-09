@@ -15,6 +15,14 @@ import android.widget.ImageView;
 
 public class LevelSelection extends AppCompatActivity {
     private Controller controlador;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        actualizarBotones();
+        actualizarEstrellas();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -67,6 +75,51 @@ public class LevelSelection extends AppCompatActivity {
             }
         });
 
+        actualizarBotones();
+        actualizarEstrellas();
+
+
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event ){
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
+            Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
+            controlador.playBackButtonSound(LevelSelection.this);
+            finish();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
+            startActivity(toDungSel);
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!controlador.isPlayingMusica()) {
+            controlador.initMusica(this, R.raw.menus_music);
+            controlador.setShouldPlay (true);
+            controlador.resumeMusica();
+        }
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        PowerManager mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        //shouldPlay = false;
+
+        if (!mPowerManager.isInteractive()){
+            controlador.setShouldPlay(false);
+        }
+        if (!controlador.isShouldPlay() && controlador.isPlayingMusica()) { // it won't pause music if shouldPlay is true
+            controlador.pauseMusica();
+        }
+    }
+
+    protected void actualizarBotones(){
         /**
          * Botón nivel 1
          */
@@ -76,7 +129,6 @@ public class LevelSelection extends AppCompatActivity {
             public void onClick(View v) {
                 controlador.setNivelActual(1);
                 controlador.playButtonSound(LevelSelection.this);
-                //iniciarNivel();
                 controlador.stopMusica();
                 Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
                 finish();
@@ -283,7 +335,9 @@ public class LevelSelection extends AppCompatActivity {
             btn_01x10.setEnabled(false);
             btn_01x10.setBackgroundResource(R.drawable.bossbloqueado);
         }
+    }
 
+    protected void actualizarEstrellas(){
         this.getStars1();
         this.getStars2();
         this.getStars3();
@@ -294,19 +348,6 @@ public class LevelSelection extends AppCompatActivity {
         this.getStars8();
         this.getStars9();
         this.getStars10();
-
-
-    }
-    public boolean onKeyDown(int keyCode, KeyEvent event ){
-        if (keyCode == android.view.KeyEvent.KEYCODE_BACK){
-            Intent toDungSel = new Intent(LevelSelection.this, DungeonSelection.class);
-            controlador.playBackButtonSound(LevelSelection.this);
-            finish();
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
-            startActivity(toDungSel);
-            return true;
-        }
-        return super.onKeyDown(keyCode,event);
     }
 
     private void getStars1(){
@@ -598,38 +639,11 @@ public class LevelSelection extends AppCompatActivity {
         }
     }
 
-    /*public void iniciarNivel(){
+     /*public void iniciarNivel(){
         controlador.stopMusica();
         Intent lvl_01x01 = new Intent(LevelSelection.this, GameScreen.class);
         finish();
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
         startActivity(lvl_01x01);
     }*/
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(!controlador.isPlayingMusica()) {
-            controlador.initMusica(this, R.raw.menus_music);
-            controlador.setShouldPlay (true);
-            controlador.resumeMusica();
-        }
-    }
-
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        PowerManager mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-
-        //shouldPlay = false;
-
-        if (!mPowerManager.isInteractive()){
-            controlador.setShouldPlay(false);
-        }
-        if (!controlador.isShouldPlay() && controlador.isPlayingMusica()) { // it won't pause music if shouldPlay is true
-            controlador.pauseMusica();
-        }
-    }
 }
