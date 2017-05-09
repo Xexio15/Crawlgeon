@@ -29,23 +29,22 @@
 
         <SeekBar
             android:id="@+id/fxVolume"
-            android:layout_weight="1"
+            style="@style/Crawl"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/buttonAbout"
             android:layout_alignParentEnd="true"
-            android:layout_width="150dp"
-            android:progressTint="?android:attr/colorMultiSelectHighlight"
-            style="@style/Crawl"
-            tools:layout_editor_absoluteY="160dp"
-            tools:layout_editor_absoluteX="158dp"
-            android:layout_row="2"
             android:layout_column="1"
+            android:layout_row="2"
+            android:layout_weight="1"
             android:paddingBottom="32dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingTop="8dp"
             android:progressDrawable="@drawable/seek_bar"
-            android:thumb="@drawable/seek_bar" />
+            android:thumb="@drawable/seek_bar"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="160dp" />
 
         <TextView
             android:text="@string/efectes"
@@ -85,23 +84,22 @@
             android:layout_marginLeft="40dp" />
 
         <SeekBar
-            android:layout_height="wrap_content"
             android:id="@+id/musicVolume"
-            android:layout_weight="1"
-            android:layout_below="@+id/textMusic"
-            android:layout_alignStart="@+id/fxVolume"
             android:layout_width="150dp"
-            android:progressTint="?android:attr/colorMultiSelectHighlight"
-            tools:layout_editor_absoluteY="105dp"
-            tools:layout_editor_absoluteX="194dp"
-            android:layout_row="1"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/fxVolume"
+            android:layout_below="@+id/textMusic"
             android:layout_column="1"
+            android:layout_row="1"
+            android:layout_weight="1"
             android:paddingBottom="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingTop="8dp"
+            android:progressDrawable="@drawable/seek_bar"
             android:thumb="@drawable/seek_bar"
-            android:progressDrawable="@drawable/seek_bar" />
+            tools:layout_editor_absoluteX="194dp"
+            tools:layout_editor_absoluteY="105dp" />
 
         <TextView
             android:text="PAUSE"
