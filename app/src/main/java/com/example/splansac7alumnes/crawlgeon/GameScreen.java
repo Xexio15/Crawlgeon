@@ -468,6 +468,7 @@ public class GameScreen extends AppCompatActivity {
         //Cuando haya mas dungeons tendremos de coger el num de la dungeon aqui
         if (puntuacion > nivel.getPuntuacion()) {
             nivel.setPuntuacion(puntuacion);
+            controlador.saveData();
         }
     }
 
@@ -541,7 +542,6 @@ public class GameScreen extends AppCompatActivity {
         OptionsWinDialog dialog = new OptionsWinDialog(GameScreen.this, R.style.Crawl, controlador, puntuacion, score, personaje.getXpActual(), personaje.getXpNecesaria());
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
-        controlador.saveData();
         dialog.show();
 
     }
