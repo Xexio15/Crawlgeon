@@ -329,8 +329,10 @@ public class GameScreen extends AppCompatActivity {
                 //realizamos el daño
                 realizarHechizo(seleccion, tile);
                 animate(pjImg, personaje.getStaticAnim());
-                //Llamamos al mismo metodo pero para el ataque enemigo
-                enemyAttackAnimation();
+                if (!enemigoMuerto) {
+                    //Llamamos al mismo metodo pero para el ataque enemigo
+                    enemyAttackAnimation();
+                }
             }
         };
         pjImg.setBackgroundDrawable(cad);
