@@ -14,6 +14,7 @@ public class Monster implements Serializable {
     private int attackanim;
     private int attackSound;
     private int deathSound;
+
     public Monster(float vida, float daño, int id, int staticanim,int attackanim, int attackSound, int deathSound){
         this.vida = vida;
         this.daño = daño;
