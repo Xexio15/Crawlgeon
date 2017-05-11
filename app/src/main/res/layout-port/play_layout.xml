@@ -131,14 +131,6 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/imgEnemy"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            app:srcCompat="@android:color/transparent"
-            android:layout_alignBottom="@+id/pjImg"
-            android:layout_alignEnd="@+id/barraVidaEnemiga" />
-
-        <ImageView
             android:id="@+id/pjImg"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -158,6 +150,15 @@
             android:textColor="@android:color/background_light"
             android:textColorLink="@android:color/background_light"
             android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/imgEnemy"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            app:srcCompat="@android:color/transparent"
+            android:layout_marginEnd="15dp"
+            android:layout_alignBottom="@+id/pjImg"
+            android:layout_alignEnd="@+id/barraVidaEnemiga" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
