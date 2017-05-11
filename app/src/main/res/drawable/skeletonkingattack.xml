@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item android:drawable="@drawable/skeletonkingattack1" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack2" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack3" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack4" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack5" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack6" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack7" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack8" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack9" android:duration="100" />
+    <item android:drawable="@drawable/skeletonkingattack10" android:duration="100" />
+
+</animation-list>
