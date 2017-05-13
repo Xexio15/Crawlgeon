@@ -14,8 +14,9 @@ public class Monster implements Serializable {
     private int attackanim;
     private int attackSound;
     private int deathSound;
+    private int painSound;
 
-    public Monster(float vida, float daño, int id, int staticanim,int attackanim, int attackSound, int deathSound){
+    public Monster(float vida, float daño, int id, int staticanim,int attackanim, int attackSound, int painSound, int deathSound){
         this.vida = vida;
         this.daño = daño;
         this.id = id;
@@ -23,6 +24,7 @@ public class Monster implements Serializable {
         this.attackanim = attackanim;
         this.attackSound = attackSound;
         this.deathSound = deathSound;
+        this.painSound = painSound;
     }
 
     public int getDeathSound() {
@@ -32,6 +34,8 @@ public class Monster implements Serializable {
     public int getAttackSound() {
         return attackSound;
     }
+
+    public int getPainSound() { return painSound; }
 
     public float getVida(){ return vida; }
 

@@ -22,6 +22,8 @@ public class Character implements Serializable {
     private int shieldAnim = R.drawable.shieldanim;
     private int potionAnim = R.drawable.potionanim;
     private float bonusAtaque = 0; //+0%
+    private int painSound = R.raw.pain_character;
+    private int deathSound = R.raw.death_character;
 
 
     public Character (){
@@ -77,6 +79,10 @@ public class Character implements Serializable {
     public int getHealAnim(){
         return potionAnim;
     }
+
+    public int getPainSound() { return painSound; }
+
+    public int getDeathSound() { return deathSound; }
 
     public void setVida(float vida) {
         this.vida = vida;
@@ -153,7 +159,9 @@ public class Character implements Serializable {
         bonusAtaque = (float)0.1*nivel;
         vida = Math.round((float)1.26*vida);
         if(nivel==3){
-            vida = Math.round((float)1.26*5*vida);
+            nivel=7;
+            bonusAtaque = (float)0.1*nivel;
+            vida = Math.round((float)1.26*1.26*1.26*1.26*vida);
         }
     }
 

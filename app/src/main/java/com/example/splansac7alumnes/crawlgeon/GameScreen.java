@@ -338,6 +338,8 @@ public class GameScreen extends AppCompatActivity {
         pjImg.setBackgroundDrawable(cad);
         //iniciamos la animacion
         cad.start();
+        controlador.initFX(GameScreen.this, monstruo.getPainSound());
+        controlador.playFX();
     }
 
     /**
@@ -361,7 +363,8 @@ public class GameScreen extends AppCompatActivity {
         cad.start();
         controlador.initFX(GameScreen.this, monstruo.getAttackSound());
         controlador.playFX();
-
+        controlador.initFX(GameScreen.this, personaje.getPainSound());//Añadir if si tiene armadura
+        controlador.playFX();
     }
 
     /**
@@ -442,6 +445,8 @@ public class GameScreen extends AppCompatActivity {
                     actualizarBarra(barraVidaPJ, 0);
                     this.vidaPJ.setText("DEAD");
                     this.pjMuerto = true;
+                    controlador.initFX(GameScreen.this, personaje.getDeathSound());
+                    controlador.playFX();
                     loseDialog();
                 }
             }
@@ -528,6 +533,8 @@ public class GameScreen extends AppCompatActivity {
      * Nos muestra el dialogo de ganar
      */
     public void winDialog(int puntuacion) {
+        controlador.initMusica(GameScreen.this, R.raw.win);
+        controlador.playMusica();
         Level nivel = controlador.getNivel(controlador.getNivelActual());
         int expGanada;
         if (puntuacion < nivel.getPuntuacion()) {
@@ -549,6 +556,8 @@ public class GameScreen extends AppCompatActivity {
     }
 
     public void loseDialog() {
+        controlador.initMusica(GameScreen.this, R.raw.lose);
+        controlador.playMusica();
         OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this, R.style.Crawl, controlador);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem
