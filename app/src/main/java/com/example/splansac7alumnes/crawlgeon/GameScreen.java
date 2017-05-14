@@ -355,8 +355,10 @@ public class GameScreen extends AppCompatActivity {
         AnimationDrawableHandler cad = new AnimationDrawableHandler(anim) {
             @Override
             void onAnimationFinish() {
-                controlador.initFX(GameScreen.this, personaje.getPainSound());//Añadir if si tiene armadura
-                controlador.playFX();
+                if(!(armaduraPJ()>0)){//Si no tiene armadura, reproducimos sonido de dolor del personaje
+                    controlador.initFX(GameScreen.this, personaje.getPainSound());
+                    controlador.playFX();
+                }
                 realizarAtaqueEnemigo();
                 animationRunning = false;
                 animate(enemyImg, monstruo.getStaticAnim());
@@ -365,9 +367,12 @@ public class GameScreen extends AppCompatActivity {
         enemyImg.setBackgroundDrawable(cad);
         //iniciamos la animacion
         cad.start();
-        controlador.initFX(GameScreen.this, monstruo.getAttackSound());
+        if(armaduraPJ()>0){ //Si tiene armadura el sonido del ataque enemigo es distinto
+            controlador.initFX(GameScreen.this, monstruo.getAttackArmorSound());
+        }else{
+            controlador.initFX(GameScreen.this, monstruo.getAttackSound());
+        }
         controlador.playFX();
-
     }
 
     /**
