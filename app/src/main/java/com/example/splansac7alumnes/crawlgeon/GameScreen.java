@@ -326,6 +326,10 @@ public class GameScreen extends AppCompatActivity {
             //cuando la animacion termine se ejecutara esto
             @Override
             void onAnimationFinish() {
+                if (!(tile instanceof Health) && !(tile instanceof Shield)) {
+                    controlador.initFX(GameScreen.this, monstruo.getPainSound());
+                    controlador.playFX();
+                }
                 //realizamos el daño
                 realizarHechizo(seleccion, tile);
                 animate(pjImg, personaje.getStaticAnim());
@@ -338,8 +342,7 @@ public class GameScreen extends AppCompatActivity {
         pjImg.setBackgroundDrawable(cad);
         //iniciamos la animacion
         cad.start();
-        controlador.initFX(GameScreen.this, monstruo.getPainSound());
-        controlador.playFX();
+
     }
 
     /**
@@ -352,7 +355,8 @@ public class GameScreen extends AppCompatActivity {
         AnimationDrawableHandler cad = new AnimationDrawableHandler(anim) {
             @Override
             void onAnimationFinish() {
-
+                controlador.initFX(GameScreen.this, personaje.getPainSound());//Añadir if si tiene armadura
+                controlador.playFX();
                 realizarAtaqueEnemigo();
                 animationRunning = false;
                 animate(enemyImg, monstruo.getStaticAnim());
@@ -363,8 +367,7 @@ public class GameScreen extends AppCompatActivity {
         cad.start();
         controlador.initFX(GameScreen.this, monstruo.getAttackSound());
         controlador.playFX();
-        controlador.initFX(GameScreen.this, personaje.getPainSound());//Añadir if si tiene armadura
-        controlador.playFX();
+
     }
 
     /**
@@ -533,8 +536,9 @@ public class GameScreen extends AppCompatActivity {
      * Nos muestra el dialogo de ganar
      */
     public void winDialog(int puntuacion) {
-        controlador.initMusica(GameScreen.this, R.raw.win);
-        controlador.playMusica();
+        controlador.stopMusica();
+        controlador.initFX(GameScreen.this, R.raw.win);
+        controlador.playFX();
         Level nivel = controlador.getNivel(controlador.getNivelActual());
         int expGanada;
         if (puntuacion < nivel.getPuntuacion()) {
@@ -556,8 +560,9 @@ public class GameScreen extends AppCompatActivity {
     }
 
     public void loseDialog() {
-        controlador.initMusica(GameScreen.this, R.raw.lose);
-        controlador.playMusica();
+        controlador.stopMusica();
+        controlador.initFX(GameScreen.this, R.raw.lose);
+        controlador.playFX();
         OptionsLostDialog dialog = new OptionsLostDialog(GameScreen.this, R.style.Crawl, controlador);
         dialog.setOwnerActivity(GameScreen.this);
         //El mostrem

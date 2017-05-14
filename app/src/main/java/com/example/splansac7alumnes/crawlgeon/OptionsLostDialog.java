@@ -54,6 +54,7 @@ public class OptionsLostDialog extends Dialog {
             public void onClick(View v) {
                 controlador.playButtonSound(context);
                 controlador.restartMusica();
+                controlador.stopFX();
                 Intent gameScreen = new Intent(OptionsLostDialog.super.getOwnerActivity(),GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
                 ((Activity)context).finish();//Finalitzem GameScreen
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
@@ -71,6 +72,7 @@ public class OptionsLostDialog extends Dialog {
             public void onClick(View v) {
                 controlador.playButtonSound(context);
                 controlador.stopMusica();
+                controlador.stopFX();
                 Intent levelSelection = new Intent(OptionsLostDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE

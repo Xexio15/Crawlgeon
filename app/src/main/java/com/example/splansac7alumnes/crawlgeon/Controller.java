@@ -107,9 +107,11 @@ public class Controller{
      * Detiene la musica i pone a null el reporductor
      */
     public void stopMusica(){
-        isPlayingMusica = false;
-        reproMusica.stop();
-        reproMusica = null;
+        if(reproMusica != null) {
+            isPlayingMusica = false;
+            reproMusica.stop();
+            reproMusica = null;
+        }
     }
 
     /**
@@ -170,9 +172,11 @@ public class Controller{
      * Detiene el reporductor de efectos
      */
     public void stopFX(){
-        isPlayingFX = false;
-        reproFX.stop();
-        reproFX = null;
+        if(reproFX != null) {
+            isPlayingFX = false;
+            reproFX.stop();
+            reproFX = null;
+        }
     }
 
     /**

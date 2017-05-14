@@ -114,7 +114,7 @@ public class OptionsWinDialog extends Dialog{
 
                     }
                     controlador.stopMusica();
-
+                    controlador.stopFX();
 
 
                     Intent nextLevel = new Intent(OptionsWinDialog.super.getOwnerActivity(), GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
@@ -135,6 +135,7 @@ public class OptionsWinDialog extends Dialog{
             public void onClick(View v) {
                 controlador.playButtonSound(context);
                 controlador.stopMusica();
+                controlador.stopFX();
                 Intent levelSelection = new Intent(OptionsWinDialog.super.getOwnerActivity(),LevelSelection.class);
                 ((Activity)context).finish();//Finalitzem GameScreen
                 ((Activity)context).overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out); //ANIMACIO FADE
