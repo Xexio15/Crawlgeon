@@ -326,10 +326,7 @@ public class GameScreen extends AppCompatActivity {
             //cuando la animacion termine se ejecutara esto
             @Override
             void onAnimationFinish() {
-                if (!(tile instanceof Health) && !(tile instanceof Shield)) {
-                    controlador.initFX(GameScreen.this, monstruo.getPainSound());
-                    controlador.playFX();
-                }
+
                 //realizamos el daño
                 realizarHechizo(seleccion, tile);
                 animate(pjImg, personaje.getStaticAnim());
@@ -355,10 +352,7 @@ public class GameScreen extends AppCompatActivity {
         AnimationDrawableHandler cad = new AnimationDrawableHandler(anim) {
             @Override
             void onAnimationFinish() {
-                if(!(armaduraPJ()>0)){//Si no tiene armadura, reproducimos sonido de dolor del personaje
-                    controlador.initFX(GameScreen.this, personaje.getPainSound());
-                    controlador.playFX();
-                }
+
                 realizarAtaqueEnemigo();
                 animationRunning = false;
                 animate(enemyImg, monstruo.getStaticAnim());
@@ -381,12 +375,21 @@ public class GameScreen extends AppCompatActivity {
     public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile) {
         if (!(tile instanceof Health) && !(tile instanceof Shield)) {
             float daño = (tileDamage(tile) * seleccion.size());
-            float vida = vidaMonstruo();
-            vida = vida - daño;
 
-            if (vida > 0) {
-                this.vidaMonstruo.setText("" + String.format(Locale.US, "%.2f", vida));
-                actualizarBarra(barraVidaMonstruo, vida);
+            if ( tile.getElement().equals(monstruo.getVulnerabilidad()) ){
+                daño = daño * (float)1.25;
+            }
+
+            float vidaMons = vidaMonstruo();
+            vidaMons = vidaMons - daño;
+
+            if (vidaMons > 0) {
+                if (!(tile instanceof Health) && !(tile instanceof Shield)) {
+                    controlador.initFX(GameScreen.this, monstruo.getPainSound());
+                    controlador.playFX();
+                }
+                this.vidaMonstruo.setText("" + String.format(Locale.US, "%.2f", vidaMons));
+                actualizarBarra(barraVidaMonstruo, vidaMons);
             } else {
                 controlador.initFX(GameScreen.this, monstruo.getDeathSound());
                 controlador.playFX();
@@ -434,7 +437,7 @@ public class GameScreen extends AppCompatActivity {
     public void realizarAtaqueEnemigo() {
         if (turnoActual == turnosPJ && !this.enemigoMuerto && !this.pjMuerto) {
             for (int i = 0; i < turnosMonstruo; i++) {
-                float vida = vidaPJ();
+                float vidaPers = vidaPJ();
                 float armadura = armaduraPJ();
                 armadura = armadura - dañoMonstruo;
                 if (armadura > 0) {
@@ -443,12 +446,16 @@ public class GameScreen extends AppCompatActivity {
                 } else {
                     actualizarBarra(barraArmor, Math.round(armadura));
                     armor.setText(0 + "");
-                    vida = vida + armadura;
+                    vidaPers = vidaPers + armadura;
                 }
 
-                if (vida > 0) {
-                    this.vidaPJ.setText("" + String.format(Locale.US, "%.2f", vida));
-                    actualizarBarra(barraVidaPJ, vida);
+                if (vidaPers > 0) {
+                    if(!(armaduraPJ()>0)){//Si no tiene armadura, reproducimos sonido de dolor del personaje
+                        controlador.initFX(GameScreen.this, personaje.getPainSound());
+                        controlador.playFX();
+                    }
+                    this.vidaPJ.setText("" + String.format(Locale.US, "%.2f", vidaPers));
+                    actualizarBarra(barraVidaPJ, vidaPers);
                 } else {
                     actualizarBarra(barraVidaPJ, 0);
                     this.vidaPJ.setText("DEAD");

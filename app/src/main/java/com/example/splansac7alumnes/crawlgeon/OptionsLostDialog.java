@@ -53,7 +53,7 @@ public class OptionsLostDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 controlador.playButtonSound(context);
-                controlador.restartMusica();
+                controlador.stopMusica();
                 controlador.stopFX();
                 Intent gameScreen = new Intent(OptionsLostDialog.super.getOwnerActivity(),GameScreen.class);//getOwnerActivity agafa atribut que hem passat amb setOwnerActivity quan creem el Dialog
                 ((Activity)context).finish();//Finalitzem GameScreen

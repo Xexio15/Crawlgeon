@@ -8,16 +8,17 @@ import java.io.Serializable;
 
 public class Monster implements Serializable {
     private float vida;
-    private float daño;
+    protected float daño;
     private int id;
     private int staticanim;
-    private int attackanim;
+    protected int attackanim;
     private int attackSound;
     private int deathSound;
     private int painSound;
     private int attackArmorSound;
+    private String vulnerabilidad;
 
-    public Monster(float vida, float daño, int id, int staticanim,int attackanim, int attackSound, int attackArmorSound, int painSound, int deathSound){
+    public Monster(float vida, float daño, int id, int staticanim,int attackanim, int attackSound, int attackArmorSound, int painSound, int deathSound, String vulnerabilidad){
         this.vida = vida;
         this.daño = daño;
         this.id = id;
@@ -27,6 +28,7 @@ public class Monster implements Serializable {
         this.deathSound = deathSound;
         this.painSound = painSound;
         this.attackArmorSound = attackArmorSound;
+        this.vulnerabilidad = vulnerabilidad;
     }
 
     public int getDeathSound() {
@@ -57,5 +59,9 @@ public class Monster implements Serializable {
 
     public int getAttackAnim(){
         return attackanim;
+    }
+
+    public String getVulnerabilidad(){
+        return vulnerabilidad;
     }
 }
