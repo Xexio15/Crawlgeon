@@ -19,7 +19,7 @@ public class SkeletonKing extends Monster {
     public float getDaño(){
         Random r = new Random();
         int rand = r.nextInt(9);
-        if(rand == 5){
+        if(rand <= 9){
             wasCrit = true;
             return  critDaño;
         }else {
