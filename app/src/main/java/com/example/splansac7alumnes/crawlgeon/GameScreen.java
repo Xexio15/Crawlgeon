@@ -30,6 +30,7 @@ import com.example.splansac7alumnes.crawlgeon.Tiles.Lighting;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Shield;
 import com.example.splansac7alumnes.crawlgeon.Tiles.Tile;
 import com.example.splansac7alumnes.crawlgeon.monsters.Monster;
+import com.example.splansac7alumnes.crawlgeon.monsters.SkeletonKing;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -144,7 +145,6 @@ public class GameScreen extends AppCompatActivity {
 
         //Inicializacion de turnos i daño del monstruo
         this.turnosMonstruo = controlador.getTurnosMonstruo();
-        this.dañoMonstruo = controlador.getDañoMonstruo();
 
         fillGrid();//Llenamos la Grid cuando se inicia la activity
     }
@@ -346,9 +346,10 @@ public class GameScreen extends AppCompatActivity {
      * Metodo de espera a la animacion enemiga
      */
     public void enemyAttackAnimation(){
-
-        enemyImg.setBackgroundResource(monstruo.getAttackAnim());
-        AnimationDrawable anim = (AnimationDrawable)getDrawable(monstruo.getAttackAnim());
+        this.dañoMonstruo = monstruo.getDaño();
+        int animID = monstruo.getAttackAnim();
+        enemyImg.setBackgroundResource(animID);
+        AnimationDrawable anim = (AnimationDrawable)getDrawable(animID);
         AnimationDrawableHandler cad = new AnimationDrawableHandler(anim) {
             @Override
             void onAnimationFinish() {
@@ -439,13 +440,15 @@ public class GameScreen extends AppCompatActivity {
             for (int i = 0; i < turnosMonstruo; i++) {
                 float vidaPers = vidaPJ();
                 float armadura = armaduraPJ();
-                armadura = armadura - dañoMonstruo;
+
+                armadura = armadura - this.dañoMonstruo;
+
                 if (armadura > 0) {
                     actualizarBarra(barraArmor, Math.round(armadura));
                     armor.setText(String.format(Locale.US, "%.2f", armadura) + "");
                 } else {
                     actualizarBarra(barraArmor, Math.round(armadura));
-                    armor.setText(0 + "");
+                    armor.setText(0 + ".00");
                     vidaPers = vidaPers + armadura;
                 }
 
