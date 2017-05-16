@@ -24,6 +24,7 @@ import java.util.List;
 public class MainMenu extends AppCompatActivity {
 
     private Controller controlador;
+    private Dialog dialog;
 
 
     @Override
@@ -138,12 +139,12 @@ public class MainMenu extends AppCompatActivity {
     }
 
     /**
-    * Metodo para confirmar la salida de la app cuando presionamos a la tecla de atras
-    */
+     * Metodo para confirmar la salida de la app cuando presionamos a la tecla de atras
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if (keyCode == KeyEvent.KEYCODE_BACK){
-            new AlertDialog.Builder(this)
+            /*new AlertDialog.Builder(this)
                     .setTitle("Exit")
                     .setMessage("Are you sure?")
                     .setNegativeButton(R.string.cancel,null)
@@ -154,7 +155,33 @@ public class MainMenu extends AppCompatActivity {
                             MainMenu.this.finish();
                         }
                     })
-                    .show();
+                    .show();*/
+            dialog = new Dialog(this,R.style.DialogsCrawlgeon);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.salir_layout);
+            dialog.getWindow().setBackgroundDrawableResource(R.drawable.options_dialog_bg);
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            TextView title = (TextView) dialog.findViewById(R.id.textTitle);
+            title.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+            TextView mensage = (TextView) dialog.findViewById(R.id.textMensage);
+            mensage.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
+            Button btnC = (Button) dialog.findViewById(R.id.bCancel);
+            btnC.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            Button btnO = (Button) dialog.findViewById(R.id.btnOk);
+            btnO.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    controlador.stopMusica();
+                    MainMenu.this.finish();
+                }
+            });
+            dialog.show();
             return true;
         }
         return super.onKeyDown(keyCode,event);

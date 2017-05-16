@@ -370,6 +370,24 @@ public class GameScreen extends AppCompatActivity {
     }
 
     /**
+     * Animacion para cuando muere el personaje o el enemgio
+     */
+    public void deadAnimation(final ImageView img,int iAnim){
+        AnimationDrawable anim = (AnimationDrawable)getDrawable(iAnim);
+        pjImg.setBackgroundResource(iAnim);
+        AnimationDrawableHandler cad = new AnimationDrawableHandler(anim) {
+            @Override
+            void onAnimationFinish() {
+                img.setVisibility(View.INVISIBLE);
+                showDialog();
+            }
+        };
+        img.setBackgroundDrawable(cad);
+        //iniciamos la animacion
+        cad.start();
+    }
+
+    /**
      * Metodo para realizar el hechizo
      */
     public void realizarHechizo(ArrayList<Integer> seleccion, Tile tile) {
@@ -395,19 +413,10 @@ public class GameScreen extends AppCompatActivity {
                 controlador.playFX();
                 actualizarBarra(barraVidaMonstruo, 0);
                 this.vidaMonstruo.setText("DEAD");
+                deadAnimation(enemyImg,monstruo.getFallAnim());
                 this.enemigoMuerto = true;
                 float vidapj = vidaPJ();
                 controlador.desbloquearNivel();
-                if (vidapj >= vidaMaxPersonaje / 100 * 80) {
-                    winDialog(3);
-                    puntuarNivel(3);
-                } else if (vidapj >= vidaMaxPersonaje / 2) {
-                    winDialog(2);
-                    puntuarNivel(2);
-                } else {
-                    winDialog(1);
-                    puntuarNivel(1);
-                }
             }
         } else {
 
@@ -458,14 +467,34 @@ public class GameScreen extends AppCompatActivity {
                     actualizarBarra(barraVidaPJ, vidaPers);
                 } else {
                     actualizarBarra(barraVidaPJ, 0);
-                    this.vidaPJ.setText("DEAD");
                     this.pjMuerto = true;
+                    this.vidaPJ.setText("DEAD");
                     controlador.initFX(GameScreen.this, personaje.getDeathSound());
                     controlador.playFX();
-                    loseDialog();
+                    deadAnimation(pjImg,personaje.getFallAnim());
                 }
             }
             turnoActual = 0;
+        }
+    }
+
+    /**
+     * metodo para enseñar el win dialog o lose dialog
+     */
+    public void showDialog(){
+        if (!pjMuerto){
+            if (vidaPJ() >= vidaMaxPersonaje / 100 * 80) {
+                winDialog(3);
+                puntuarNivel(3);
+            } else if (vidaPJ() >= vidaMaxPersonaje / 2) {
+                winDialog(2);
+                puntuarNivel(2);
+            } else {
+                winDialog(1);
+                puntuarNivel(1);
+            }
+        }else{
+            loseDialog();
         }
     }
 

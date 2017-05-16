@@ -21,6 +21,7 @@ public class Character implements Serializable {
     private int swordAnim = R.drawable.swordanim;
     private int shieldAnim = R.drawable.shieldanim;
     private int potionAnim = R.drawable.potionanim;
+    private int fallAnim = R.drawable.pjfallanim;
     private float bonusAtaque = 0; //+0%
     private int painSound = R.raw.pain_character;
     private int deathSound = R.raw.death_character;
@@ -80,6 +81,10 @@ public class Character implements Serializable {
         return potionAnim;
     }
 
+    public int getFallAnim(){
+        return fallAnim;
+    }
+
     public int getPainSound() { return painSound; }
 
     public int getDeathSound() { return deathSound; }
@@ -126,6 +131,10 @@ public class Character implements Serializable {
 
     public void setHealAnim(int anim){
         this.potionAnim = anim;
+    }
+
+    public void setFallAnim(int anim){
+        this.fallAnim = anim;
     }
 
 

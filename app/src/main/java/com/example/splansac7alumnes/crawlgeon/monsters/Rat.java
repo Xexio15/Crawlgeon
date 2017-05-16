@@ -12,6 +12,6 @@ import com.example.splansac7alumnes.crawlgeon.R;
 public class Rat extends Monster{
 
     public Rat() {
-        super(50, 6, R.drawable.ratstatic1, R.drawable.staticratanim, R.drawable.ratattackanim, R.raw.attack_rat, R.raw.attack_armor_rat, R.raw.pain_rat, R.raw.death_rat, "Fire");
+        super(50, 6, R.drawable.ratstatic1, R.drawable.staticratanim, R.drawable.ratattackanim,R.drawable.ratfallanim, R.raw.attack_rat, R.raw.attack_armor_rat, R.raw.pain_rat, R.raw.death_rat, "Fire");
     }
 }
