@@ -37,7 +37,7 @@ public class DungeonSelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon_selection);
 
-
+        ((TextView)findViewById(R.id.textLvlsCompleteDng2)).setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
 
 
 
@@ -51,12 +51,14 @@ public class DungeonSelection extends AppCompatActivity {
         set_lvlUnlockedTXT();
 
         /**
-         * Esta animacion de esta manera provoca interrupciones con el sonido de la puerta
+         * Esta animacion no queda del todo bien
          * */
-        /*
-        final Animation parp = AnimationUtils.loadAnimation(this,R.anim.parpadeo);
+
+        /*final Animation parp = AnimationUtils.loadAnimation(this,R.anim.parpadeo);
         parp.reset();
+        parp.setRepeatMode(Animation.INFINITE);
         click.startAnimation(parp);
+
         parp.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -65,7 +67,6 @@ public class DungeonSelection extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 parp.reset();
-                parp.setRepeatMode(Animation.INFINITE);
                 click.startAnimation(parp);
 
 
@@ -75,8 +76,8 @@ public class DungeonSelection extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {
 
             }
-        });*/
-
+        });
+*/
         /**
         * Aquest boto ens retornara a la pantalla d'inici des de la de seleccio de dungeon
         */
@@ -96,7 +97,7 @@ public class DungeonSelection extends AppCompatActivity {
         /**
         * Aquest boto iniciara l'activity de Seleccio de Nivell i ens mostrara la pantalla que pertoca
         */
-        final Button sel_To_LvlSel = (Button) findViewById(R.id.buttonDungeon);
+        final Button sel_To_LvlSel = (Button) findViewById(R.id.buttonDungeon1);
         sel_To_LvlSel.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -173,7 +174,7 @@ public class DungeonSelection extends AppCompatActivity {
     }
 
     public void set_lvlUnlockedTXT(){
-        TextView lvlsBlocked = (TextView) findViewById(R.id.textLvlsComplete);
+        TextView lvlsBlocked = (TextView) findViewById(R.id.textLvlsCompleteDng1);
         lvlsBlocked.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/PixelFont.ttf"));
         String lvls = String.valueOf(controlador.getNumLvlsBlocked());
         lvlsBlocked.setText(lvls+"/10");
