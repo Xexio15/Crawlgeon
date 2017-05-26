@@ -26,13 +26,13 @@ public class Data implements Serializable{
         //Ataque Defensa Vida Fuego Hielo Rayo Arcano
         float[] probsIn1 = {30,25,20,15,10,0,0};
         float[] probsIn2 = {30,25,20,0,0,20,5};
-        float[] probsIn3 = {20,25,20,0,15,0,20};
+        float[] probsIn3 = {15,25,25,0,15,0,20};
         //float[] probsInPruebas = {15,15,14,14,14,14,14};
         float[] probs1 = {20,20,20,20,20,0,0};
         float[] probs2 = {20,20,20,0,0,20,20};
         float[] probs3 = {20,20,20, 0,20,0,20};
-        Level lvl1 = new Level(probsIn1, probs1, new Rat(), false, false, 1, 1, 1, 1, 0,15);
-        Level lvl2 = new Level(probsIn2, probs2, new Orc(), true, false, 2, 1, 1, 1, 0,25);
+        Level lvl1 = new Level(probsIn1, probs1, new Rat(), false, false, 1, 1, 1, 1, 0,30);//XP inicial 15
+        Level lvl2 = new Level(probsIn2, probs2, new Orc(), true, false, 2, 1, 1, 1, 0,50);//XP inicial 25
         Level lvl3 = new Level(probsIn1, probs1, new Rat(), true, false, 3, 1, 1, 1, 0,35);
         Level lvl4 = new Level(probsIn1, probs1, new Rat(), true, false, 4, 1, 1, 1, 0,45);
         Level lvl5 = new Level(probsIn1, probs1, new Rat(), true, false, 5, 1, 1, 1, 0,55);

@@ -13,7 +13,7 @@ public class SkeletonKing extends Monster {
     public  int critAnim = R.drawable.skeletonkingcritattack;
     public float critDaño = 90;
     public SkeletonKing() {
-        super(750, 35 , R.drawable.skeletonkingstatic1, R.drawable.skeletonkingstaticanim,R.drawable.skeletonkingattack,R.drawable.skeletonkingfallanim, R.raw.attack_skeleton, R.raw.attack_armor_skeleton, R.raw.pain_skeleton, R.raw.death_skeleton, "Fire");
+        super(500, 35 , R.drawable.skeletonkingstatic1, R.drawable.skeletonkingstaticanim,R.drawable.skeletonkingattack,R.drawable.skeletonkingfallanim, R.raw.attack_skeleton, R.raw.attack_armor_skeleton, R.raw.pain_skeleton, R.raw.death_skeleton, "Fire");
     }
 
     public float getDaño(){

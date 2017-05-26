@@ -168,7 +168,7 @@ public class Character implements Serializable {
         bonusAtaque = (float)0.1*nivel;
         vida = Math.round((float)1.26*vida);
         if(nivel==3){
-            nivel=7;
+            nivel=10;
             bonusAtaque = (float)0.1*nivel;
             vida = Math.round((float)1.26*1.26*1.26*1.26*vida);
         }
