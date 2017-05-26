@@ -13,4 +13,33 @@
                                     Iwan \'qubodup\' Gabovitch http://qubodup.net qubodup@gmail.com\n
                                     ViRiX Dreamcore (David Mckee) www.soundcloud.com/virix\&quot;\n
                                     artisticdude from OpenGameArt.org</string>
+    <string name="tutorial1"> This is a TILE.\n
+                                It is the basic\n
+                                element of the game.\n
+                                You have to put\n
+                                together 3 or \n
+                                more of\n
+                                them in order to\n
+                                perform an action.</string>
+    <string name="tutorial2"> There are multiple\n
+                                types of TILES\n
+                                in the game.\n
+                                Each one performs\n
+                                a diferent actionºn
+                                and deals or restores\n
+                                a diferent amount\n
+                                of damage or life\n
+                                to the character.</string>
+    <string name="tutorial3"> Each time you\n
+                                complete a level of a dungeon,\n
+                                you will be rewarded with\n
+                                experience points for you HERO.\n
+                                With them, you will level up\n
+                                and become stronger.</string>
+    <string name="tutorial4"> On completing  a level,\n
+                                you will be given an score\n
+                                based on the amount of\n
+                                remaining health you have.\n
+                                Try to complete all levels\n
+                                with the maximum score!</string>
 </resources>

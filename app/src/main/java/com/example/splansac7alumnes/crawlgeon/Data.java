@@ -17,6 +17,7 @@ public class Data implements Serializable{
     private Character personaje;
     private float volumenMusica;
     private float volumenFX;
+    private boolean tutorial;
     private ArrayList<Level> niveles;//En caso de tener mas de una dungeon hacer una array de arrays
     //Niveles desbloqueados o por desbloquear
 
@@ -50,6 +51,7 @@ public class Data implements Serializable{
         niveles.add(lvl8);
         niveles.add(lvl9);
         niveles.add(lvl10);
+        tutorial = true;
 
     }
 
@@ -85,6 +87,14 @@ public class Data implements Serializable{
 
     public ArrayList<Level> getNiveles(){
         return  niveles;
+    }
+
+    public void setTutorial(boolean tutorial){
+        this.tutorial = tutorial;
+    }
+
+    public boolean getTutorial(){
+        return this.tutorial;
     }
 
 

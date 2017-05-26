@@ -144,18 +144,6 @@ public class MainMenu extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if (keyCode == KeyEvent.KEYCODE_BACK){
-            /*new AlertDialog.Builder(this)
-                    .setTitle("Exit")
-                    .setMessage("Are you sure?")
-                    .setNegativeButton(R.string.cancel,null)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            controlador.stopMusica();
-                            MainMenu.this.finish();
-                        }
-                    })
-                    .show();*/
             dialog = new Dialog(this,R.style.DialogsCrawlgeon);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(false);

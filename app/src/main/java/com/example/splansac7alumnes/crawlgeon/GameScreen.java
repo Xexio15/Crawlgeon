@@ -147,6 +147,14 @@ public class GameScreen extends AppCompatActivity {
         this.turnosMonstruo = controlador.getTurnosMonstruo();
 
         fillGrid();//Llenamos la Grid cuando se inicia la activity
+
+        if (controlador.getTutorial()){
+            Tutorial tutorial = new Tutorial(GameScreen.this, R.style.Crawl);
+            tutorial.setOwnerActivity(GameScreen.this);
+            //El mostrem
+            tutorial.show();
+            controlador.completarTutorial();
+        }
     }
 
     /**

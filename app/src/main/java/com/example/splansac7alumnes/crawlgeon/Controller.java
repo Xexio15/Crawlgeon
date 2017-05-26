@@ -401,4 +401,12 @@ public class Controller{
     public ArrayList<Tile> getTiles(){
         return new TilesArray(context).getArray();
     }
+
+    public boolean getTutorial(){
+        return this.data.getTutorial();
+    }
+
+    public void completarTutorial(){
+        this.data.setTutorial(false);
+    }
 }
