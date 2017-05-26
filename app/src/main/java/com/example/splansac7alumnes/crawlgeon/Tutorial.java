@@ -40,6 +40,7 @@ public class Tutorial extends Dialog {
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);//Activem un fons semitransparent sota del dialog
 
         ((TextView) findViewById(R.id.textTutorialTitle)).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/PixelFont.ttf"));
+        ((TextView) findViewById(R.id.textoBarra)).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textTutorial1)).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textTutorial2)).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/PixelFont.ttf"));
         ((TextView) findViewById(R.id.textTutorial3)).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/PixelFont.ttf"));
@@ -175,6 +176,7 @@ public class Tutorial extends Dialog {
             @Override
             public void onClick(View v) {
                 controlador.playButtonSound(context);
+                controlador.saveData();
                 dismiss();
             }
         });
