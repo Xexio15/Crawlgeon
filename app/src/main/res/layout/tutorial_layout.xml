@@ -16,11 +16,12 @@
         android:layout_marginTop="8dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337">
+        app:layout_constraintVertical_bias="0.337"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <ImageView
             android:id="@+id/imageView12"
@@ -36,7 +37,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.593"
-            app:srcCompat="@drawable/emptystar" />
+            app:srcCompat="@drawable/emptystar"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -52,7 +55,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.593"
-            app:srcCompat="@drawable/star" />
+            app:srcCompat="@drawable/star"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView10"
@@ -63,12 +68,13 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.593"
-            app:srcCompat="@drawable/star" />
+            app:srcCompat="@drawable/star"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/textTutorial4"
@@ -86,11 +92,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.297" />
+            app:layout_constraintVertical_bias="0.297"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btnBack4"
-            android:layout_width="55dp"
+            android:layout_width="88dp"
             android:layout_height="55dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
@@ -102,7 +110,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btntPlay"
@@ -118,7 +128,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -135,7 +147,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998">
+        app:layout_constraintVertical_bias="0.32999998"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <TextView
             android:id="@+id/textTutorial3"
@@ -153,11 +167,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.297" />
+            app:layout_constraintVertical_bias="0.297"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btnBack3"
-            android:layout_width="55dp"
+            android:layout_width="88dp"
             android:layout_height="55dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
@@ -169,11 +185,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btnNext3"
-            android:layout_width="55dp"
+            android:layout_width="88dp"
             android:layout_height="55dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
@@ -185,7 +203,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ProgressBar
             android:id="@+id/barra"
@@ -204,7 +224,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.58" />
+            app:layout_constraintVertical_bias="0.58000004" />
 
         <TextView
             android:id="@+id/textoBarra"
@@ -226,11 +246,10 @@
             android:textColor="@android:color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="@+id/barra"
             app:layout_constraintRight_toRightOf="@+id/barra"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.578" />
+            app:layout_constraintVertical_bias="0.57" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -248,11 +267,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31">
+        app:layout_constraintVertical_bias="0.31"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <Button
             android:id="@+id/btnBack2"
-            android:layout_width="55dp"
+            android:layout_width="88dp"
             android:layout_height="55dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
@@ -264,11 +285,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btnNext2"
-            android:layout_width="55dp"
+            android:layout_width="88dp"
             android:layout_height="55dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
@@ -280,7 +303,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView9"
@@ -296,7 +321,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.635"
-            app:srcCompat="@drawable/elementohieo3" />
+            app:srcCompat="@drawable/elementohieo3"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView8"
@@ -311,7 +338,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/elementorayo4" />
+            app:srcCompat="@drawable/elementorayo4"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView7"
@@ -327,7 +356,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.362"
-            app:srcCompat="@drawable/elementofuego4" />
+            app:srcCompat="@drawable/elementofuego4"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="114dp" />
 
         <ImageView
             android:id="@+id/imageView6"
@@ -343,7 +374,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.224"
-            app:srcCompat="@drawable/ataque_basico_2" />
+            app:srcCompat="@drawable/ataque_basico_2"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/textTutorial2"
@@ -362,7 +395,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.36" />
+            app:layout_constraintVertical_bias="0.36"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -375,11 +410,12 @@
         android:layout_marginTop="8dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337">
+        app:layout_constraintVertical_bias="0.337"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <TextView
             android:id="@+id/textTutorialTitle"
@@ -393,15 +429,16 @@
             android:textColor="@android:color/background_light"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.173" />
+            app:layout_constraintVertical_bias="0.173"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btnNext1"
-            android:layout_width="55dp"
+            android:layout_width="88dp"
             android:layout_height="55dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
@@ -413,7 +450,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.8"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageHero"
@@ -429,7 +468,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.769"
-            app:srcCompat="@android:color/transparent" />
+            app:srcCompat="@android:color/transparent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -445,7 +486,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.529"
-            app:srcCompat="@drawable/ataque_basico_2" />
+            app:srcCompat="@drawable/ataque_basico_2"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -461,7 +504,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.391"
-            app:srcCompat="@drawable/ataque_basico_2" />
+            app:srcCompat="@drawable/ataque_basico_2"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -477,7 +522,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.258"
-            app:srcCompat="@drawable/ataque_basico_2" />
+            app:srcCompat="@drawable/ataque_basico_2"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/textTutorial1"
@@ -496,7 +543,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.464" />
+            app:layout_constraintVertical_bias="0.464"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

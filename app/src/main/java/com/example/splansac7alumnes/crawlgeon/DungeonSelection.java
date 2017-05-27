@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DungeonSelection extends AppCompatActivity {
     private Controller controlador;
@@ -122,6 +123,15 @@ public class DungeonSelection extends AppCompatActivity {
                         startActivity(toLvlSel);
                     }
                 });
+            }
+        });
+
+        Button dung2 = (Button) findViewById(R.id.buttonDungeon2);
+        dung2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Blocked! (WIP)", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
